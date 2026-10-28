@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'enseigne — Sites web pour artisans et commerçants à Marseille, Aix et dans le 13</title>
+<meta name="description" content="Création de sites internet pour artisans, restaurants et commerces des Bouches-du-Rhône : référencement local, demandes de devis, réservation et prise de rendez-vous en ligne. Marseille, Aix, Aubagne, Gardanne, Martigues.">
+<link rel="canonical" href="https://lenseigneweb.fr/">
+<meta property="og:title" content="L'enseigne — Sites web pour artisans et commerçants du 13">
+<meta property="og:description" content="Un site qui sort sur Google quand on cherche votre métier dans votre ville. Marseille, Aix et tout le 13.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta name="geo.region" content="FR-13">
+<meta name="geo.placename" content="Marseille">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "L'enseigne",
+  "description": "Création de sites internet pour artisans et commerçants des Bouches-du-Rhône : référencement local, devis, réservation et prise de rendez-vous en ligne.",
+  "url": "https://lenseigneweb.fr/",
+  "telephone": "+33695944217",
+  "email": "pierre.pignon@outlook.fr",
+  "address": {"@type": "PostalAddress", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"},
+  "areaServed": ["Marseille","Aix-en-Provence","Aubagne","Gardanne","Martigues","Vitrolles","Marignane","Salon-de-Provence","Istres","La Ciotat","Trets","Bouches-du-Rhône"],
+  "priceRange": "€€"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============ RESET & TOKENS ============ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: auto; }
+  :root {
+    --bg: #0b0d24;
+    --bg-2: #0f1230;
+    --ink: #fafafa;
+    --ink-dim: rgba(255,255,255,0.65);
+    --ink-mute: rgba(255,255,255,0.4);
+    --line: rgba(255,255,255,0.08);
+    --accent: #FFB661;
+    --accent-2: #B4A2F0;
+    --accent-3: #B580FF;
+    --glow-warm: 255, 182, 97;
+    --glow-cool: 180, 162, 240;
+    --serif: 'Instrument Serif', 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  /* ============ NAV ============ */
+  nav.top {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    padding: 20px 28px;
+    background: rgba(11,13,36,0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 14px; letter-spacing: -0.2px;
+  }
+  .brand-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.4); }
+  }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    color: var(--ink-dim); font-size: 13px; font-weight: 500;
+    padding: 8px 14px; border-radius: 8px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--accent); color: var(--bg) !important;
+    padding: 9px 18px !important; border-radius: 99px !important;
+    font-weight: 700 !important; font-size: 12.5px !important;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(var(--glow-warm), 0.3); }
+
+  /* ============ SCROLL HINT ============ */
+  .scroll-hint {
+    position: fixed; bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .scroll-hint .line {
+    width: 1px; height: 36px;
+    background: linear-gradient(180deg, transparent, var(--ink-mute), transparent);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { transform: translateY(-12px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
+  }
+  body.past-act1 .scroll-hint { opacity: 0; }
+
+  /* ============ ACT WRAPPERS (sticky scroll) ============ */
+  .act {
+    position: relative;
+    width: 100%;
+  }
+  .act-sticky {
+    position: sticky; top: 0;
+    width: 100%; height: 100vh;
+    overflow: hidden;
+  }
+  .layer {
+    position: absolute; inset: 0;
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+  .scene-text {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0 24px;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .scene-text > * { pointer-events: auto; }
+  .scene-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .scene-eyebrow::before, .scene-eyebrow::after {
+    content: ''; width: 30px; height: 1px; background: var(--accent); opacity: 0.5;
+  }
+  .scene-h {
+    font-size: clamp(36px, 6.5vw, 88px);
+    line-height: 1; letter-spacing: -3px;
+    font-weight: 500; text-align: center;
+    max-width: 1100px;
+  }
+  .scene-h .it {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    color: var(--accent); letter-spacing: -2px;
+  }
+  .scene-h .it-cool { color: var(--accent-2); }
+  .scene-h .it-violet { color: var(--accent-3); }
+  .scene-sub {
+    font-size: 17px; color: var(--ink-dim);
+    margin-top: 22px; max-width: 540px; text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ============ ACT 1 — LA RUE ============ */
+  #act1 { height: 280vh; }
+  .scene-street {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% 100%, rgba(12,12,34,1) 0%, transparent 70%),
+      radial-gradient(ellipse 120% 40% at 50% 78%, rgba(120,90,190,0.22) 0%, transparent 70%),
+      linear-gradient(180deg, #0a0c26 0%, #111232 45%, #251a44 78%, #161228 100%);
+  }
+  .star-field { z-index: 1; }
+  .city-far {
+    z-index: 2;
+    bottom: 0; top: auto;
+    height: 34vh;
+  }
+  .city-far svg { width: 100%; height: 100%; }
+  .atelier-wrap {
+    z-index: 10;
+    bottom: 0; top: auto;
+    height: 65vh;
+    display: flex; align-items: flex-end; justify-content: center;
+    transform-origin: bottom center;
+  }
+  .atelier-wrap svg { width: min(560px, 80vw); height: auto; display: block; }
+  .ground {
+    z-index: 5;
+    bottom: 0; top: auto;
+    height: 12vh;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(8,9,26,0.7) 50%, #080a1e 100%);
+  }
+
+  .act1-text { z-index: 30; }
+
+  /* ============ ACT 2 — ZOOM OUT ============ */
+  #act2 { height: 320vh; }
+  .scene-sky {
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 30%, rgba(180,162,240,0.06) 0%, transparent 60%),
+      linear-gradient(180deg, #080b22 0%, #0a0d26 50%, #0b0d24 100%);
+  }
+  .earth-curve {
+    position: absolute; bottom: -40vh; left: -10%; right: -10%;
+    height: 70vh;
+    background: radial-gradient(ellipse at center top,
+      #1a1a22 0%,
+      #0d0d12 40%,
+      transparent 70%);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    box-shadow: 0 -30px 80px rgba(var(--glow-warm), 0.08);
+  }
+  .city-network {
+    position: absolute; bottom: 15vh; left: 0; right: 0;
+    height: 30vh;
+    z-index: 2;
+    opacity: 0;
+  }
+  .network-nodes {
+    position: absolute; inset: 0;
+    z-index: 5;
+  }
+
+  /* ============ ACT 3 — LE RÉSEAU ============ */
+  #act3 { height: 360vh; }
+  .scene-network {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(180,162,240,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0b26 0%, #0c0c2a 100%);
+  }
+  .grid-bg {
+    position: absolute; inset: -10%;
+    background-image:
+      linear-gradient(rgba(180,162,240,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(180,162,240,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 1;
+    mask-image: radial-gradient(ellipse 70% 70% at center, black 30%, transparent 80%);
+  }
+  .floating-sites {
+    position: absolute; inset: 0;
+    z-index: 5;
+  }
+  .float-card {
+    position: absolute;
+    width: 240px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px 12px;
+    opacity: 0.85;
+    transform-origin: center;
+  }
+  .float-card .fc-bar {
+    display: flex; gap: 4px; margin-bottom: 8px;
+  }
+  .float-card .fc-bar span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+  .float-card .fc-content {
+    height: 96px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    padding: 8px;
+  }
+  .float-card .fc-line {
+    height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 5px;
+  }
+  .float-card .fc-line.short { width: 50%; }
+  .float-card .fc-line.color {
+    background: rgba(var(--glow-warm), 0.3);
+    width: 30%; height: 14px; margin-top: 6px;
+  }
+  .float-card .fc-url {
+    font-family: var(--mono); font-size: 9px;
+    color: var(--ink-mute); margin-top: 6px;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  .float-card[data-style="warm"] { box-shadow: 0 0 40px rgba(var(--glow-warm), 0.12); }
+  .float-card[data-style="cool"] { box-shadow: 0 0 40px rgba(var(--glow-cool), 0.12); }
+  .float-card[data-style="warm"] .fc-content {
+    background: linear-gradient(135deg, rgba(var(--glow-warm), 0.08), rgba(255,255,255,0.01));
+  }
+  .float-card[data-style="cool"] .fc-content {
+    background: linear-gradient(135deg, rgba(var(--glow-cool), 0.08), rgba(255,255,255,0.01));
+  }
+
+  .search-ticker {
+    position: absolute; top: 30%; left: 0; right: 0;
+    z-index: 8;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .search-ticker .row {
+    display: flex; gap: 24px;
+    white-space: nowrap;
+    animation: ticker 35s linear infinite;
+    padding: 8px 0;
+  }
+  .search-ticker .row.r2 {
+    animation-duration: 45s;
+    animation-direction: reverse;
+    margin-top: 12px;
+  }
+  .search-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px; border-radius: 99px;
+    font-size: 12px; color: var(--ink-dim);
+    font-family: var(--mono);
+    flex-shrink: 0;
+  }
+  .search-chip::before {
+    content: '⌕'; color: var(--accent-2); font-size: 13px;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ ACT 4 — ENTRER DANS UN SITE ============ */
+  #act4 { height: 300vh; }
+  .scene-zoom {
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 50%, rgba(var(--glow-warm), 0.06) 0%, transparent 60%),
+      #0b0d24;
+  }
+  .browser-zoom {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(960px, 92vw);
+    z-index: 5;
+  }
+  .browser-zoom .bz-chrome {
+    background: #1a1a1d;
+    border-radius: 14px 14px 0 0;
+    padding: 11px 14px;
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid var(--line);
+    border-bottom: none;
+  }
+  .bz-chrome .dots { display: flex; gap: 6px; }
+  .bz-chrome .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .bz-chrome .url {
+    flex: 1; background: rgba(255,255,255,0.06);
+    border-radius: 6px; padding: 5px 12px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); text-align: center;
+  }
+  .browser-zoom .bz-body {
+    background: #F8FAF6;
+    border-radius: 0 0 14px 14px;
+    border: 1px solid var(--line);
+    border-top: none;
+    aspect-ratio: 16/10;
+    padding: 28px;
+    color: #0F1F3D;
+    position: relative;
+    overflow: hidden;
+  }
+  .bz-body-inner {
+    display: flex; flex-direction: column; gap: 14px;
+    height: 100%;
+  }
+  .bz-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; border-bottom: 1px solid rgba(15,31,61,0.08);
+  }
+  .bz-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 800; font-size: 14px; color: #0F1F3D;
+  }
+  .bz-logo-mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: #0F1F3D; color: #FFB661;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+  }
+  .bz-nav { display: flex; gap: 16px; color: #64748b; font-size: 12px; font-weight: 500; }
+  .bz-cta {
+    background: #FFB661; color: #0F1F3D;
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 700;
+  }
+  .bz-hero {
+    display: grid; grid-template-columns: 1.4fr 1fr;
+    gap: 20px; flex: 1;
+    align-items: center;
+  }
+  .bz-h1 {
+    font-size: 42px; line-height: 1.02;
+    font-weight: 800; letter-spacing: -1.5px; color: #0F1F3D;
+  }
+  .bz-h1 em { font-style: italic; font-family: var(--serif); font-weight: 400; color: #C28A3E; }
+  .bz-lead {
+    color: #64748b; font-size: 13px; margin-top: 10px;
+    line-height: 1.55;
+  }
+  .bz-buttons { display: flex; gap: 8px; margin-top: 14px; }
+  .bz-btn-prim { background: #0F1F3D; color: #FFB661; padding: 9px 16px; border-radius: 7px; font-size: 11px; font-weight: 700; }
+  .bz-btn-sec { background: white; border: 1px solid rgba(15,31,61,0.12); padding: 9px 16px; border-radius: 7px; font-size: 11px; font-weight: 600; }
+  .bz-visual {
+    aspect-ratio: 4/5;
+    background: white; border: 1px dashed #C28A3E;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; color: #64748b;
+    font-size: 11px;
+  }
+  .bz-visual-icon { font-size: 32px; margin-bottom: 8px; }
+
+  .glow-ring {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px; height: 1200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--glow-warm), 0.12) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ============ NORMAL SECTIONS BELOW ============ */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  .section {
+    padding: 120px 0;
+    position: relative;
+  }
+  .section-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--accent);
+  }
+  .section-h {
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -2px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    max-width: 900px;
+  }
+  .section-h .it {
+    font-family: var(--serif); font-style: italic;
+    font-weight: 400; color: var(--accent);
+    letter-spacing: -1px;
+  }
+  .section-lead {
+    font-size: 17px; color: var(--ink-dim);
+    max-width: 600px; line-height: 1.65;
+  }
+
+  /* SERVICES */
+  .services-section { border-top: 1px solid var(--line); background: var(--bg); }
+  .services-grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .svc {
+    background: var(--bg);
+    padding: 42px 36px;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .svc:hover { background: var(--bg-2); }
+  .svc-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
+  .svc-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(var(--glow-warm), 0.15), rgba(var(--glow-warm), 0.05));
+    border: 1px solid rgba(var(--glow-warm), 0.2);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .svc h3 {
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.5px; margin-bottom: 10px;
+  }
+  .svc p {
+    color: var(--ink-dim); font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  /* PORTFOLIO */
+  .portfolio-section { border-top: 1px solid var(--line); background: var(--bg-2); }
+  .work-grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .work-card {
+    display: block;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .work-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 50px rgba(var(--glow-warm), 0.1);
+  }
+  .work-browser { background: #1a1a1d; padding: 12px 14px 0; }
+  .work-browser .bar {
+    display: flex; gap: 10px; align-items: center; padding-bottom: 12px;
+  }
+  .work-browser .dots { display: flex; gap: 6px; }
+  .work-browser .dots span { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .work-browser .url {
+    flex: 1; background: rgba(255,255,255,0.06);
+    padding: 5px 12px; border-radius: 6px;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); text-align: center;
+  }
+  .work-preview {
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Preview plombier */
+  .prev-p1 {
+    background: linear-gradient(180deg, #F8FAF6 0%, #ffffff 100%);
+    padding: 22px 28px; color: #0F1F3D; font-size: 11px;
+  }
+  .prev-p1 .h {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; border-bottom: 1px solid rgba(15,31,61,0.08);
+    margin-bottom: 18px;
+  }
+  .prev-p1 .lg { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 11px; }
+  .prev-p1 .lg .m { width: 22px; height: 22px; background: #16a34a; border-radius: 5px; color: white; display: flex; align-items: center; justify-content: center; font-size: 9px; }
+  .prev-p1 .n { display: flex; gap: 12px; color: #64748b; font-size: 9.5px; }
+  .prev-p1 .n .cta { background: #16a34a; color: white; padding: 4px 8px; border-radius: 5px; font-weight: 700; }
+  .prev-p1 .pill { display: inline-flex; align-items: center; gap: 6px; background: white; border: 1px solid rgba(15,31,61,0.1); color: #16a34a; padding: 4px 9px; border-radius: 99px; font-size: 8.5px; font-weight: 700; margin-bottom: 12px; }
+  .prev-p1 .pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #16a34a; }
+  .prev-p1 .hh { font-size: 22px; line-height: 1.05; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+  .prev-p1 .hh em { font-style: normal; color: #16a34a; }
+  .prev-p1 .sb { color: #64748b; font-size: 9.5px; max-width: 75%; margin-bottom: 12px; }
+  .prev-p1 .bs { display: flex; gap: 6px; }
+  .prev-p1 .b1 { background: #16a34a; color: white; padding: 6px 11px; border-radius: 6px; font-size: 9px; font-weight: 700; }
+  .prev-p1 .b2 { background: white; border: 1px solid rgba(15,31,61,0.12); padding: 6px 11px; border-radius: 6px; font-size: 9px; font-weight: 600; }
+  .prev-p1 .stars { position: absolute; top: 22px; right: 28px; color: #16a34a; font-size: 11px; letter-spacing: 1px; }
+
+  /* Preview pharmacie */
+  .prev-p2 {
+    background: #fafaf7; padding: 22px 28px; color: #1a1a1a;
+    font-family: Georgia, serif;
+  }
+  .prev-p2 .top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 9px; color: #777; padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.08); margin-bottom: 16px;
+    letter-spacing: 0.5px;
+  }
+  .prev-p2 .br { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #1a1a1a; }
+  .prev-p2 .st { font-family: 'Inter', sans-serif; color: #1a7a3e; font-weight: 600; }
+  .prev-p2 .eb { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #999; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .prev-p2 .hh { font-size: 26px; line-height: 1.05; font-weight: 400; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .prev-p2 .hh em { font-style: italic; color: #6b5b3a; }
+  .prev-p2 .mt { font-family: 'Inter', sans-serif; font-size: 8.5px; color: #888; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .prev-p2 .nm { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); font-family: 'Inter', sans-serif; }
+  .prev-p2 .nm .b { font-family: Georgia, serif; font-size: 17px; font-style: italic; color: #6b5b3a; }
+  .prev-p2 .nm .l { font-size: 7.5px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-top: 1px; }
+
+  .work-body { padding: 28px; }
+  .work-tags { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .work-tag {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--ink-dim);
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+  }
+  .work-tag.warm { color: var(--accent); border-color: rgba(var(--glow-warm), 0.3); background: rgba(var(--glow-warm), 0.06); }
+  .work-card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .work-card .desc { color: var(--ink-dim); font-size: 14.5px; line-height: 1.55; margin-bottom: 18px; }
+  .work-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent);
+    transition: gap 0.2s;
+  }
+  .work-card:hover .work-link { gap: 14px; }
+
+  /* PROCESS */
+  .process-section { border-top: 1px solid var(--line); background: var(--bg); }
+  .process-list { margin-top: 64px; border-top: 1px solid var(--line); }
+  .process-row {
+    display: grid; grid-template-columns: 90px 1fr 1.6fr;
+    gap: 40px; padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: background 0.3s;
+  }
+  .process-row:hover { background: rgba(255,255,255,0.015); }
+  .process-num {
+    font-family: var(--serif); font-style: italic;
+    font-size: 56px; color: var(--accent); line-height: 1;
+  }
+  .process-row h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .process-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.3px; }
+  .process-desc { color: var(--ink-dim); font-size: 15px; line-height: 1.65; }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 160px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse 60% 90% at 50% 100%, rgba(var(--glow-warm), 0.12), transparent 60%),
+      var(--bg);
+    position: relative;
+  }
+  .contact-inner { max-width: 800px; margin: 0 auto; }
+  .contact-section .section-h { margin-left: auto; margin-right: auto; }
+  .contact-section .section-eyebrow { justify-content: center; }
+  .contact-lead {
+    color: var(--ink-dim); font-size: 18px;
+    max-width: 580px; margin: 0 auto 44px;
+    line-height: 1.6;
+  }
+  .contact-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-primary {
+    background: var(--accent); color: var(--bg);
+    padding: 16px 28px; border-radius: 99px;
+    font-weight: 700; font-size: 15px;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(var(--glow-warm), 0.3); }
+  .btn-ghost {
+    padding: 16px 28px; border-radius: 99px;
+    font-weight: 600; font-size: 15px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); background: rgba(var(--glow-warm), 0.04); }
+  .contact-direct {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+    padding-top: 40px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 13px;
+  }
+  .contact-direct .item { display: flex; align-items: center; gap: 10px; color: var(--ink-dim); }
+  .contact-direct .item strong { color: var(--ink); font-weight: 500; }
+  .contact-direct a:hover { color: var(--accent); }
+  .contact-meta {
+    font-family: var(--mono); font-size: 12.5px;
+    color: var(--ink-mute); letter-spacing: 0.3px;
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 36px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* FOOTER */
+  footer.foot {
+    padding: 40px 0 50px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-mute);
+  }
+  .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink-dim); }
+
+  /* ============ PORTFOLIO IFRAMES (VRAIS SITES) ============ */
+  .work-preview-iframe {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .work-preview-iframe iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 250%; height: 250%;
+    transform-origin: 0 0;
+    transform: scale(0.4);
+    border: 0;
+    pointer-events: none;
+    background: #ffffff;
+  }
+  .work-card:hover .work-preview-iframe iframe {
+    transform: scale(0.42);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  /* Subtle vignette so the iframe blends with the dark card frame */
+  .work-preview-iframe::before {
+    content: ''; position: absolute; inset: 0;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.15);
+    z-index: 4; pointer-events: none;
+  }
+
+  /* ============ POLISH V2 — PORTFOLIO ENHANCEMENTS ============ */
+  .work-preview { position: relative; }
+  .work-preview::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.55));
+    opacity: 0; transition: opacity 0.35s;
+    pointer-events: none; z-index: 6;
+  }
+  .work-card:hover .work-preview::after { opacity: 1; }
+  .work-card .work-preview-overlay {
+    position: absolute; bottom: 16px; left: 18px;
+    z-index: 10;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.35s, transform 0.35s;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.6px;
+    background: var(--accent); color: var(--bg);
+    padding: 7px 14px; border-radius: 99px;
+    font-weight: 700; text-transform: uppercase;
+    box-shadow: 0 8px 24px rgba(var(--glow-warm), 0.4);
+  }
+  .work-card:hover .work-preview-overlay { opacity: 1; transform: translateY(0); }
+
+  /* Animated pulse on the pharmacy "Ouverte" dot */
+  .prev-p2 .st::before {
+    content: ''; width: 6px; height: 6px; display: inline-block;
+    background: #1a7a3e; border-radius: 50%;
+    margin-right: 5px; vertical-align: 1px;
+    box-shadow: 0 0 6px #1a7a3e;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* "Votre projet" CTA card */
+  .work-card-cta {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+    border: 1px dashed rgba(var(--glow-warm), 0.3);
+    border-radius: 18px;
+    padding: 80px 40px;
+    text-align: center;
+    grid-column: span 2;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .work-card-cta:hover {
+    border-color: var(--accent);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 80px rgba(var(--glow-warm), 0.1);
+  }
+  .work-card-cta::before {
+    content: ''; position: absolute;
+    top: -50%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(var(--glow-warm), 0.06), transparent 60%);
+    pointer-events: none;
+  }
+  .work-card-cta-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .work-card-cta h3 {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 500; letter-spacing: -1px;
+    margin-bottom: 14px; line-height: 1.05;
+    position: relative; z-index: 1;
+  }
+  .work-card-cta h3 .it {
+    font-family: var(--serif); font-style: italic;
+    font-weight: 400; color: var(--accent);
+  }
+  .work-card-cta p {
+    color: var(--ink-dim); font-size: 15px;
+    max-width: 480px; line-height: 1.6;
+    margin-bottom: 30px;
+    position: relative; z-index: 1;
+  }
+  .work-card-cta-button {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--bg);
+    padding: 14px 26px; border-radius: 99px;
+    font-weight: 700; font-size: 14.5px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative; z-index: 1;
+  }
+  .work-card-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(var(--glow-warm), 0.35);
+  }
+
+  /* ============ FORMULES SECTION ============ */
+  .formules-section {
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .formules-section::before {
+    content: ''; position: absolute;
+    top: 20%; left: -10%;
+    width: 60%; height: 60%;
+    background: radial-gradient(ellipse at center, rgba(var(--glow-warm), 0.04), transparent 60%);
+    pointer-events: none;
+  }
+  .formules-grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    position: relative;
+  }
+  .formule-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 44px 40px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .formule-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--glow-warm), 0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .formule-signature {
+    background: linear-gradient(180deg, rgba(var(--glow-warm), 0.05) 0%, var(--bg-2) 100%);
+    border-color: rgba(var(--glow-warm), 0.25);
+  }
+  .formule-signature:hover {
+    border-color: var(--accent);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 60px rgba(var(--glow-warm), 0.1);
+  }
+  .formule-badge {
+    position: absolute;
+    top: -1px; right: 28px;
+    background: var(--accent); color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 0 0 8px 8px;
+    font-family: var(--mono); font-size: 10.5px;
+    font-weight: 700; letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .formule-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .formule-signature .formule-eyebrow { color: var(--accent); }
+  .formule-price {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .formule-price-num {
+    display: block;
+    font-size: 44px; font-weight: 500;
+    letter-spacing: -1.5px; line-height: 1;
+    margin-bottom: 8px;
+    font-family: var(--sans);
+  }
+  .formule-price-sub {
+    color: var(--ink-mute); font-size: 13px;
+    font-family: var(--mono); letter-spacing: 0.3px;
+  }
+  .formule-h {
+    font-size: 28px;
+    letter-spacing: -0.8px; line-height: 1.05;
+    font-weight: 500; margin-bottom: 14px;
+  }
+  .formule-h .it {
+    font-family: var(--serif); font-style: italic;
+    color: var(--accent); font-weight: 400;
+  }
+  .formule-tagline {
+    color: var(--ink-dim); font-size: 14.5px;
+    line-height: 1.6; margin-bottom: 28px;
+  }
+  .formule-list {
+    list-style: none; padding: 0;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .formule-list li {
+    font-size: 14px; color: var(--ink-dim);
+    padding: 12px 0 12px 28px;
+    border-top: 1px solid var(--line);
+    position: relative;
+    line-height: 1.5;
+  }
+  .formule-list li:last-child { border-bottom: 1px solid var(--line); }
+  .formule-list li::before {
+    content: ''; position: absolute;
+    left: 0; top: 15px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(var(--glow-warm), 0.12);
+    border: 1px solid rgba(var(--glow-warm), 0.35);
+  }
+  .formule-list li::after {
+    content: '✓'; position: absolute;
+    left: 4px; top: 11px;
+    font-size: 10px; color: var(--accent);
+    font-weight: 800;
+  }
+  .formule-list li strong { color: var(--ink); font-weight: 500; }
+  .formule-example {
+    font-size: 12.5px; color: var(--ink-mute);
+    margin-bottom: 22px;
+    font-family: var(--mono); letter-spacing: 0.3px;
+  }
+  .formule-example a {
+    color: var(--accent);
+    border-bottom: 1px dashed rgba(var(--glow-warm), 0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .formule-example a:hover { border-color: var(--accent); }
+  .formule-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 22px;
+    border-radius: 99px;
+    font-weight: 700; font-size: 14.5px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: transparent;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .formule-cta:hover {
+    border-color: var(--accent);
+    background: rgba(var(--glow-warm), 0.06);
+    transform: translateY(-1px);
+  }
+  .formule-cta-prim {
+    background: var(--accent); color: var(--bg) !important;
+    border-color: var(--accent);
+  }
+  .formule-cta-prim:hover {
+    background: var(--accent);
+    box-shadow: 0 12px 28px rgba(var(--glow-warm), 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* ============ TRANSPARENCY SECTION ============ */
+  .transparency-section {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .transparency-section::before {
+    content: ''; position: absolute;
+    top: 0; right: -20%;
+    width: 60%; height: 60%;
+    background: radial-gradient(ellipse at center, rgba(var(--glow-warm), 0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .transparency-grid {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: start;
+    position: relative;
+  }
+  .transparency-text p {
+    color: var(--ink-dim);
+    font-size: 16.5px; line-height: 1.75;
+    margin-bottom: 22px;
+  }
+  .transparency-text p strong {
+    color: var(--ink); font-weight: 500;
+  }
+  .transparency-text .ttq {
+    font-family: var(--serif); font-style: italic;
+    color: var(--ink); font-size: 22px;
+    line-height: 1.4; letter-spacing: -0.3px;
+    padding-left: 22px;
+    border-left: 2px solid var(--accent);
+    margin: 28px 0;
+  }
+  .transparency-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .tr-stat {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 26px 28px;
+    display: flex; align-items: center; gap: 22px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .tr-stat:hover { border-color: rgba(var(--glow-warm), 0.3); transform: translateX(4px); }
+  .tr-stat .n {
+    font-family: var(--serif); font-style: italic;
+    font-size: 52px; line-height: 1;
+    color: var(--accent);
+    min-width: 60px;
+    letter-spacing: -1px;
+  }
+  .tr-stat .l strong {
+    color: var(--ink); font-weight: 500;
+    display: block; margin-bottom: 3px;
+    font-size: 15.5px;
+  }
+  .tr-stat .l span {
+    color: var(--ink-dim); font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  /* ============ PROCESS TIMELINE LINE ============ */
+  .process-list { position: relative; }
+  .process-list::before {
+    content: ''; position: absolute;
+    left: 26px; top: 28px; bottom: 28px;
+    width: 1px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(var(--glow-warm), 0.45) 8%,
+      rgba(var(--glow-warm), 0.25) 92%,
+      transparent 100%);
+    z-index: 0;
+  }
+  .process-row .process-num { position: relative; z-index: 2; }
+  .process-row .process-num::after {
+    content: '';
+    position: absolute;
+    left: -6px; top: 18px;
+    width: 12px; height: 12px;
+    background: var(--bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 16px rgba(var(--glow-warm), 0.4);
+  }
+
+  /* ============ CONTACT V2 — NARRATIVE LOOP ============ */
+  .contact-section {
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 100%, rgba(var(--glow-warm), 0.15), transparent 65%),
+      radial-gradient(ellipse 50% 40% at 50% 0%, rgba(180,162,240,0.04), transparent 65%),
+      linear-gradient(180deg, #0b0d24 0%, #0d0f2a 55%, #15122a 100%);
+    overflow: hidden;
+    position: relative;
+    padding: 140px 0 120px;
+  }
+  .contact-stars {
+    position: absolute; inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .contact-stars svg { width: 100%; height: 100%; }
+  .contact-tagline {
+    font-family: var(--serif); font-style: italic;
+    color: var(--ink-dim);
+    font-size: clamp(18px, 2vw, 22px);
+    margin: 0 auto 40px;
+    line-height: 1.45;
+    max-width: 600px; text-align: center;
+    letter-spacing: -0.2px;
+  }
+  .contact-tagline .warm { color: var(--accent); }
+  .contact-inner { position: relative; z-index: 2; }
+  .contact-lamp {
+    width: 64px; height: 64px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .contact-lamp::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle, rgba(var(--glow-warm), 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .contact-lamp::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 24px rgba(var(--glow-warm), 0.8);
+  }
+
+  /* ============ SERVICES POLISH ============ */
+  .svc { position: relative; }
+  .svc::before {
+    content: ''; position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .svc:hover::before { width: 100%; }
+  .svc-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-mute); margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
+  .svc-num .it {
+    font-family: var(--serif); font-style: italic;
+    color: var(--accent); font-size: 18px;
+    margin-right: 4px; vertical-align: -2px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .scene-h { letter-spacing: -1.5px; }
+    .browser-zoom { width: 94vw; }
+    .bz-hero { grid-template-columns: 1fr; }
+    .bz-visual { display: none; }
+    .bz-h1 { font-size: 28px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .process-row { grid-template-columns: 60px 1fr; gap: 20px; }
+    .process-row .process-desc { grid-column: 2; }
+    .section { padding: 80px 0; }
+    .contact-section { padding: 100px 0; }
+    .contact-direct { gap: 20px; }
+    .float-card { width: 180px; }
+    #act1 { height: 220vh; }
+    #act2 { height: 260vh; }
+    #act3 { height: 280vh; }
+    #act4 { height: 240vh; }
+    .transparency-grid { grid-template-columns: 1fr; gap: 36px; }
+    .formules-grid { grid-template-columns: 1fr; gap: 20px; }
+    .formule-card { padding: 36px 28px; }
+    .formule-price-num { font-size: 36px; }
+    .formule-h { font-size: 24px; }
+    .work-card-cta { padding: 56px 28px; grid-column: span 1; }
+    .work-card-cta h3 { font-size: 26px; }
+    .process-list::before { left: 18px; }
+    .process-row .process-num::after { left: -12px; top: 12px; width: 10px; height: 10px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 22px; }
+    .contact-buttons { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-ghost { justify-content: center; }
+  }
+
+  /* ============ ACCESSIBILITY ============ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ============ ZONE ============ */
+  .zone-list { list-style: none; margin: 40px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .zone-list li { padding: 10px 16px; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
+    font-size: 14px; color: rgba(255,255,255,0.78); background: rgba(255,255,255,0.03); }
+  .zone-list li:first-child, .zone-list li:nth-child(2) { border-color: rgba(255,184,107,0.45); color: #ffc98a; }
+
+  /* ============ PROVENCE : PICTOS & FRISES ============ */
+  .picto { display: block; }
+  .frise { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 34px 20px; color: rgba(var(--glow-warm), 0.45); border-top: 1px solid var(--line); background: var(--bg); flex-wrap: nowrap; overflow: hidden; }
+  .frise .fd { width: 3px; height: 3px; border-radius: 50%; background: rgba(var(--glow-cool), 0.5); flex: none; }
+  .frise .picto:nth-child(4n+1) { color: rgba(var(--glow-cool), 0.7); }
+  @media (max-width: 640px) { .frise { gap: 10px; } .frise .picto:nth-of-type(n+7) , .frise .fd:nth-of-type(n+6) { display: none; } }
+  .svc-icon .picto { width: 28px; height: 28px; }
+  .svc:nth-child(even) .svc-icon { color: var(--accent-2); background: linear-gradient(135deg, rgba(var(--glow-cool), 0.15), rgba(var(--glow-cool), 0.05)); border-color: rgba(var(--glow-cool), 0.25); }
+
+  /* ============ POUR QUI ============ */
+  .who-section { border-top: 1px solid var(--line); background: var(--bg-2); }
+  .who-grid { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .who-card { position: relative; border: 1px solid var(--line); border-radius: 22px; padding: 40px 36px; background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005)); overflow: hidden; }
+  .who-card .who-mark { position: absolute; right: -14px; top: -14px; width: 150px; height: 150px; opacity: 0.07; }
+  .who-card.art .who-mark { color: var(--accent); }
+  .who-card.com .who-mark { color: var(--accent-2); }
+  .who-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; padding: 6px 12px; border-radius: 99px; }
+  .who-card.art .who-tag { color: var(--accent); background: rgba(var(--glow-warm), 0.08); border: 1px solid rgba(var(--glow-warm), 0.25); }
+  .who-card.com .who-tag { color: var(--accent-2); background: rgba(var(--glow-cool), 0.08); border: 1px solid rgba(var(--glow-cool), 0.25); }
+  .who-card h3 { font-size: 28px; font-weight: 500; letter-spacing: -0.8px; margin: 20px 0 10px; }
+  .who-card h3 .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .who-card.art h3 .it { color: var(--accent); }
+  .who-card.com h3 .it { color: var(--accent-2); }
+  .who-card > p { color: var(--ink-dim); font-size: 15px; line-height: 1.65; margin-bottom: 24px; }
+  .who-feat { list-style: none; display: grid; gap: 16px; }
+  .who-feat li { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+  .who-feat .fi { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; border: 1px solid var(--line); background: rgba(255,255,255,0.03); color: var(--ink-dim); }
+  .who-feat .fi svg { width: 18px; height: 18px; }
+  .who-feat b { display: block; font-size: 15px; font-weight: 600; }
+  .who-feat span { font-size: 14px; color: var(--ink-dim); line-height: 1.55; }
+  .who-metiers { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--ink-mute); }
+  .who-link { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 14px; color: var(--accent-2); }
+  .who-link:hover { text-decoration: underline; }
+  @media (max-width: 900px) { .who-grid { grid-template-columns: 1fr; } .who-card { padding: 32px 24px; } }
+
+  /* Option réservation */
+  .formule-option { margin-top: 24px; display: flex; gap: 16px; align-items: center; padding: 22px 26px; border: 1px dashed rgba(var(--glow-cool), 0.35); border-radius: 18px; color: var(--ink-dim); font-size: 15px; line-height: 1.6; }
+  .formule-option b { color: var(--ink); font-weight: 600; }
+  .formule-option .picto { color: var(--accent-2); flex: none; }
+
+  /* Capture statique (site qui refuse l'affichage en iframe) */
+  .work-preview-img { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #fff; }
+  .work-preview-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .work-card:hover .work-preview-img img { transform: scale(1.04); }
+
+  /* Zone : chips lavande */
+  .zone-list li:nth-child(3n) { border-color: rgba(var(--glow-cool), 0.3); }
+
+  /* ============ ACTE IV : maquette restaurant fictif ============ */
+  .bz-chrome .bz-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-2); border: 1px solid rgba(var(--glow-cool), 0.4); padding: 4px 9px; border-radius: 99px; white-space: nowrap; }
+  .browser-zoom { pointer-events: none; }
+  .browser-zoom .bz-body { background: #FBF6EC; color: #1f2347; }
+  .bz-logo { color: #1f2347; font-family: var(--serif); font-size: 19px; font-weight: 400; font-style: italic; }
+  .bz-logo-mark { background: #1f2347; color: #F0B27A; }
+  .bz-header { border-bottom-color: rgba(31,35,71,0.1); }
+  .bz-nav { color: #6b6a80; align-items: center; }
+  .bz-cta { background: #1f2347; color: #FBF6EC; }
+  .bz-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: #b46a4a; margin-bottom: 10px; }
+  .bz-h1 { color: #1f2347; font-weight: 600; letter-spacing: -1.4px; }
+  .bz-h1 em { color: #b46a4a; }
+  .bz-lead { color: #6b6a80; max-width: 330px; }
+  .bz-open { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; font-size: 11px; font-weight: 600; color: #3f6b46; background: rgba(63,107,70,0.1); padding: 5px 10px; border-radius: 99px; }
+  .bz-open span { width: 6px; height: 6px; border-radius: 50%; background: #3f9b57; }
+  .bz-btn-prim { background: #1f2347; color: #FBF6EC; }
+  .bz-btn-sec { background: transparent; border-color: rgba(31,35,71,0.18); color: #1f2347; }
+  .bz-visual { background: none; border: 0; padding: 0; overflow: hidden; border-radius: 14px; box-shadow: 0 20px 40px -20px rgba(31,35,71,0.45); }
+  .bz-visual svg { width: 100%; height: 100%; display: block; }
+
+  /* ============ CONTACT : formulaire express ============ */
+  .qf { max-width: 620px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 30px; backdrop-filter: blur(6px); }
+  .qf label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 8px; }
+  .qf textarea, .qf input { width: 100%; background: rgba(11,13,36,0.7); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 14px 16px; color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5; margin-bottom: 18px; resize: vertical; transition: border-color .15s, box-shadow .15s; }
+  .qf textarea:focus, .qf input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(var(--glow-warm), 0.18); }
+  .qf textarea::placeholder, .qf input::placeholder { color: rgba(255,255,255,0.32); }
+  .qf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .qf-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .qf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 20px; border-radius: 14px; border: 0; font-family: var(--sans); font-size: 15px; font-weight: 700; cursor: pointer; transition: transform .15s, box-shadow .2s, filter .2s; }
+  .qf-btn:hover { transform: translateY(-2px); }
+  .qf-btn:active { transform: translateY(0); }
+  .qf-mail { background: var(--accent); color: #1a1205; box-shadow: 0 10px 28px -10px rgba(var(--glow-warm), 0.7); }
+  .qf-wa { background: #25D366; color: #06240f; box-shadow: 0 10px 28px -10px rgba(37,211,102,0.6); }
+  .qf-btn[disabled] { opacity: .6; cursor: progress; }
+  .qf-status { min-height: 22px; margin-top: 14px; font-size: 14px; color: var(--ink-dim); }
+  .qf-status.ok { color: #7ee2a0; }
+  .qf-status.err { color: #ffb4a8; }
+  .contact-direct { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 0; border-top: 0; font-family: var(--sans); max-width: 820px; margin-left: auto; margin-right: auto; }
+  .contact-direct .cd { display: flex; align-items: center; gap: 12px; text-align: left; padding: 16px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: var(--accent); transition: border-color .15s, background .15s, transform .15s; }
+  .contact-direct .cd:hover { border-color: var(--accent); background: rgba(var(--glow-warm), 0.06); transform: translateY(-2px); }
+  .contact-direct .cd svg { flex: none; }
+  .contact-direct .cd span { display: flex; flex-direction: column; font-size: 12.5px; color: var(--ink-mute); line-height: 1.35; min-width: 0; }
+  .contact-direct .cd strong { color: var(--ink); font-size: 14.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @media (max-width: 760px) { .qf { padding: 22px 18px; } .qf-actions { grid-template-columns: 1fr; } .contact-direct { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="top">
+  <div class="nav-inner">
+    <a href="#" class="brand"><span class="brand-dot"></span>L'enseigne</a>
+    <div class="nav-links">
+      <a href="#pour-qui">Pour qui</a>
+      <a href="#portfolio">Travail</a>
+      <a href="#formules">Formules</a>
+      <a href="#contact" class="nav-cta">Démarrer un projet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== SCROLL HINT ===== -->
+<div class="scroll-hint">
+  <span>Scroll</span>
+  <span class="line"></span>
+</div>
+
+<!-- ===== ACT 1 — LA RUE ===== -->
+<section id="act1" class="act">
+  <div class="act-sticky scene-street" data-scene="1">
+
+    <!-- Stars background -->
+    <div class="layer star-field">
+      <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1600 900">
+        <defs>
+          <radialGradient id="moonGrad">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+            <stop offset="40%" stop-color="#fff" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Moon glow -->
+        <circle cx="960" cy="150" r="200" fill="url(#moonGrad)" opacity="0.25"/>
+        <circle cx="960" cy="150" r="42" fill="#fdf6e3" opacity="0.85"/>
+        <!-- Stars -->
+        <g fill="#fff">
+          <circle cx="120" cy="80" r="0.9" opacity="0.8"/>
+          <circle cx="240" cy="150" r="1.2" opacity="0.6"/>
+          <circle cx="380" cy="60" r="0.7" opacity="0.5"/>
+          <circle cx="510" cy="200" r="1" opacity="0.7"/>
+          <circle cx="680" cy="90" r="1.3" opacity="0.85"/>
+          <circle cx="780" cy="180" r="0.8" opacity="0.5"/>
+          <circle cx="940" cy="120" r="1.1" opacity="0.7"/>
+          <circle cx="1100" cy="60" r="0.9" opacity="0.6"/>
+          <circle cx="180" cy="300" r="1" opacity="0.55"/>
+          <circle cx="420" cy="280" r="0.8" opacity="0.45"/>
+          <circle cx="620" cy="320" r="1.1" opacity="0.6"/>
+          <circle cx="860" cy="270" r="0.7" opacity="0.4"/>
+          <circle cx="1180" cy="330" r="1" opacity="0.55"/>
+          <circle cx="1500" cy="280" r="0.9" opacity="0.5"/>
+          <circle cx="80" cy="420" r="0.7" opacity="0.35"/>
+          <circle cx="1450" cy="80" r="0.8" opacity="0.5"/>
+          <circle cx="60" cy="220" r="1.2" opacity="0.7"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Paysage : Sainte-Victoire, village perché, cyprès -->
+    <div class="layer city-far">
+      <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <!-- Sainte-Victoire, éclairée par la lune -->
+        <g transform="translate(1600,0) scale(-1,1)">
+        <path d="M0,300 L0,210 C120,200 220,190 330,175 C430,160 520,150 600,138 C680,124 760,112 840,98 C900,88 950,80 990,62 L1010,55 L1030,64 C1060,86 1090,110 1130,128 C1200,156 1290,170 1380,182 C1470,192 1540,200 1600,204 L1600,300 Z" fill="#2c2252"/>
+        <path d="M600,138 C680,124 760,112 840,98 C900,88 950,80 990,62 L1010,55" stroke="#c9bbff" stroke-opacity="0.6" stroke-width="2" fill="none"/>
+        <!-- Croix de Provence -->
+        <g stroke="#d9cfff" stroke-opacity="0.8" stroke-width="2.5"><line x1="1010" y1="55" x2="1010" y2="34"/><line x1="1003" y1="41" x2="1017" y2="41"/></g>
+        </g>
+        <!-- Village perché : toits en tuiles, campanile -->
+        <path d="M0,300 L0,250 L60,250 L60,236 L110,226 L160,236 L160,244 L210,244 L210,230 L250,220 L290,230 L290,248 L340,248 L340,234 L380,226 L420,234 L420,252 L470,252 L470,240 L520,232 L570,240 L570,256 L1020,256 L1020,236 L1060,226 L1100,236 L1100,246 L1150,246 L1150,226 L1170,226 L1170,190 L1166,190 L1166,184 L1192,184 L1192,190 L1188,190 L1188,226 L1210,226 L1210,238 L1260,238 L1260,228 L1300,220 L1340,228 L1340,246 L1400,246 L1400,234 L1450,224 L1500,234 L1500,250 L1600,250 L1600,300 Z" fill="#0b0814"/>
+        <!-- Cage du campanile en fer forgé -->
+        <g stroke="#0b0814" stroke-width="2" fill="none"><path d="M1166,184 C1166,166 1192,166 1192,184"/><line x1="1179" y1="168" x2="1179" y2="156"/><line x1="1174" y1="160" x2="1184" y2="160"/></g>
+        <!-- Cyprès -->
+        <g fill="#0b0814">
+          <path d="M610,256 C602,226 606,196 616,172 C626,196 630,226 622,256 Z"/>
+          <path d="M640,256 C634,232 637,210 645,192 C653,210 656,232 650,256 Z"/>
+          <path d="M930,256 C922,222 926,190 937,164 C948,190 952,222 944,256 Z"/>
+          <path d="M1530,250 C1523,224 1526,200 1535,180 C1544,200 1547,224 1540,250 Z"/>
+        </g>
+        <!-- Fenêtres allumées -->
+        <g fill="#ffd28a" opacity="0.55">
+          <rect x="80" y="258" width="3" height="5"/><rect x="230" y="246" width="3" height="5"/><rect x="360" y="250" width="3" height="5"/>
+          <rect x="500" y="254" width="3" height="5"/><rect x="1080" y="248" width="3" height="5"/><rect x="1280" y="244" width="3" height="5"/>
+          <rect x="1430" y="252" width="3" height="5"/><rect x="1176" y="200" width="5" height="6" opacity="0.8"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- The atelier (lone artisan shop) -->
+    <div class="layer atelier-wrap">
+      <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="signGlow" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#FFB661" stop-opacity="0.6"/>
+            <stop offset="60%" stop-color="#FFB661" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#FFB661" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="windowLight" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#FFE0B2" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#FFB661" stop-opacity="0.6"/>
+          </radialGradient>
+          <filter id="windowBlur"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+
+        <!-- Sidewalk shadow -->
+        <ellipse cx="300" cy="475" rx="280" ry="8" fill="#000" opacity="0.4"/>
+
+        <!-- Sign glow halo -->
+        <ellipse cx="300" cy="120" rx="240" ry="100" fill="url(#signGlow)"/>
+
+        <!-- Building -->
+        <rect x="80" y="180" width="440" height="280" fill="#1a1815" />
+        <!-- Toit en tuiles romaines -->
+        <path d="M54,184 L300,146 L546,184 Z" fill="#3a1d14"/>
+        <g stroke="#1e0e09" stroke-width="1.4" opacity="0.9">
+          <line x1="300" y1="146" x2="300" y2="184"/>
+          <line x1="250" y1="154" x2="250" y2="184"/><line x1="350" y1="154" x2="350" y2="184"/>
+          <line x1="200" y1="161" x2="200" y2="184"/><line x1="400" y1="161" x2="400" y2="184"/>
+          <line x1="150" y1="169" x2="150" y2="184"/><line x1="450" y1="169" x2="450" y2="184"/>
+          <line x1="100" y1="177" x2="100" y2="184"/><line x1="500" y1="177" x2="500" y2="184"/>
+        </g>
+        <path d="M54,184 L300,146 L546,184" stroke="#c98a6a" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+        <!-- Génoise -->
+        <rect x="70" y="184" width="460" height="5" fill="#2a1712"/>
+        <g fill="#2a1712"><circle cx="78" cy="190" r="3.2"/><circle cx="88" cy="190" r="3.2"/><circle cx="98" cy="190" r="3.2"/><circle cx="108" cy="190" r="3.2"/><circle cx="118" cy="190" r="3.2"/><circle cx="128" cy="190" r="3.2"/><circle cx="138" cy="190" r="3.2"/><circle cx="148" cy="190" r="3.2"/><circle cx="158" cy="190" r="3.2"/><circle cx="168" cy="190" r="3.2"/><circle cx="178" cy="190" r="3.2"/><circle cx="188" cy="190" r="3.2"/><circle cx="198" cy="190" r="3.2"/><circle cx="208" cy="190" r="3.2"/><circle cx="218" cy="190" r="3.2"/><circle cx="228" cy="190" r="3.2"/><circle cx="238" cy="190" r="3.2"/><circle cx="248" cy="190" r="3.2"/><circle cx="258" cy="190" r="3.2"/><circle cx="268" cy="190" r="3.2"/><circle cx="278" cy="190" r="3.2"/><circle cx="288" cy="190" r="3.2"/><circle cx="298" cy="190" r="3.2"/><circle cx="308" cy="190" r="3.2"/><circle cx="318" cy="190" r="3.2"/><circle cx="328" cy="190" r="3.2"/><circle cx="338" cy="190" r="3.2"/><circle cx="348" cy="190" r="3.2"/><circle cx="358" cy="190" r="3.2"/><circle cx="368" cy="190" r="3.2"/><circle cx="378" cy="190" r="3.2"/><circle cx="388" cy="190" r="3.2"/><circle cx="398" cy="190" r="3.2"/><circle cx="408" cy="190" r="3.2"/><circle cx="418" cy="190" r="3.2"/><circle cx="428" cy="190" r="3.2"/><circle cx="438" cy="190" r="3.2"/><circle cx="448" cy="190" r="3.2"/><circle cx="458" cy="190" r="3.2"/><circle cx="468" cy="190" r="3.2"/><circle cx="478" cy="190" r="3.2"/><circle cx="488" cy="190" r="3.2"/><circle cx="498" cy="190" r="3.2"/><circle cx="508" cy="190" r="3.2"/><circle cx="518" cy="190" r="3.2"/></g>
+        <!-- Storefront top sign panel -->
+        <rect x="100" y="200" width="400" height="58" fill="#1f1c18"/>
+        <!-- Sign text glow background -->
+        <rect x="120" y="212" width="360" height="34" rx="3" fill="#0d0c0a"/>
+        <!-- Sign text -->
+        <text x="300" y="237" text-anchor="middle"
+              font-family="Inter, system-ui" font-weight="800" font-size="22"
+              fill="#FFB661" letter-spacing="3" style="text-transform:uppercase;">
+          ATELIER
+        </text>
+        <!-- subtle glow under text -->
+        <text x="300" y="237" text-anchor="middle"
+              font-family="Inter, system-ui" font-weight="800" font-size="22"
+              fill="#FFB661" opacity="0.4" filter="url(#windowBlur)" letter-spacing="3" style="text-transform:uppercase;">
+          ATELIER
+        </text>
+
+        <!-- Door -->
+        <rect x="265" y="280" width="70" height="170" fill="#0d0c0a"/>
+        <rect x="270" y="285" width="60" height="160" fill="#1c1a16" />
+        <!-- Door knob -->
+        <circle cx="322" cy="370" r="2" fill="#FFB661" opacity="0.6"/>
+        <!-- Door window -->
+        <rect x="278" y="300" width="44" height="50" fill="url(#windowLight)" opacity="0.7"/>
+
+        <!-- Left window -->
+        <rect x="120" y="290" width="120" height="120" fill="#0d0c0a"/>
+        <rect x="125" y="295" width="110" height="110" fill="url(#windowLight)" opacity="0.85"/>
+        <!-- Cross bars -->
+        <line x1="180" y1="295" x2="180" y2="405" stroke="#0d0c0a" stroke-width="2"/>
+        <line x1="125" y1="350" x2="235" y2="350" stroke="#0d0c0a" stroke-width="2"/>
+
+        <!-- Volets -->
+        <g fill="#33405f" stroke="#1b2133" stroke-width="1">
+          <rect x="100" y="290" width="18" height="120"/><rect x="242" y="290" width="18" height="120"/>
+          <rect x="340" y="290" width="18" height="120"/><rect x="482" y="290" width="18" height="120"/>
+        </g>
+        <g stroke="#1b2133" stroke-width="1" opacity="0.8"><line x1="100" y1="300" x2="118" y2="300"/><line x1="100" y1="312" x2="118" y2="312"/><line x1="100" y1="324" x2="118" y2="324"/><line x1="100" y1="336" x2="118" y2="336"/><line x1="100" y1="348" x2="118" y2="348"/><line x1="100" y1="360" x2="118" y2="360"/><line x1="100" y1="372" x2="118" y2="372"/><line x1="100" y1="384" x2="118" y2="384"/><line x1="100" y1="396" x2="118" y2="396"/><line x1="100" y1="408" x2="118" y2="408"/><line x1="242" y1="300" x2="260" y2="300"/><line x1="242" y1="312" x2="260" y2="312"/><line x1="242" y1="324" x2="260" y2="324"/><line x1="242" y1="336" x2="260" y2="336"/><line x1="242" y1="348" x2="260" y2="348"/><line x1="242" y1="360" x2="260" y2="360"/><line x1="242" y1="372" x2="260" y2="372"/><line x1="242" y1="384" x2="260" y2="384"/><line x1="242" y1="396" x2="260" y2="396"/><line x1="242" y1="408" x2="260" y2="408"/><line x1="340" y1="300" x2="358" y2="300"/><line x1="340" y1="312" x2="358" y2="312"/><line x1="340" y1="324" x2="358" y2="324"/><line x1="340" y1="336" x2="358" y2="336"/><line x1="340" y1="348" x2="358" y2="348"/><line x1="340" y1="360" x2="358" y2="360"/><line x1="340" y1="372" x2="358" y2="372"/><line x1="340" y1="384" x2="358" y2="384"/><line x1="340" y1="396" x2="358" y2="396"/><line x1="340" y1="408" x2="358" y2="408"/><line x1="482" y1="300" x2="500" y2="300"/><line x1="482" y1="312" x2="500" y2="312"/><line x1="482" y1="324" x2="500" y2="324"/><line x1="482" y1="336" x2="500" y2="336"/><line x1="482" y1="348" x2="500" y2="348"/><line x1="482" y1="360" x2="500" y2="360"/><line x1="482" y1="372" x2="500" y2="372"/><line x1="482" y1="384" x2="500" y2="384"/><line x1="482" y1="396" x2="500" y2="396"/><line x1="482" y1="408" x2="500" y2="408"/></g>
+        <!-- Right window -->
+        <rect x="360" y="290" width="120" height="120" fill="#0d0c0a"/>
+        <rect x="365" y="295" width="110" height="110" fill="url(#windowLight)" opacity="0.85"/>
+        <line x1="420" y1="295" x2="420" y2="405" stroke="#0d0c0a" stroke-width="2"/>
+        <line x1="365" y1="350" x2="475" y2="350" stroke="#0d0c0a" stroke-width="2"/>
+
+        <!-- Awning -->
+        <path d="M 90 260 L 510 260 L 530 270 L 70 270 Z" fill="#2a1f15"/>
+        <!-- Awning stripes -->
+        <line x1="150" y1="262" x2="160" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
+        <line x1="220" y1="262" x2="230" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
+        <line x1="290" y1="262" x2="300" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
+        <line x1="360" y1="262" x2="370" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
+        <line x1="430" y1="262" x2="440" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
+
+        <!-- Jardinières de lavande -->
+        <g>
+          <rect x="118" y="410" width="124" height="10" fill="#2a1712"/>
+          <rect x="358" y="410" width="124" height="10" fill="#2a1712"/>
+          <g stroke="#3d5a3a" stroke-width="1.2"><line x1="124" y1="410" x2="124" y2="396"/><line x1="132" y1="410" x2="132" y2="396"/><line x1="140" y1="410" x2="140" y2="396"/><line x1="148" y1="410" x2="148" y2="396"/><line x1="156" y1="410" x2="156" y2="396"/><line x1="164" y1="410" x2="164" y2="396"/><line x1="172" y1="410" x2="172" y2="396"/><line x1="180" y1="410" x2="180" y2="396"/><line x1="188" y1="410" x2="188" y2="396"/><line x1="196" y1="410" x2="196" y2="396"/><line x1="204" y1="410" x2="204" y2="396"/><line x1="212" y1="410" x2="212" y2="396"/><line x1="220" y1="410" x2="220" y2="396"/><line x1="228" y1="410" x2="228" y2="396"/><line x1="236" y1="410" x2="236" y2="396"/><line x1="364" y1="410" x2="364" y2="396"/><line x1="372" y1="410" x2="372" y2="396"/><line x1="380" y1="410" x2="380" y2="396"/><line x1="388" y1="410" x2="388" y2="396"/><line x1="396" y1="410" x2="396" y2="396"/><line x1="404" y1="410" x2="404" y2="396"/><line x1="412" y1="410" x2="412" y2="396"/><line x1="420" y1="410" x2="420" y2="396"/><line x1="428" y1="410" x2="428" y2="396"/><line x1="436" y1="410" x2="436" y2="396"/><line x1="444" y1="410" x2="444" y2="396"/><line x1="452" y1="410" x2="452" y2="396"/><line x1="460" y1="410" x2="460" y2="396"/><line x1="468" y1="410" x2="468" y2="396"/><line x1="476" y1="410" x2="476" y2="396"/></g>
+          <g fill="#9b86e0"><ellipse cx="124" cy="393" rx="2" ry="4.5"/><ellipse cx="132" cy="394" rx="2" ry="4.5"/><ellipse cx="140" cy="392" rx="2" ry="4.5"/><ellipse cx="148" cy="393" rx="2" ry="4.5"/><ellipse cx="156" cy="394" rx="2" ry="4.5"/><ellipse cx="164" cy="392" rx="2" ry="4.5"/><ellipse cx="172" cy="393" rx="2" ry="4.5"/><ellipse cx="180" cy="394" rx="2" ry="4.5"/><ellipse cx="188" cy="392" rx="2" ry="4.5"/><ellipse cx="196" cy="393" rx="2" ry="4.5"/><ellipse cx="204" cy="394" rx="2" ry="4.5"/><ellipse cx="212" cy="392" rx="2" ry="4.5"/><ellipse cx="220" cy="393" rx="2" ry="4.5"/><ellipse cx="228" cy="394" rx="2" ry="4.5"/><ellipse cx="236" cy="392" rx="2" ry="4.5"/><ellipse cx="364" cy="393" rx="2" ry="4.5"/><ellipse cx="372" cy="394" rx="2" ry="4.5"/><ellipse cx="380" cy="392" rx="2" ry="4.5"/><ellipse cx="388" cy="393" rx="2" ry="4.5"/><ellipse cx="396" cy="394" rx="2" ry="4.5"/><ellipse cx="404" cy="392" rx="2" ry="4.5"/><ellipse cx="412" cy="393" rx="2" ry="4.5"/><ellipse cx="420" cy="394" rx="2" ry="4.5"/><ellipse cx="428" cy="392" rx="2" ry="4.5"/><ellipse cx="436" cy="393" rx="2" ry="4.5"/><ellipse cx="444" cy="394" rx="2" ry="4.5"/><ellipse cx="452" cy="392" rx="2" ry="4.5"/><ellipse cx="460" cy="393" rx="2" ry="4.5"/><ellipse cx="468" cy="394" rx="2" ry="4.5"/><ellipse cx="476" cy="392" rx="2" ry="4.5"/></g>
+        </g>
+        <!-- Cyprès -->
+        <path d="M566,462 C552,410 554,330 572,262 C590,330 592,410 578,462 Z" fill="#0b0d0a"/>
+        <!-- Closed sign -->
+        <rect x="290" y="305" width="20" height="14" rx="1" fill="#3a1818"/>
+        <text x="300" y="315" text-anchor="middle" font-family="Inter" font-size="6" font-weight="700" fill="#ff6b6b">FERMÉ</text>
+
+        <!-- Lanterne provençale -->
+        <line x1="40" y1="460" x2="40" y2="236" stroke="#0a0a0a" stroke-width="3"/>
+        <path d="M40,236 C40,226 52,224 60,226" stroke="#0a0a0a" stroke-width="2.5" fill="none"/>
+        <path d="M54,226 L66,226 L68,230 L52,230 Z" fill="#0a0a0a"/>
+        <path d="M53,230 L67,230 L65,246 L55,246 Z" fill="#FFB661" opacity="0.85"/>
+        <rect x="54" y="246" width="12" height="3" fill="#0a0a0a"/>
+        <circle cx="60" cy="238" r="22" fill="url(#signGlow)" opacity="0.7"/>
+
+        <!-- Calade (pavés) -->
+        <rect x="0" y="460" width="600" height="20" fill="#0a0808"/>
+        <g stroke="#1a1512" stroke-width="1"><line x1="10" y1="462" x2="4" y2="480"/><line x1="32" y1="462" x2="26" y2="480"/><line x1="54" y1="462" x2="48" y2="480"/><line x1="76" y1="462" x2="70" y2="480"/><line x1="98" y1="462" x2="92" y2="480"/><line x1="120" y1="462" x2="114" y2="480"/><line x1="142" y1="462" x2="136" y2="480"/><line x1="164" y1="462" x2="158" y2="480"/><line x1="186" y1="462" x2="180" y2="480"/><line x1="208" y1="462" x2="202" y2="480"/><line x1="230" y1="462" x2="224" y2="480"/><line x1="252" y1="462" x2="246" y2="480"/><line x1="274" y1="462" x2="268" y2="480"/><line x1="296" y1="462" x2="290" y2="480"/><line x1="318" y1="462" x2="312" y2="480"/><line x1="340" y1="462" x2="334" y2="480"/><line x1="362" y1="462" x2="356" y2="480"/><line x1="384" y1="462" x2="378" y2="480"/><line x1="406" y1="462" x2="400" y2="480"/><line x1="428" y1="462" x2="422" y2="480"/><line x1="450" y1="462" x2="444" y2="480"/><line x1="472" y1="462" x2="466" y2="480"/><line x1="494" y1="462" x2="488" y2="480"/><line x1="516" y1="462" x2="510" y2="480"/><line x1="538" y1="462" x2="532" y2="480"/><line x1="560" y1="462" x2="554" y2="480"/><line x1="582" y1="462" x2="576" y2="480"/><line x1="0" y1="470" x2="600" y2="470"/></g>
+      </svg>
+    </div>
+
+    <div class="layer ground"></div>
+
+    <!-- Scene text -->
+    <div class="scene-text act1-text">
+      <div class="scene-eyebrow">Acte I · Provence, 21h47</div>
+      <h1 class="scene-h">
+        Votre boutique<br>
+        ferme à 19h.<br>
+        <span class="it">Internet, lui,</span><br>
+        <span class="it">ne ferme jamais.</span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACT 2 — ZOOM OUT ===== -->
+<section id="act2" class="act">
+  <div class="act-sticky scene-sky" data-scene="2">
+
+    <!-- Earth curve at bottom -->
+    <div class="layer">
+      <div class="earth-curve"></div>
+    </div>
+
+    <!-- Tiny city below -->
+    <div class="layer city-network">
+      <svg width="100%" height="100%" viewBox="0 0 1600 200" preserveAspectRatio="none">
+        <!-- City silhouette small -->
+        <path d="M0,200 L0,170 L60,170 L60,155 L120,155 L120,165 L180,165 L180,150 L240,150 L240,160 L300,160 L300,145 L360,145 L360,170 L420,170 L420,155 L480,155 L480,165 L540,165 L540,150 L600,150 L600,160 L660,160 L660,145 L720,145 L720,170 L780,170 L780,155 L840,155 L840,165 L900,165 L900,150 L960,150 L960,160 L1020,160 L1020,170 L1080,170 L1080,155 L1140,155 L1140,165 L1200,165 L1200,150 L1260,150 L1260,160 L1320,160 L1320,170 L1380,170 L1380,155 L1440,155 L1440,165 L1500,165 L1500,150 L1560,150 L1560,170 L1600,170 L1600,200 Z"
+              fill="#080a1c"/>
+        <!-- Lit windows in city -->
+        <g fill="#FFB661" opacity="0.7">
+          <circle cx="80" cy="172" r="1"/>
+          <circle cx="200" cy="167" r="1"/>
+          <circle cx="350" cy="160" r="1"/>
+          <circle cx="510" cy="160" r="1"/>
+          <circle cx="680" cy="158" r="1"/>
+          <circle cx="850" cy="170" r="1"/>
+          <circle cx="1020" cy="167" r="1"/>
+          <circle cx="1200" cy="160" r="1"/>
+          <circle cx="1380" cy="167" r="1"/>
+          <circle cx="1520" cy="158" r="1"/>
+        </g>
+        <!-- The atelier — highlighted -->
+        <g>
+          <rect x="795" y="148" width="14" height="14" fill="#FFB661" opacity="0.9"/>
+          <circle cx="802" cy="155" r="20" fill="rgba(255,182,97,0.3)" />
+          <circle cx="802" cy="155" r="35" fill="rgba(255,182,97,0.1)" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Network nodes appearing above the city -->
+    <div class="layer network-nodes" id="network-nodes">
+      <svg width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="nodeGlow">
+            <stop offset="0%" stop-color="#B4A2F0" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#B4A2F0" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Connection lines -->
+        <g stroke="#B4A2F0" stroke-width="0.6" opacity="0.18" fill="none">
+          <path d="M200,300 Q500,180 800,250"/>
+          <path d="M800,250 Q1100,200 1400,280"/>
+          <path d="M300,450 Q600,380 900,420"/>
+          <path d="M900,420 Q1200,400 1500,440"/>
+          <path d="M150,200 Q400,300 600,200"/>
+          <path d="M600,200 Q800,150 1100,180"/>
+          <path d="M1100,180 Q1300,200 1450,160"/>
+          <path d="M400,500 Q700,470 1000,520"/>
+          <path d="M200,300 Q400,400 600,200"/>
+          <path d="M800,250 Q900,350 900,420"/>
+          <path d="M1100,180 Q1100,300 1200,400"/>
+          <path d="M300,450 Q500,350 600,200"/>
+        </g>
+
+        <!-- Nodes -->
+        <g>
+          <circle cx="200" cy="300" r="14" fill="url(#nodeGlow)"/>
+          <circle cx="200" cy="300" r="3" fill="#B4A2F0"/>
+
+          <circle cx="800" cy="250" r="18" fill="url(#nodeGlow)"/>
+          <circle cx="800" cy="250" r="4" fill="#B4A2F0"/>
+
+          <circle cx="1400" cy="280" r="14" fill="url(#nodeGlow)"/>
+          <circle cx="1400" cy="280" r="3" fill="#B4A2F0"/>
+
+          <circle cx="300" cy="450" r="12" fill="url(#nodeGlow)"/>
+          <circle cx="300" cy="450" r="3" fill="#B4A2F0"/>
+
+          <circle cx="900" cy="420" r="16" fill="url(#nodeGlow)"/>
+          <circle cx="900" cy="420" r="4" fill="#B4A2F0"/>
+
+          <circle cx="1500" cy="440" r="13" fill="url(#nodeGlow)"/>
+          <circle cx="1500" cy="440" r="3" fill="#B4A2F0"/>
+
+          <circle cx="150" cy="200" r="11" fill="url(#nodeGlow)"/>
+          <circle cx="150" cy="200" r="3" fill="#B4A2F0"/>
+
+          <circle cx="600" cy="200" r="14" fill="url(#nodeGlow)"/>
+          <circle cx="600" cy="200" r="3" fill="#B4A2F0"/>
+
+          <circle cx="1100" cy="180" r="12" fill="url(#nodeGlow)"/>
+          <circle cx="1100" cy="180" r="3" fill="#B4A2F0"/>
+
+          <circle cx="1450" cy="160" r="11" fill="url(#nodeGlow)"/>
+          <circle cx="1450" cy="160" r="3" fill="#B4A2F0"/>
+
+          <circle cx="400" cy="500" r="13" fill="url(#nodeGlow)"/>
+          <circle cx="400" cy="500" r="3" fill="#B4A2F0"/>
+
+          <circle cx="1000" cy="520" r="14" fill="url(#nodeGlow)"/>
+          <circle cx="1000" cy="520" r="3" fill="#B4A2F0"/>
+
+          <circle cx="1200" cy="400" r="12" fill="url(#nodeGlow)"/>
+          <circle cx="1200" cy="400" r="3" fill="#B4A2F0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scene-text">
+      <div class="scene-eyebrow">Acte II · Au-dessus des toits</div>
+      <h2 class="scene-h">
+        À cette heure,<br>
+        des gens cherchent<br>
+        <span class="it it-cool">un artisan, une table,</span><br><span class="it it-cool">un rendez-vous.</span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACT 3 — LE RÉSEAU ===== -->
+<section id="act3" class="act">
+  <div class="act-sticky scene-network" data-scene="3">
+
+    <div class="layer grid-bg"></div>
+
+    <!-- Search ticker -->
+    <div class="search-ticker">
+      <div class="row">
+        <span class="search-chip">plombier marseille 13013 urgence</span>
+        <span class="search-chip">électricien aix-en-provence devis</span>
+        <span class="search-chip">chauffagiste aubagne</span>
+        <span class="search-chip">serrurier marseille 5e</span>
+        <span class="search-chip">pharmacie de garde gardanne</span>
+        <span class="search-chip">carreleur martigues</span>
+        <span class="search-chip">boulangerie ouverte la ciotat</span>
+        <span class="search-chip">climatisation vitrolles</span>
+        <span class="search-chip">plombier marseille 13013 urgence</span>
+        <span class="search-chip">électricien aix-en-provence devis</span>
+        <span class="search-chip">chauffagiste aubagne</span>
+        <span class="search-chip">serrurier marseille 5e</span>
+      </div>
+      <div class="row r2">
+        <span class="search-chip">maçon salon-de-provence</span>
+        <span class="search-chip">menuisier trets</span>
+        <span class="search-chip">peintre en bâtiment marseille 8e</span>
+        <span class="search-chip">fleuriste cours julien</span>
+        <span class="search-chip">rénovation salle de bain aix</span>
+        <span class="search-chip">artisan rge bouches-du-rhône</span>
+        <span class="search-chip">débouchage canalisation marignane</span>
+        <span class="search-chip">vitrier istres</span>
+        <span class="search-chip">maçon salon-de-provence</span>
+        <span class="search-chip">menuisier trets</span>
+        <span class="search-chip">peintre en bâtiment marseille 8e</span>
+        <span class="search-chip">fleuriste cours julien</span>
+      </div>
+    </div>
+
+    <!-- Floating site cards -->
+    <div class="layer floating-sites">
+      <div class="float-card" style="top: 10%; left: 6%; transform: rotate(-4deg);" data-style="warm">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line"></div>
+          <div class="fc-line short"></div>
+          <div class="fc-line color"></div>
+        </div>
+        <div class="fc-url">plomberie-…fr</div>
+      </div>
+      <div class="float-card" style="top: 14%; right: 8%; transform: rotate(3deg);" data-style="cool">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line"></div>
+          <div class="fc-line"></div>
+          <div class="fc-line short"></div>
+        </div>
+        <div class="fc-url">electricite-…com</div>
+      </div>
+      <div class="float-card" style="bottom: 12%; left: 10%; transform: rotate(2deg);" data-style="cool">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line short"></div>
+          <div class="fc-line"></div>
+          <div class="fc-line color"></div>
+        </div>
+        <div class="fc-url">chauffage-…fr</div>
+      </div>
+      <div class="float-card" style="bottom: 18%; right: 6%; transform: rotate(-3deg);" data-style="warm">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line"></div>
+          <div class="fc-line short"></div>
+        </div>
+        <div class="fc-url">menuiserie-…fr</div>
+      </div>
+      <div class="float-card" style="top: 50%; left: 2%; transform: translate(0,-50%) rotate(1deg);" data-style="cool">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line"></div>
+          <div class="fc-line short"></div>
+          <div class="fc-line color"></div>
+        </div>
+        <div class="fc-url">peintre-…com</div>
+      </div>
+      <div class="float-card" style="top: 50%; right: 2%; transform: translate(0,-50%) rotate(-2deg);" data-style="warm">
+        <div class="fc-bar"><span></span><span></span><span></span></div>
+        <div class="fc-content">
+          <div class="fc-line short"></div>
+          <div class="fc-line"></div>
+        </div>
+        <div class="fc-url">artisan-…fr</div>
+      </div>
+    </div>
+
+    <div class="scene-text">
+      <div class="scene-eyebrow">Acte III · Le réseau</div>
+      <h2 class="scene-h">
+        Ceux qu'ils trouvent ?<br>
+        <span class="it it-cool">Ceux qui ont</span><br>
+        <span class="it it-cool">un site.</span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACT 4 — ENTRER DANS UN SITE ===== -->
+<section id="act4" class="act">
+  <div class="act-sticky scene-zoom" data-scene="4">
+
+    <div class="glow-ring"></div>
+
+    <!-- Exemple de site (fictif) -->
+    <div class="browser-zoom" aria-hidden="true">
+      <div class="bz-chrome">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="url">le-cabanon-cassis.fr</div>
+        <span class="bz-badge">Exemple fictif</span>
+      </div>
+      <div class="bz-body">
+        <div class="bz-body-inner">
+          <div class="bz-header">
+            <div class="bz-logo">
+              <div class="bz-logo-mark"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/></svg></div>
+              Le Cabanon
+            </div>
+            <div class="bz-nav">
+              <span>La carte</span>
+              <span>La terrasse</span>
+              <span>Accès</span>
+              <span class="bz-cta">Réserver</span>
+            </div>
+          </div>
+          <div class="bz-hero">
+            <div>
+              <div class="bz-eyebrow">Restaurant · Port de Cassis</div>
+              <div class="bz-h1">Une table face<br><em>aux calanques.</em></div>
+              <div class="bz-lead">Poissons de la criée, terrasse sur le port, cuisine provençale de saison.</div>
+              <div class="bz-open"><span></span>Ouvert ce soir · 19h – 23h</div>
+              <div class="bz-buttons">
+                <span class="bz-btn-prim">Réserver une table</span>
+                <span class="bz-btn-sec">Voir la carte</span>
+              </div>
+            </div>
+            <div class="bz-visual">
+              <svg viewBox="0 0 300 375" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="bzSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2150"/><stop offset=".55" stop-color="#4a3a78"/><stop offset=".8" stop-color="#c9826a"/><stop offset="1" stop-color="#f0b27a"/></linearGradient>
+                  <linearGradient id="bzSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3a6e"/><stop offset="1" stop-color="#0f1838"/></linearGradient>
+                </defs>
+                <rect width="300" height="260" fill="url(#bzSky)"/>
+                <circle cx="210" cy="78" r="16" fill="#fdf3dc" opacity=".95"/>
+                <g fill="#fff" opacity=".7"><circle cx="40" cy="30" r="1"/><circle cx="90" cy="60" r=".8"/><circle cx="150" cy="24" r="1.1"/><circle cx="260" cy="40" r=".8"/><circle cx="120" cy="100" r=".7"/></g>
+                <path d="M0,200 L0,150 C30,140 50,120 70,128 C90,136 100,170 120,190 L140,215 L0,215 Z" fill="#2b1f3f"/>
+                <path d="M300,215 L300,120 C270,118 250,140 232,160 C215,178 200,196 180,215 Z" fill="#33244a"/>
+                <rect y="215" width="300" height="160" fill="url(#bzSea)"/>
+                <g stroke="#fdf3dc" stroke-linecap="round" opacity=".55"><line x1="200" y1="228" x2="220" y2="228" stroke-width="2"/><line x1="196" y1="240" x2="224" y2="240" stroke-width="1.5"/><line x1="202" y1="252" x2="218" y2="252" stroke-width="1.2"/><line x1="192" y1="266" x2="228" y2="266" stroke-width="1"/></g>
+                <!-- Pin parasol -->
+                <path d="M58,330 C60,290 62,250 70,215" stroke="#1a1426" stroke-width="5" fill="none"/>
+                <path d="M20,212 C30,190 70,182 92,190 C112,196 122,206 116,214 C96,220 46,222 20,212 Z" fill="#1a1426"/>
+                <!-- Guirlande de terrasse -->
+                <path d="M0,286 Q75,306 150,288 T300,290" stroke="#2a2340" stroke-width="1.2" fill="none"/>
+                <g fill="#ffd28a"><circle cx="20" cy="291" r="2.6"/><circle cx="50" cy="298" r="2.6"/><circle cx="80" cy="301" r="2.6"/><circle cx="110" cy="298" r="2.6"/><circle cx="140" cy="290" r="2.6"/><circle cx="170" cy="287" r="2.6"/><circle cx="200" cy="291" r="2.6"/><circle cx="230" cy="295" r="2.6"/><circle cx="260" cy="294" r="2.6"/><circle cx="290" cy="290" r="2.6"/></g>
+                <g fill="#ffd28a" opacity=".25"><circle cx="50" cy="298" r="8"/><circle cx="110" cy="298" r="8"/><circle cx="170" cy="287" r="8"/><circle cx="230" cy="295" r="8"/><circle cx="290" cy="290" r="8"/></g>
+                <!-- Table -->
+                <rect x="150" y="330" width="110" height="6" rx="2" fill="#2a2340"/>
+                <rect x="160" y="336" width="5" height="40" fill="#2a2340"/><rect x="245" y="336" width="5" height="40" fill="#2a2340"/>
+                <path d="M196,330 l4,-14 h6 l4,14 Z" fill="#ffd28a" opacity=".9"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-text" style="justify-content: flex-start; padding-top: 11vh;">
+      <div class="scene-eyebrow">Acte IV · Voilà où j'interviens</div>
+      <h2 class="scene-h" style="font-size: clamp(28px, 4.5vw, 56px);">
+        Je vous construis <span class="it">une porte d'entrée</span><br>dans ce monde-là.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POUR QUI ===== -->
+<section id="pour-qui" class="section who-section">
+  <div class="wrap">
+    <div class="section-eyebrow">Pour qui</div>
+    <h2 class="section-h">Artisans du bâtiment <span class="it">et commerces de proximité.</span></h2>
+    <p class="section-lead">Les besoins d'un plombier et ceux d'un restaurant sont différents. Chaque site est conçu autour de ce qui vous apporte des clients.</p>
+    <div class="who-grid">
+      <div class="who-card art">
+        <svg class="who-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg>
+        <span class="who-tag">Artisans</span>
+        <h3>Des appels <span class="it">et des devis.</span></h3>
+        <p>Vos clients cherchent « plombier Aubagne » en urgence ou comparent plusieurs devis pour leur salle de bain. Votre site doit être visible et inspirer confiance dès la première visite.</p>
+        <ul class="who-feat">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><div><b>Bouton « Appeler » toujours visible</b><span>Sur mobile, un geste suffit pour vous joindre.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h4"/></svg></span><div><b>Demande de devis avec photos</b><span>Le client décrit son projet et joint ses photos : vous arrivez préparé.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14M7 14l2-3 2 3M15 10h3"/></svg></span><div><b>Avant / après de vos chantiers</b><span>La démonstration concrète de votre savoir-faire.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11Z"/><circle cx="12" cy="10" r="2"/></svg></span><div><b>Une page par commune d'intervention</b><span>Pour apparaître sur Google dans chaque ville que vous couvrez.</span></div></li>
+        </ul>
+        <div class="who-metiers">Plombiers, électriciens, chauffagistes, carreleurs, maçons, menuisiers, peintres, serruriers, paysagistes…</div>
+      </div>
+      <div class="who-card com">
+        <svg class="who-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg>
+        <span class="who-tag">Commerçants</span>
+        <h3>Des réservations <span class="it">et des rendez-vous.</span></h3>
+        <p>Vos clients souhaitent connaître vos horaires, réserver une table ou choisir un créneau sans avoir à vous appeler.</p>
+        <ul class="who-feat">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M7 3v5M10 3v5M7 8h3M17 3c-2 2-2.5 5-2 9h2v9"/></svg></span><div><b>Réservation de table en ligne</b><span>Le client choisit son créneau, vous recevez la réservation. Sans commission par couvert.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3"/></svg></span><div><b>Prise de rendez-vous</b><span>Coiffeurs, instituts, praticiens : vos créneaux disponibles, réservables à toute heure.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Horaires et carte toujours à jour</b><span>Vos changements sont appliqués sur simple demande, fiche Google comprise.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 3z"/><path d="M8 9h8M8 12h5"/></svg></span><div><b>WhatsApp et questions rapides</b><span>Vos clients posent leurs questions sans occuper votre ligne téléphonique.</span></div></li>
+        </ul>
+        <div class="who-metiers">Restaurants, bars, boulangeries, coiffeurs, instituts, pharmacies, fleuristes, boutiques…</div>
+        <a class="who-link" href="site-internet-restaurant-marseille.html">Site internet pour restaurant : en savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="frise" aria-hidden="true"><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 22V12.5h7V22"/><path d="M8.5 12.5c0-4 7-4 7 0"/><path d="M12 8.6V3.5M10.6 5h2.8"/><path d="M10.6 12.5c0-1.4.6-2.2 1.4-2.2s1.4.8 1.4 2.2Z"/><path d="M10.5 16h3v3h-3z"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19.5 7 13l2.6 1.8L14 7l3 4.2 5 8.3Z"/><path d="M14 7V3.6M12.8 4.8h2.4"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg></div>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="section services-section" style="border-top:0">
+  <div class="wrap">
+    <div class="section-eyebrow">Ce que je fais</div>
+    <h2 class="section-h">Un site qui <span class="it">travaille pour vous,</span> pas une simple vitrine.</h2>
+    <p class="section-lead">
+      L'objectif n'est pas seulement d'être présent en ligne : votre site doit renseigner vos clients,
+      répondre à leurs questions et les rassurer avant le premier contact.
+    </p>
+
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-num"><span class="it">01</span> / Conception</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg>
+        </div>
+        <h3>Sur-mesure</h3>
+        <p>Chaque projet part d'une page blanche : vos couleurs, votre métier et votre territoire au cœur du design. Aucun modèle générique.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-num"><span class="it">02</span> / Texte</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg>
+        </div>
+        <h3>Rédaction incluse</h3>
+        <p>Titres, services, questions fréquentes, présentation : un entretien de 30 minutes suffit, je rédige l'ensemble des textes dans votre ton.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-num"><span class="it">03</span> / Visibilité</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19.5 7 13l2.6 1.8L14 7l3 4.2 5 8.3Z"/><path d="M14 7V3.6M12.8 4.8h2.4"/></svg>
+        </div>
+        <h3>Trouvé sur Google</h3>
+        <p>Référencement local soigné : balises, données structurées et fiche Google optimisée, pour apparaître sur « plombier Aubagne » ou « fleuriste Aix ».</p>
+      </div>
+      <div class="svc">
+        <div class="svc-num"><span class="it">04</span> / Mobile</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg>
+        </div>
+        <h3>Pensé pour le mobile</h3>
+        <p>La majorité de vos clients consultent votre site sur leur téléphone : il est rapide, lisible, et les actions essentielles restent toujours accessibles.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-num"><span class="it">05</span> / Livraison</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 6l9 5.5"/><path d="M4.5 10.6V20h15v-9.4"/><path d="M4 12.6h16"/><rect x="10" y="14.5" width="4" height="5.5"/><path d="M6.5 14.5h2v2.5h-2zM15.5 14.5h2v2.5h-2z"/></svg>
+        </div>
+        <h3>Clé en main</h3>
+        <p>Nom de domaine, hébergement, certificat de sécurité, adresse e-mail professionnelle : je prends tout en charge jusqu'à la mise en ligne.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-num"><span class="it">06</span> / Suite</div>
+        <div class="svc-icon">
+          <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 22V12.5h7V22"/><path d="M8.5 12.5c0-4 7-4 7 0"/><path d="M12 8.6V3.5M10.6 5h2.8"/><path d="M10.6 12.5c0-1.4.6-2.2 1.4-2.2s1.4.8 1.4 2.2Z"/><path d="M10.5 16h3v3h-3z"/></svg>
+        </div>
+        <h3>Un interlocuteur proche</h3>
+        <p>Un horaire à modifier, une photo à ajouter : une simple demande suffit. Basé dans le 13, je me déplace sur votre chantier ou dans votre commerce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio" class="section portfolio-section">
+  <div class="wrap">
+    <div class="section-eyebrow">Travail récent</div>
+    <h2 class="section-h">Trois sites en ligne, <span class="it">dans le 13.</span></h2>
+    <p class="section-lead">
+      Trois projets, trois besoins différents : un plombier qui souhaite générer des appels,
+      une officine qui souhaite affirmer son sérieux, un réseau d'artisans qui doit inspirer confiance.
+    </p>
+
+    <div class="work-grid">
+
+      <a href="https://plomberie-diego-rodriguez.fr/" target="_blank" rel="noopener" class="work-card">
+        <div class="work-browser">
+          <div class="bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">plomberie-diego-rodriguez.fr</div>
+          </div>
+        </div>
+        <div class="work-preview work-preview-iframe">
+          <iframe src="https://plomberie-diego-rodriguez.fr/" loading="lazy" title="Site Plomberie Rodriguez Diego — Port-de-Bouc" tabindex="-1" aria-hidden="true"></iframe>
+          <span class="work-preview-overlay">Voir le site →</span>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag warm">Plomberie</span>
+            <span class="work-tag">Conversion</span>
+            <span class="work-tag">Port-de-Bouc</span>
+          </div>
+          <h3>Plomberie Rodriguez Diego</h3>
+          <p class="desc">Site clé en main pour un plombier artisan à Port-de-Bouc. Hero conversion sombre &amp; net, galerie avant/après des chantiers, formulaire de devis, bouton d'appel toujours visible sur mobile.</p>
+          <span class="work-link">Visiter le site →</span>
+        </div>
+      </a>
+
+      <a href="https://www.pharmaciedechateauneuf.fr/" target="_blank" rel="noopener" class="work-card">
+        <div class="work-browser">
+          <div class="bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">pharmaciedechateauneuf.fr</div>
+          </div>
+        </div>
+        <div class="work-preview work-preview-iframe">
+          <iframe src="https://www.pharmaciedechateauneuf.fr/" loading="lazy" title="Site Pharmacie des Arcades — Châteauneuf-le-Rouge" tabindex="-1" aria-hidden="true"></iframe>
+          <span class="work-preview-overlay">Voir le site →</span>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag warm">Pharmacie</span>
+            <span class="work-tag">Éditorial</span>
+            <span class="work-tag">Sur-mesure</span>
+          </div>
+          <h3>Pharmacie des Arcades</h3>
+          <p class="desc">Officine indépendante à Châteauneuf-le-Rouge. Direction artistique éditoriale, typographie italique, présentation par univers parapharmacie, intégration WhatsApp pour les questions rapides.</p>
+          <span class="work-link">Visiter le site →</span>
+        </div>
+      </a>
+
+      <a href="https://reseauxartisansdeconfiance13.fr/" target="_blank" rel="noopener" class="work-card">
+        <div class="work-browser">
+          <div class="bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">reseauxartisansdeconfiance13.fr</div>
+          </div>
+        </div>
+        <div class="work-preview work-preview-img">
+          <img src="images/realisation-artisans-confiance-13.jpg" alt="Page d'accueil du site Réseau Artisans de Confiance 13" loading="lazy" width="1280" height="800">
+          <span class="work-preview-overlay">Voir le site →</span>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="work-tag warm">Rénovation</span>
+                        <span class="work-tag">Bouches-du-Rhône</span>
+          </div>
+          <h3>Réseau Artisans de Confiance 13</h3>
+          <p class="desc">Un interlocuteur unique qui coordonne des artisans pour des rénovations haut de gamme : parcours en 5 étapes, demande de projet avec photos, espace de suivi de chantier.</p>
+          <span class="work-link">Visiter le site →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="frise" aria-hidden="true"><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 22V12.5h7V22"/><path d="M8.5 12.5c0-4 7-4 7 0"/><path d="M12 8.6V3.5M10.6 5h2.8"/><path d="M10.6 12.5c0-1.4.6-2.2 1.4-2.2s1.4.8 1.4 2.2Z"/><path d="M10.5 16h3v3h-3z"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19.5 7 13l2.6 1.8L14 7l3 4.2 5 8.3Z"/><path d="M14 7V3.6M12.8 4.8h2.4"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg></div>
+
+<!-- ===== FORMULES ===== -->
+<section id="formules" class="section formules-section" style="border-top:0">
+  <div class="wrap">
+    <div class="section-eyebrow">Tarifs · Formules</div>
+    <h2 class="section-h">Un site professionnel, <span class="it">sans investissement de départ.</span></h2>
+    <p class="section-lead">
+      Le forfait mensuel vous permet de disposer d'un site complet sans investissement important.
+      Si vous préférez en être propriétaire dès le départ, une formule d'achat est également proposée.
+    </p>
+
+    <div class="formules-grid">
+
+      <div class="formule-card formule-signature">
+        <div class="formule-badge">Recommandé</div>
+        <div class="formule-eyebrow">Formule 01 · Tout compris</div>
+        <div class="formule-price">
+          <span class="formule-price-num">79€/mois</span>
+          <span class="formule-price-sub">+ 290€ de mise en route · engagement 12 mois, puis sans engagement</span>
+        </div>
+        <h3 class="formule-h">Un service <span class="it">complet.</span></h3>
+        <p class="formule-tagline">
+          Le site, son hébergement, ses mises à jour et votre fiche Google,
+          pour un montant mensuel fixe.
+        </p>
+        <ul class="formule-list">
+          <li>Site complet, adapté à <strong>votre métier et votre ville</strong></li>
+          <li>Textes rédigés pour vous, photos de vos chantiers ou de votre commerce</li>
+          <li>Référencement local + <strong>fiche Google Business</strong> optimisée</li>
+          <li>Domaine, hébergement, e-mail professionnel et sécurité inclus</li>
+          <li><strong>Modifications illimitées</strong> : horaires, photos, tarifs, carte</li>
+          <li>Bilan trimestriel : appels, demandes et avis</li>
+        </ul>
+        <div class="formule-example">
+          Exemple : <a href="https://plomberie-diego-rodriguez.fr/" target="_blank" rel="noopener">Plomberie Diego Rodriguez →</a>
+        </div>
+        <a href="#contact" class="formule-cta formule-cta-prim" data-formule="Formule 01 · Tout compris (79 €/mois)">Choisir cette formule</a>
+      </div>
+
+      <div class="formule-card formule-express">
+        <div class="formule-eyebrow">Formule 02 · Achat</div>
+        <div class="formule-price">
+          <span class="formule-price-num">1 290€</span>
+          <span class="formule-price-sub">+ 29€/mois — hébergement et modifications courantes</span>
+        </div>
+        <h3 class="formule-h">Vous êtes <span class="it">propriétaire.</span></h3>
+        <p class="formule-tagline">
+          La même qualité de conception, réglée en une fois. Le site et le nom de domaine
+          vous appartiennent.
+        </p>
+        <ul class="formule-list">
+          <li>Conception et rédaction identiques à la formule 01</li>
+          <li>Site et nom de domaine <strong>à votre nom</strong></li>
+          <li>Référencement local et fiche Google au lancement</li>
+          <li>Hébergement, sécurité et modifications courantes pour 29€/mois</li>
+          <li>Livraison en <strong>2 à 3 semaines</strong></li>
+        </ul>
+        <div class="formule-example">
+          Exemple : <a href="https://www.pharmaciedechateauneuf.fr/" target="_blank" rel="noopener">Pharmacie des Arcades →</a>
+        </div>
+        <a href="#contact" class="formule-cta" data-formule="Formule 02 · Achat (1 290 €)">Choisir cette formule</a>
+      </div>
+
+    </div>
+    <div class="formule-option"><svg class="picto" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><div><b>Réservation ou prise de rendez-vous en ligne :</b> en option sur les deux formules, sur devis selon votre fonctionnement (nombre de tables, de services ou de collaborateurs).</div></div>
+  </div>
+</section>
+
+<!-- ===== TRANSPARENCE / APPROCHE ===== -->
+<section class="transparency-section">
+  <div class="wrap">
+    <div class="section-eyebrow">L'approche</div>
+    <h2 class="section-h">Studio jeune. <span class="it">Travail soigné.</span></h2>
+
+    <div class="transparency-grid">
+      <div class="transparency-text">
+        <p>
+          En toute transparence : je ne vous promettrai ni <strong>« 200 sites livrés »</strong>,
+          ni <strong>« +30 % d'appels garantis »</strong>. Ces promesses ne sont pas tenables,
+          et je préfère m'engager sur ce que je maîtrise.
+        </p>
+        <p>
+          Ce que je propose, c'est un studio à taille humaine, <strong>basé dans les Bouches-du-Rhône</strong>,
+          dédié aux artisans et commerçants de la région. Je connais votre clientèle et votre
+          territoire, car ce sont aussi les miens.
+        </p>
+        <div class="ttq">
+          « Chaque site est conçu pour son commerce et retravaillé jusque dans les détails :
+          aucun de mes clients ne retrouvera son site chez un autre. »
+        </div>
+        <p>
+          Pas de commercial, pas de chef de projet, pas d'allers-retours interminables.
+          Vous me parlez, je vous réponds. Vous voulez une modif un dimanche soir ?
+          Je la fais. <strong>Pas de ticket Jira, pas de devis à 80 € pour une virgule.</strong>
+        </p>
+      </div>
+
+      <div class="transparency-stats">
+        <div class="tr-stat">
+          <div class="n">3</div>
+          <div class="l">
+            <strong>Sites en ligne</strong>
+            <span>Plomberie Rodriguez · Pharmacie des Arcades · Artisans de Confiance 13</span>
+          </div>
+        </div>
+        <div class="tr-stat">
+          <div class="n">13</div>
+          <div class="l">
+            <strong>Un seul département</strong>
+            <span>Marseille, Aix, Aubagne, l'étang de Berre… On peut se voir en vrai.</span>
+          </div>
+        </div>
+        <div class="tr-stat">
+          <div class="n">24h</div>
+          <div class="l">
+            <strong>Délai de réponse maximum</strong>
+            <span>Souvent bien plus vite. Téléphone, mail, WhatsApp.</span>
+          </div>
+        </div>
+        <div class="tr-stat">
+          <div class="n">0</div>
+          <div class="l">
+            <strong>Frais cachés, abonnement piégeux</strong>
+            <span>Un forfait clair, écrit noir sur blanc. C'est tout.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process" class="section process-section">
+  <div class="wrap">
+    <div class="section-eyebrow">Comment ça marche</div>
+    <h2 class="section-h">Quatre étapes. <span class="it">Deux à trois semaines.</span></h2>
+    <p class="section-lead">
+      Pas de réunions à n'en plus finir, pas de jargon. On parle de votre métier, je m'occupe du reste.
+    </p>
+
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div>
+          <h3>On se parle</h3>
+          <div class="process-meta">30 min · téléphone ou en personne</div>
+        </div>
+        <div class="process-desc">Vous me racontez votre métier, votre zone, ce qui vous différencie. Je vous montre 2-3 directions visuelles possibles et on choisit ensemble.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div>
+          <h3>Je conçois une maquette</h3>
+          <div class="process-meta">3 à 5 jours</div>
+        </div>
+        <div class="process-desc">Je vous envoie une maquette complète personnalisée avec vos vraies infos, photos, couleurs. Vous voyez exactement à quoi le site va ressembler avant qu'on s'engage.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div>
+          <h3>On affine ensemble</h3>
+          <div class="process-meta">1 à 2 allers-retours</div>
+        </div>
+        <div class="process-desc">Vous me dites ce qui colle, ce qui change. Je réajuste jusqu'à ce que vous soyez à 100 %. Aucune surprise au moment de la mise en ligne.</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div>
+          <h3>Mise en ligne &amp; suivi</h3>
+          <div class="process-meta">Sous 48 h après validation</div>
+        </div>
+        <div class="process-desc">Domaine, hébergement, certificat, fiche Google : je connecte tout. Vous recevez les codes et un mode d'emploi simple. Je reste joignable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ZONE ===== -->
+<section id="zone" class="section zone-section">
+  <div class="wrap">
+    <div class="section-eyebrow">Zone d'intervention</div>
+    <h2 class="section-h">De l'Estaque <span class="it">au cours Mirabeau.</span></h2>
+    <p class="section-lead">
+      J'accompagne les artisans et commerçants de tout le département, et je me déplace
+      pour le premier rendez-vous ainsi que pour les prises de vue si nécessaire.
+    </p>
+    <ul class="zone-list">
+      <li>Marseille</li><li>Aix-en-Provence</li><li>Aubagne</li><li>Gardanne</li>
+      <li>Martigues</li><li>Vitrolles</li><li>Marignane</li><li>Salon-de-Provence</li>
+      <li>Istres</li><li>La Ciotat</li><li>Cassis</li><li>Trets</li>
+      <li>Port-de-Bouc</li><li>Fos-sur-Mer</li><li>Bouc-Bel-Air</li><li>Châteauneuf-le-Rouge</li>
+    </ul>
+  </div>
+</section>
+
+<div class="frise" aria-hidden="true"><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 22V12.5h7V22"/><path d="M8.5 12.5c0-4 7-4 7 0"/><path d="M12 8.6V3.5M10.6 5h2.8"/><path d="M10.6 12.5c0-1.4.6-2.2 1.4-2.2s1.4.8 1.4 2.2Z"/><path d="M10.5 16h3v3h-3z"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 19.5 7 13l2.6 1.8L14 7l3 4.2 5 8.3Z"/><path d="M14 7V3.6M12.8 4.8h2.4"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c-2.6 4-3.5 8.8-3.3 13.2.1 2.3 1.4 3.8 3.3 3.8s3.2-1.5 3.3-3.8C15.5 11.3 14.6 6.5 12 2.5Z"/><path d="M12 19.5V22M12 8.5v8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg><span class="fd"></span><svg class="picto" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V9"/><path d="M12 10c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 13.4c-1.7-.3-2.4-1.5-2.3-3 1.5.1 2.2 1.3 2.3 3Zm0 0c1.7-.3 2.4-1.5 2.3-3-1.5.1-2.2 1.3-2.3 3Z"/><path d="M12 6.8c-1.2-.4-1.6-1.4-1.4-2.6 1.1.2 1.5 1.2 1.4 2.6Zm0 0c1.2-.4 1.6-1.4 1.4-2.6-1.1.2-1.5 1.2-1.4 2.6Z"/><path d="M12 18c-2-.2-3.6-1.2-4.4-2.8M12 18c2-.2 3.6-1.2 4.4-2.8"/></svg></div>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="contact-section">
+  <!-- Stars echo of the opening -->
+  <div class="contact-stars">
+    <svg viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice">
+      <g fill="#fff">
+        <circle cx="120" cy="80" r="0.9" opacity="0.6"/>
+        <circle cx="240" cy="150" r="1.2" opacity="0.5"/>
+        <circle cx="380" cy="60" r="0.7" opacity="0.4"/>
+        <circle cx="510" cy="200" r="1" opacity="0.55"/>
+        <circle cx="680" cy="90" r="1.3" opacity="0.7"/>
+        <circle cx="940" cy="120" r="1.1" opacity="0.55"/>
+        <circle cx="1100" cy="60" r="0.9" opacity="0.5"/>
+        <circle cx="180" cy="300" r="1" opacity="0.4"/>
+        <circle cx="420" cy="280" r="0.8" opacity="0.35"/>
+        <circle cx="620" cy="320" r="1.1" opacity="0.5"/>
+        <circle cx="860" cy="270" r="0.7" opacity="0.35"/>
+        <circle cx="1180" cy="330" r="1" opacity="0.45"/>
+        <circle cx="1500" cy="280" r="0.9" opacity="0.4"/>
+        <circle cx="1450" cy="80" r="0.8" opacity="0.4"/>
+        <circle cx="60" cy="220" r="1.2" opacity="0.6"/>
+        <circle cx="1320" cy="180" r="1.1" opacity="0.55"/>
+        <circle cx="780" cy="380" r="0.9" opacity="0.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="contact-lamp" aria-hidden="true"></div>
+      <div class="section-eyebrow">Acte V · Rideau</div>
+      <h2 class="section-h">Allumons <span class="it">l'enseigne</span><br>de votre commerce.</h2>
+      <p class="contact-tagline">
+        « Votre boutique ferme à 19h.
+        <span class="warm">Faisons en sorte qu'à 21h47,</span><br>
+        vos clients puissent encore vous trouver. »
+      </p>
+      <p class="contact-lead">
+        Décrivez votre activité et votre besoin en quelques mots. Je vous réponds sous 24 heures,
+        sans engagement.
+      </p>
+
+      <form class="qf" id="qf" novalidate>
+        <input type="text" name="_hp" id="qf-hp" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label for="qf-msg">Votre projet</label>
+        <textarea id="qf-msg" name="message" rows="4" required placeholder="Ex. : Restaurant à Aix, 40 couverts, je souhaite un site avec réservation en ligne."></textarea>
+        <label for="qf-contact">Votre téléphone ou e-mail</label>
+        <input id="qf-contact" name="contact" type="text" required placeholder="06 12 34 56 78 ou nom@exemple.fr" autocomplete="email">
+        <div class="qf-actions">
+          <button type="submit" class="qf-btn qf-mail"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Envoyer par e-mail</button>
+          <button type="button" class="qf-btn qf-wa" id="qf-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg>Envoyer sur WhatsApp</button>
+        </div>
+        <p class="qf-status" id="qf-status" role="status"></p>
+      </form>
+
+      <div class="contact-direct">
+        <a class="cd" href="tel:+33695944217"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><strong>06 95 94 42 17</strong>Appel ou SMS</span></a>
+        <a class="cd" href="https://wa.me/33695944217" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg><span><strong>WhatsApp</strong>Même numéro</span></a>
+        <a class="cd" href="mailto:pierre.pignon@outlook.fr?subject=%5BL%27ENSEIGNE%5D%20DEMANDE%20DE%20SITE%20WEB"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><strong>pierre.pignon@outlook.fr</strong>E-mail direct</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <span class="brand-dot" style="width:6px; height:6px;"></span>
+        L'enseigne — Sites web pour artisans &amp; commerçants des Bouches-du-Rhône
+      </div>
+      <div>© 2026 · <a href="mentions-legales.html">Mentions légales</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPT — SCROLL NARRATIVE ============ -->
+<script>
+(function() {
+  const acts = document.querySelectorAll('.act');
+  const body = document.body;
+
+  function updateProgress() {
+    const vh = window.innerHeight;
+    acts.forEach(act => {
+      const rect = act.getBoundingClientRect();
+      const total = act.offsetHeight - vh;
+      const scrolled = -rect.top;
+      let p = total > 0 ? scrolled / total : 0;
+      p = Math.max(0, Math.min(1, p));
+      act.style.setProperty('--p', p);
+      applySceneTransforms(act, p);
+    });
+
+    if (acts[0]) {
+      const r = acts[0].getBoundingClientRect();
+      if (r.top < -200) body.classList.add('past-act1');
+      else body.classList.remove('past-act1');
+    }
+  }
+
+  function applySceneTransforms(act, p) {
+    const id = act.id;
+
+    if (id === 'act1') {
+      const sticky = act.querySelector('.act-sticky');
+      const stars = sticky.querySelector('.star-field');
+      const cityFar = sticky.querySelector('.city-far');
+      const atelier = sticky.querySelector('.atelier-wrap');
+      const ground = sticky.querySelector('.ground');
+      const text = sticky.querySelector('.scene-text');
+
+      const zoomOut = Math.max(0, (p - 0.55) * 2.5);
+      const scale = 1 + 0.1 * Math.min(1, p * 2) - zoomOut * 0.8;
+      const yShift = -p * 80 + zoomOut * 120;
+
+      atelier.style.transform = `translateY(${yShift}px) scale(${scale})`;
+      cityFar.style.transform = `translateY(${zoomOut * 40}px) scale(${1 - zoomOut * 0.2})`;
+      stars.style.transform = `scale(${1 - zoomOut * 0.15})`;
+      stars.style.opacity = 1 - zoomOut * 0.4;
+      ground.style.opacity = 1 - zoomOut * 0.6;
+
+      const textOpacity = p < 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) * 4);
+      const textShift = p < 0.7 ? 0 : (p - 0.7) * -100;
+      text.style.opacity = textOpacity;
+      text.style.transform = `translateY(${textShift}px)`;
+    }
+
+    if (id === 'act2') {
+      const sticky = act.querySelector('.act-sticky');
+      const earth = sticky.querySelector('.earth-curve');
+      const cityNet = sticky.querySelector('.city-network');
+      const nodes = sticky.querySelector('.network-nodes');
+      const text = sticky.querySelector('.scene-text');
+
+      const fadeIn = Math.min(1, p * 2);
+      cityNet.style.opacity = fadeIn;
+      cityNet.style.transform = `translateY(${(1 - fadeIn) * 30}px)`;
+
+      const nodeScale = 0.6 + fadeIn * 0.4;
+      nodes.style.transform = `scale(${nodeScale})`;
+      nodes.style.opacity = fadeIn;
+
+      const zoomIn = Math.max(0, (p - 0.65) * 3);
+      nodes.style.transform = `scale(${nodeScale + zoomIn * 1.4})`;
+      cityNet.style.transform = `translateY(${(1 - fadeIn) * 30 + zoomIn * 200}px) scale(${1 + zoomIn * 0.4})`;
+      cityNet.style.opacity = fadeIn * (1 - zoomIn);
+
+      const textIn = Math.min(1, Math.max(0, (p - 0.1) * 3));
+      const textOut = Math.max(0, (p - 0.7) * 4);
+      text.style.opacity = textIn * (1 - Math.min(1, textOut));
+      text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
+    }
+
+    if (id === 'act3') {
+      const sticky = act.querySelector('.act-sticky');
+      const grid = sticky.querySelector('.grid-bg');
+      const sites = sticky.querySelector('.floating-sites');
+      const ticker = sticky.querySelector('.search-ticker');
+      const text = sticky.querySelector('.scene-text');
+
+      grid.style.transform = `scale(${1 + p * 0.4}) rotate(${p * 6}deg)`;
+      grid.style.opacity = Math.min(1, p * 2);
+
+      const cards = sites.querySelectorAll('.float-card');
+      cards.forEach((c, i) => {
+        const delay = (i % 3) * 0.08;
+        const ip = Math.min(1, Math.max(0, (p - delay) * 2));
+        c.style.opacity = ip * (1 - Math.max(0, (p - 0.75) * 4));
+      });
+
+      ticker.style.opacity = Math.min(1, Math.max(0, (p - 0.1) * 2)) * (1 - Math.max(0, (p - 0.75) * 4));
+
+      const textIn = Math.min(1, Math.max(0, (p - 0.15) * 3));
+      const textOut = Math.max(0, (p - 0.75) * 4);
+      text.style.opacity = textIn * (1 - Math.min(1, textOut));
+      text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
+    }
+
+    if (id === 'act4') {
+      const sticky = act.querySelector('.act-sticky');
+      const browser = sticky.querySelector('.browser-zoom');
+      const ring = sticky.querySelector('.glow-ring');
+      const text = sticky.querySelector('.scene-text');
+
+      const scale = 0.3 + Math.min(1, p * 1.5) * 0.8;
+      const finalScale = p > 0.75 ? 1.1 + (p - 0.75) * 0.4 : scale;
+      browser.style.transform = `translate(-50%, -50%) scale(${finalScale})`;
+      browser.style.opacity = Math.min(1, p * 2);
+
+      ring.style.opacity = Math.min(1, p * 1.5);
+      ring.style.transform = `translate(-50%, -50%) scale(${0.5 + p})`;
+
+      const textIn = Math.min(1, Math.max(0, (p - 0.05) * 3));
+      text.style.opacity = textIn * (p > 0.85 ? Math.max(0, 1 - (p - 0.85) * 5) : 1);
+      text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
+    }
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateProgress(); ticking = false; });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var form=document.getElementById('qf'); if(!form) return;
+  var msg=document.getElementById('qf-msg'), contact=document.getElementById('qf-contact'), status=document.getElementById('qf-status');
+  var WA_NUM='33695944217', MAIL='pierre.pignon@outlook.fr';
+  var SUBJECT_PREFIX='🔴 NOUVELLE DEMANDE — L\'ENSEIGNE';
+  // Clé Web3Forms (web3forms.com) : remplacer la valeur ci-dessous par votre clé d'accès
+  var WEB3FORMS_KEY='dfe8c11d-b663-4819-8f37-848f7cb6df30';
+  function say(t,c){ status.textContent=t; status.className='qf-status'+(c?' '+c:''); }
+  function valid(){
+    if(!msg.value.trim()){ say('Merci de décrire votre projet en quelques mots.','err'); msg.focus(); return false; }
+    if(!contact.value.trim()){ say('Merci d\'indiquer un téléphone ou un e-mail pour vous répondre.','err'); contact.focus(); return false; }
+    return true;
+  }
+  // Préremplissage depuis les formules
+  document.querySelectorAll('[data-formule]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var f=a.getAttribute('data-formule');
+      if(msg.value.indexOf(f)===-1) msg.value=f+'\n'+msg.value;
+      setTimeout(function(){ msg.focus(); msg.setSelectionRange(msg.value.length,msg.value.length); },700);
+    });
+  });
+  // WhatsApp
+  document.getElementById('qf-wa').addEventListener('click',function(){
+    if(!valid()) return;
+    var text='Bonjour, je vous contacte depuis lenseigneweb.fr.\n\n'+msg.value.trim()+'\n\nMe recontacter : '+contact.value.trim();
+    window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(text),'_blank','noopener');
+    say('WhatsApp s\'ouvre avec votre message : il ne reste qu\'à appuyer sur Envoyer.','ok');
+  });
+  // E-mail via /api/contact, repli sur le logiciel de messagerie
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(document.getElementById('qf-hp').value) return;
+    if(!valid()) return;
+    var btn=form.querySelector('.qf-mail'); btn.disabled=true; say('Envoi en cours…');
+    var c=contact.value.trim(), isMail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c);
+    var data={access_key:WEB3FORMS_KEY,subject:SUBJECT_PREFIX+' — '+msg.value.trim().replace(/\s+/g,' ').slice(0,50).toUpperCase(),from_name:'Site L\'enseigne',message:msg.value.trim(),contact:c,page:location.href,botcheck:''};
+    if(isMail){ data.email=c; data.replyto=c; }
+    (WEB3FORMS_KEY.indexOf('COLLER')===0 ? Promise.reject(new Error('nokey')) :
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'content-type':'application/json','accept':'application/json'},body:JSON.stringify(data)})
+        .then(function(r){ return r.json(); }).then(function(j){ if(!j.success) throw new Error('fail'); }))
+      .then(function(){ form.reset(); say('Merci, votre demande est bien envoyée. Je vous réponds sous 24 heures.','ok'); })
+      .catch(function(){
+        var body=msg.value.trim()+'\n\nMe recontacter : '+contact.value.trim();
+        location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(SUBJECT_PREFIX)+'&body='+encodeURIComponent(body);
+        say('Votre messagerie s\'ouvre avec le message prêt à envoyer.','ok');
+      })
+      .finally(function(){ btn.disabled=false; });
+  });
+})();
+</script>
+</body>
+</html>

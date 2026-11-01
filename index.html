@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'enseigne — Sites web pour artisans et commerçants à Marseille, Aix et dans le 13</title>
-<meta name="description" content="Création de sites internet pour artisans, restaurants et commerces des Bouches-du-Rhône : référencement local, demandes de devis, réservation et prise de rendez-vous en ligne. Marseille, Aix, Aubagne, Gardanne, Martigues.">
+<title>L'enseigne — Sites web pour prestataires de mariage, artisans et commerçants · Marseille, Aix, 13</title>
+<meta name="description" content="Création de sites internet pour prestataires de mariage, artisans et commerçants des Bouches-du-Rhône : demandes de devis, calendrier des disponibilités, réservation, référencement local. Maquette offerte, sans engagement.">
 <link rel="canonical" href="https://lenseigneweb.fr/">
 <meta property="og:image" content="https://lenseigneweb.fr/images/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -12,8 +12,8 @@
 <meta property="og:url" content="https://lenseigneweb.fr/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230b0d24%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2213%22%20fill%3D%22%23FFB661%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2222%22%20fill%3D%22%23FFB661%22%20opacity%3D%22.18%22/%3E%3C/svg%3E">
-<meta property="og:title" content="L'enseigne — Sites web pour artisans et commerçants du 13">
-<meta property="og:description" content="Un site qui sort sur Google quand on cherche votre métier dans votre ville. Marseille, Aix et tout le 13.">
+<meta property="og:title" content="L'enseigne — Sites web pour prestataires de mariage, artisans et commerçants du 13">
+<meta property="og:description" content="Des sites qui transforment vos visiteurs en demandes de devis. Maquette offerte, sans engagement. Marseille, Aix et tout le 13.">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:type" content="website">
 <meta name="geo.region" content="FR-13">
@@ -23,7 +23,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "L'enseigne",
-  "description": "Création de sites internet pour artisans et commerçants des Bouches-du-Rhône : référencement local, devis, réservation et prise de rendez-vous en ligne.",
+  "description": "Création de sites internet pour prestataires de mariage, artisans et commerçants des Bouches-du-Rhône : demandes de devis, calendrier des disponibilités, réservation et référencement local.",
   "url": "https://lenseigneweb.fr/",
   "telephone": "+33695944217",
   "email": "pierre.pignon@outlook.fr",
@@ -1214,7 +1214,16 @@
 
   /* ============ POUR QUI ============ */
   .who-section { border-top: 1px solid var(--line); background: var(--bg-2); }
-  .who-grid { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .who-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .who-card.mar .who-mark { color: var(--accent); }
+  .who-card.mar .who-tag { color: var(--accent); background: rgba(var(--glow-warm), 0.08); border: 1px solid rgba(var(--glow-warm), 0.25); }
+  .who-card.mar h3 .it { color: var(--accent); }
+  @media (max-width: 1180px) { .who-grid { grid-template-columns: 1fr 1fr; } .who-card.mar { grid-column: 1 / -1; } }
+  .formule-garanties { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .formule-garanties div { border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; font-size: 14px; line-height: 1.55; color: var(--ink-dim); }
+  .formule-garanties b { display: block; color: var(--ink); font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  @media (max-width: 900px) { .formule-garanties { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .formule-garanties { grid-template-columns: 1fr; } }
   .who-card { position: relative; border: 1px solid var(--line); border-radius: 22px; padding: 40px 36px; background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005)); overflow: hidden; }
   .who-card .who-mark { position: absolute; right: -14px; top: -14px; width: 150px; height: 150px; opacity: 0.07; }
   .who-card.art .who-mark { color: var(--accent); }
@@ -1236,7 +1245,7 @@
   .who-metiers { margin-top: 26px; padding-top: 20px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--ink-mute); }
   .who-link { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 14px; color: var(--accent-2); }
   .who-link:hover { text-decoration: underline; }
-  @media (max-width: 900px) { .who-grid { grid-template-columns: 1fr; } .who-card { padding: 32px 24px; } }
+  @media (max-width: 900px) { .who-grid { grid-template-columns: 1fr; } .who-card.mar { grid-column: auto; } .who-card { padding: 32px 24px; } }
 
   /* Option réservation */
   .formule-option { margin-top: 24px; display: flex; gap: 16px; align-items: center; padding: 22px 26px; border: 1px dashed rgba(var(--glow-cool), 0.35); border-radius: 18px; color: var(--ink-dim); font-size: 15px; line-height: 1.6; }
@@ -1518,7 +1527,7 @@
         <span class="it">Internet, lui,</span><br>
         <span class="it">ne ferme jamais.</span>
       </p>
-      <h1 class="act1-sub">Création de sites internet pour artisans et commerçants<br>Marseille · Aix-en-Provence · Bouches-du-Rhône</h1>
+      <h1 class="act1-sub">Création de sites internet pour prestataires de mariage, artisans et commerçants<br>Marseille · Aix-en-Provence · Bouches-du-Rhône</h1>
     </div>
   </div>
 </section>
@@ -1827,9 +1836,23 @@
 <section id="pour-qui" class="section who-section">
   <div class="wrap">
     <div class="section-eyebrow">Pour qui</div>
-    <h2 class="section-h">Artisans du bâtiment <span class="it">et commerces de proximité.</span></h2>
-    <p class="section-lead">Les besoins d'un plombier et ceux d'un restaurant sont différents. Chaque site est conçu autour de ce qui vous apporte des clients.</p>
+    <h2 class="section-h">Prestataires de mariage, artisans <span class="it">et commerces de proximité.</span></h2>
+    <p class="section-lead">Les besoins d'un traiteur, d'un plombier et d'un restaurant sont différents. Chaque site est conçu autour de ce qui vous apporte des clients.</p>
     <div class="who-grid">
+      <div class="who-card mar">
+        <svg class="who-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="14" r="5.5"/><path d="M10.5 5.5 12 3l1.5 2.5L12 7z"/></svg>
+        <span class="who-tag">Mariage</span>
+        <h3>Des demandes de devis <span class="it">complètes.</span></h3>
+        <p>Les couples comparent plusieurs prestataires avant d'écrire. Votre site présente vos réalisations et vos formules, affiche vos dates libres et recueille des demandes précises, au lieu de messages « c'est combien ? ».</p>
+        <ul class="who-feat">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 15l2 2 4-4"/></svg></span><div><b>Calendrier des disponibilités</b><span>Relié à votre agenda Google, Apple ou Outlook : vos dates se mettent à jour seules.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h4"/></svg></span><div><b>Demande de devis qualifiée</b><span>Date, nombre d'invités, lieu et budget : vous répondez sans aller-retour.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg></span><div><b>Réalisations et formules</b><span>Vos plus belles photos et des tarifs clairs pour aider les couples à se projeter.</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11Z"/><circle cx="12" cy="10" r="2"/></svg></span><div><b>Visible sur Google</b><span>Pour apparaître sur « traiteur mariage Marseille » ou « décoration mariage Aix ».</span></div></li>
+        </ul>
+        <div class="who-metiers">Traiteurs, cake designers, décoratrices, wedding planners, negafas, artistes henné, dragées…</div>
+        <a class="who-link" href="#contact">Recevoir ma maquette offerte →</a>
+      </div>
       <div class="who-card art">
         <svg class="who-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg>
         <span class="who-tag">Artisans</span>
@@ -1879,8 +1902,8 @@
         <div class="svc-icon">
           <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C8.5 15.5 13 10.5 20 4"/><path d="M8.2 15.8C6.2 15.6 4.6 14.4 4 12.4c2 .1 3.6 1.3 4.2 3.4Z"/><path d="M11.4 12.3c-.4-2-.1-3.9 1.2-5.4.8 1.9.5 3.8-1.2 5.4Z"/><path d="M14.6 9.2c1.9-.7 3.9-.5 5.4.8-1.9.8-3.8.6-5.4-.8Z"/><path d="M9.6 14.2c1.9.6 3.2 2 3.6 4-2-.3-3.4-1.7-3.6-4Z"/><circle cx="16.8" cy="13.2" r="1.6"/></svg>
         </div>
-        <h3>Sur-mesure</h3>
-        <p>Chaque projet part d'une page blanche : vos couleurs, votre métier et votre territoire au cœur du design. Aucun modèle générique.</p>
+        <h3>Adapté à votre métier</h3>
+        <p>Vos couleurs, vos photos, vos formules et votre territoire au cœur du design. Chaque site est pensé pour les questions que se posent vos clients.</p>
       </div>
       <div class="svc">
         <div class="svc-num"><span class="it">02</span> / Texte</div>
@@ -1888,7 +1911,7 @@
           <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg>
         </div>
         <h3>Rédaction incluse</h3>
-        <p>Titres, services, questions fréquentes, présentation : un entretien de 30 minutes suffit, je rédige l'ensemble des textes dans votre ton.</p>
+        <p>Titres, prestations, questions fréquentes, présentation : un entretien de 30 minutes suffit, je rédige l'ensemble des textes dans votre ton.</p>
       </div>
       <div class="svc">
         <div class="svc-num"><span class="it">03</span> / Visibilité</div>
@@ -1920,7 +1943,7 @@
           <svg class="picto" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 22V12.5h7V22"/><path d="M8.5 12.5c0-4 7-4 7 0"/><path d="M12 8.6V3.5M10.6 5h2.8"/><path d="M10.6 12.5c0-1.4.6-2.2 1.4-2.2s1.4.8 1.4 2.2Z"/><path d="M10.5 16h3v3h-3z"/></svg>
         </div>
         <h3>Un interlocuteur proche</h3>
-        <p>Un horaire à modifier, une photo à ajouter : une simple demande suffit. Basé dans le 13, je me déplace sur votre chantier ou dans votre commerce.</p>
+        <p>Un horaire à modifier, une photo à ajouter : une simple demande suffit. Chaque mois, un bilan vous indique les visites et les demandes reçues. Basé dans le 13, je me déplace volontiers.</p>
       </div>
     </div>
   </div>
@@ -1956,7 +1979,7 @@
             <span class="work-tag">Port-de-Bouc</span>
           </div>
           <h3>Plomberie Rodriguez Diego</h3>
-          <p class="desc">Site clé en main pour un plombier artisan à Port-de-Bouc. Hero conversion sombre &amp; net, galerie avant/après des chantiers, formulaire de devis, bouton d'appel toujours visible sur mobile.</p>
+          <p class="desc">Site clé en main pour un plombier artisan à Port-de-Bouc : page d'accueil orientée prise de contact, galerie avant/après des chantiers, formulaire de devis et bouton d'appel toujours visible sur mobile.</p>
           <span class="work-link">Visiter le site →</span>
         </div>
       </a>
@@ -1979,7 +2002,7 @@
             <span class="work-tag">Sur-mesure</span>
           </div>
           <h3>Pharmacie des Arcades</h3>
-          <p class="desc">Officine indépendante à Châteauneuf-le-Rouge. Direction artistique éditoriale, typographie italique, présentation par univers parapharmacie, intégration WhatsApp pour les questions rapides.</p>
+          <p class="desc">Officine indépendante à Châteauneuf-le-Rouge : identité chaleureuse et soignée, présentation des services et de l'équipe, prise de rendez-vous et questions rapides par WhatsApp.</p>
           <span class="work-link">Visiter le site →</span>
         </div>
       </a>
@@ -2016,10 +2039,10 @@
 <section id="formules" class="section formules-section" style="border-top:0">
   <div class="wrap">
     <div class="section-eyebrow">Tarifs · Formules</div>
-    <h2 class="section-h">Un site professionnel, <span class="it">sans investissement de départ.</span></h2>
+    <h2 class="section-h">Un site professionnel, <span class="it">sans frais de départ ni engagement.</span></h2>
     <p class="section-lead">
-      Le forfait mensuel vous permet de disposer d'un site complet sans investissement important.
-      Si vous préférez en être propriétaire dès le départ, une formule d'achat est également proposée.
+      Vous découvrez votre maquette avant de décider. Ensuite, un abonnement mensuel clair,
+      résiliable à tout moment : vous restez parce que le site vous apporte des demandes.
     </p>
 
     <div class="formules-grid">
@@ -2028,8 +2051,8 @@
         <div class="formule-badge">Recommandé</div>
         <div class="formule-eyebrow">Formule 01 · Tout compris</div>
         <div class="formule-price">
-          <span class="formule-price-num">79€/mois</span>
-          <span class="formule-price-sub">+ 290€ de mise en route · engagement 12 mois, puis sans engagement</span>
+          <span class="formule-price-num">89€/mois</span>
+          <span class="formule-price-sub">sans frais de mise en place · sans engagement · résiliable avec un mois de préavis</span>
         </div>
         <h3 class="formule-h">Un service <span class="it">complet.</span></h3>
         <p class="formule-tagline">
@@ -2038,44 +2061,51 @@
         </p>
         <ul class="formule-list">
           <li>Site complet, adapté à <strong>votre métier et votre ville</strong></li>
-          <li>Textes rédigés pour vous, photos de vos chantiers ou de votre commerce</li>
+          <li>Textes rédigés pour vous, mise en valeur de vos photos</li>
+          <li>Demande de devis qualifiée et <strong>calendrier des disponibilités</strong> si votre activité s'y prête</li>
           <li>Référencement local + <strong>fiche Google Business</strong> optimisée</li>
           <li>Domaine, hébergement, e-mail professionnel et sécurité inclus</li>
-          <li><strong>Modifications illimitées</strong> : horaires, photos, tarifs, carte</li>
-          <li>Bilan trimestriel : appels, demandes et avis</li>
+          <li><strong>Modifications illimitées</strong> : horaires, photos, tarifs, dates</li>
+          <li>Bilan mensuel : visites, demandes reçues et appels</li>
         </ul>
         <div class="formule-example">
           Exemple : <a href="https://plomberie-diego-rodriguez.fr/" target="_blank" rel="noopener">Plomberie Diego Rodriguez →</a>
         </div>
-        <a href="#contact" class="formule-cta formule-cta-prim" data-formule="Formule 01 · Tout compris (79 €/mois)">Choisir cette formule</a>
+        <a href="#contact" class="formule-cta formule-cta-prim" data-formule="Formule 01 · Tout compris (89 €/mois)">Demander ma maquette offerte</a>
       </div>
 
       <div class="formule-card formule-express">
-        <div class="formule-eyebrow">Formule 02 · Achat</div>
+        <div class="formule-eyebrow">Formule 02 · Sur mesure</div>
         <div class="formule-price">
-          <span class="formule-price-num">1 290€</span>
-          <span class="formule-price-sub">+ 29€/mois — hébergement et modifications courantes</span>
+          <span class="formule-price-num">Sur devis</span>
+          <span class="formule-price-sub">selon votre fonctionnement</span>
         </div>
-        <h3 class="formule-h">Vous êtes <span class="it">propriétaire.</span></h3>
+        <h3 class="formule-h">Des outils <span class="it">à votre mesure.</span></h3>
         <p class="formule-tagline">
-          La même qualité de conception, réglée en une fois. Le site et le nom de domaine
-          vous appartiennent.
+          Pour les activités qui ont besoin de plus qu'un site : réservation, rendez-vous,
+          espace client ou suivi de vos projets.
         </p>
         <ul class="formule-list">
-          <li>Conception et rédaction identiques à la formule 01</li>
-          <li>Site et nom de domaine <strong>à votre nom</strong></li>
-          <li>Référencement local et fiche Google au lancement</li>
-          <li>Hébergement, sécurité et modifications courantes pour 29€/mois</li>
-          <li>Livraison en <strong>2 à 3 semaines</strong></li>
+          <li>Tout le contenu de la formule 01</li>
+          <li>Réservation de table ou <strong>prise de rendez-vous en ligne</strong></li>
+          <li>Espace client et suivi de projet</li>
+          <li>Connexion à vos outils : agenda, messagerie, e-mails</li>
+          <li>Accompagnement à la mise en route</li>
         </ul>
         <div class="formule-example">
           Exemple : <a href="https://www.pharmaciedechateauneuf.fr/" target="_blank" rel="noopener">Pharmacie des Arcades →</a>
         </div>
-        <a href="#contact" class="formule-cta" data-formule="Formule 02 · Achat (1 290 €)">Choisir cette formule</a>
+        <a href="#contact" class="formule-cta" data-formule="Formule 02 · Sur mesure (sur devis)">Décrire mon besoin</a>
       </div>
 
     </div>
-    <div class="formule-option"><svg class="picto" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><div><b>Réservation ou prise de rendez-vous en ligne :</b> en option sur les deux formules, sur devis selon votre fonctionnement (nombre de tables, de services ou de collaborateurs).</div></div>
+    <div class="formule-garanties">
+      <div><b>Maquette offerte</b>Vous voyez votre site, avec vos photos, avant tout engagement.</div>
+      <div><b>Sans engagement</b>Résiliable à tout moment avec un mois de préavis.</div>
+      <div><b>Votre nom de domaine</b>Il est à votre nom et vous suit si vous partez.</div>
+      <div><b>3 projets par mois</b>Pour garder le temps de soigner chaque site.</div>
+    </div>
+    <div class="formule-option"><svg class="picto" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><div><b>Vous préférez être propriétaire de votre site ?</b> Une formule d'achat en une fois est possible sur demande.</div></div>
   </div>
 </section>
 
@@ -2083,7 +2113,7 @@
 <section class="transparency-section">
   <div class="wrap">
     <div class="section-eyebrow">L'approche</div>
-    <h2 class="section-h">Studio jeune. <span class="it">Travail soigné.</span></h2>
+    <h2 class="section-h">Un interlocuteur unique. <span class="it">Un travail soigné.</span></h2>
 
     <div class="transparency-grid">
       <div class="transparency-text">
@@ -2094,17 +2124,17 @@
         </p>
         <p>
           Ce que je propose, c'est un studio à taille humaine, <strong>basé dans les Bouches-du-Rhône</strong>,
-          dédié aux artisans et commerçants de la région. Je connais votre clientèle et votre
+          dédié aux prestataires de mariage, artisans et commerçants de la région. Je connais votre clientèle et votre
           territoire, car ce sont aussi les miens.
         </p>
         <div class="ttq">
-          « Chaque site est conçu pour son commerce et retravaillé jusque dans les détails :
-          aucun de mes clients ne retrouvera son site chez un autre. »
+          « Chaque site est adapté à son activité et soigné jusque dans les détails,
+          parce qu'il représente votre travail auprès de vos futurs clients. »
         </div>
         <p>
-          Pas de commercial, pas de chef de projet, pas d'allers-retours interminables.
-          Vous me parlez, je vous réponds. Vous voulez une modif un dimanche soir ?
-          Je la fais. <strong>Pas de ticket Jira, pas de devis à 80 € pour une virgule.</strong>
+          Vous échangez directement avec la personne qui conçoit votre site, sans intermédiaire.
+          Vos demandes de modification sont traitées rapidement et <strong>incluses dans l'abonnement</strong>,
+          sans devis supplémentaire.
         </p>
       </div>
 
@@ -2120,21 +2150,21 @@
           <div class="n">13</div>
           <div class="l">
             <strong>Un seul département</strong>
-            <span>Marseille, Aix, Aubagne, l'étang de Berre… On peut se voir en vrai.</span>
+            <span>Marseille, Aix, Aubagne, l'étang de Berre : rendez-vous possible sur place.</span>
           </div>
         </div>
         <div class="tr-stat">
           <div class="n">24h</div>
           <div class="l">
             <strong>Délai de réponse maximum</strong>
-            <span>Souvent bien plus vite. Téléphone, mail, WhatsApp.</span>
+            <span>Par téléphone, e-mail ou WhatsApp.</span>
           </div>
         </div>
         <div class="tr-stat">
-          <div class="n">0</div>
+          <div class="n">0€</div>
           <div class="l">
-            <strong>Frais cachés, abonnement piégeux</strong>
-            <span>Un forfait clair, écrit noir sur blanc. C'est tout.</span>
+            <strong>Frais de mise en place</strong>
+            <span>Un tarif mensuel clair, sans engagement et sans frais cachés.</span>
           </div>
         </div>
       </div>
@@ -2146,35 +2176,35 @@
 <section id="process" class="section process-section">
   <div class="wrap">
     <div class="section-eyebrow">Comment ça marche</div>
-    <h2 class="section-h">Quatre étapes. <span class="it">Deux à trois semaines.</span></h2>
+    <h2 class="section-h">Quatre étapes. <span class="it">En ligne en deux semaines.</span></h2>
     <p class="section-lead">
-      Pas de réunions à n'en plus finir, pas de jargon. On parle de votre métier, je m'occupe du reste.
+      Un échange simple autour de votre métier : je prends en charge tout le reste.
     </p>
 
     <div class="process-list">
       <div class="process-row">
         <div class="process-num">01</div>
         <div>
-          <h3>On se parle</h3>
+          <h3>Premier échange</h3>
           <div class="process-meta">30 min · téléphone ou en personne</div>
         </div>
-        <div class="process-desc">Vous me racontez votre métier, votre zone, ce qui vous différencie. Je vous montre 2-3 directions visuelles possibles et on choisit ensemble.</div>
+        <div class="process-desc">Vous me présentez votre activité, votre zone et ce qui vous distingue. Nous définissons ensemble ce que le site doit vous apporter.</div>
       </div>
       <div class="process-row">
         <div class="process-num">02</div>
         <div>
-          <h3>Je conçois une maquette</h3>
-          <div class="process-meta">3 à 5 jours</div>
+          <h3>Maquette offerte</h3>
+          <div class="process-meta">Sous 72 heures</div>
         </div>
-        <div class="process-desc">Je vous envoie une maquette complète personnalisée avec vos vraies infos, photos, couleurs. Vous voyez exactement à quoi le site va ressembler avant qu'on s'engage.</div>
+        <div class="process-desc">Vous recevez une maquette personnalisée avec vos informations, vos photos et vos couleurs. Vous voyez votre futur site avant de prendre toute décision.</div>
       </div>
       <div class="process-row">
         <div class="process-num">03</div>
         <div>
-          <h3>On affine ensemble</h3>
+          <h3>Ajustements</h3>
           <div class="process-meta">1 à 2 allers-retours</div>
         </div>
-        <div class="process-desc">Vous me dites ce qui colle, ce qui change. Je réajuste jusqu'à ce que vous soyez à 100 %. Aucune surprise au moment de la mise en ligne.</div>
+        <div class="process-desc">Vous indiquez ce qui vous convient et ce qui doit évoluer. Le site est ajusté jusqu'à votre entière satisfaction.</div>
       </div>
       <div class="process-row">
         <div class="process-num">04</div>
@@ -2182,7 +2212,7 @@
           <h3>Mise en ligne &amp; suivi</h3>
           <div class="process-meta">Sous 48 h après validation</div>
         </div>
-        <div class="process-desc">Domaine, hébergement, certificat, fiche Google : je connecte tout. Vous recevez les codes et un mode d'emploi simple. Je reste joignable.</div>
+        <div class="process-desc">Domaine, hébergement, sécurité, fiche Google : tout est configuré pour vous. Je reste ensuite votre interlocuteur pour chaque évolution.</div>
       </div>
     </div>
   </div>
@@ -2194,7 +2224,7 @@
     <div class="section-eyebrow">Zone d'intervention</div>
     <h2 class="section-h">De l'Estaque <span class="it">au cours Mirabeau.</span></h2>
     <p class="section-lead">
-      J'accompagne les artisans et commerçants de tout le département, et je me déplace
+      J'accompagne les prestataires de mariage, artisans et commerçants de tout le département, et je me déplace
       pour le premier rendez-vous ainsi que pour les prises de vue si nécessaire.
     </p>
     <ul class="zone-list">

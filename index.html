@@ -1219,6 +1219,7 @@
   .who-card.mar .who-tag { color: var(--accent); background: rgba(var(--glow-warm), 0.08); border: 1px solid rgba(var(--glow-warm), 0.25); }
   .who-card.mar h3 .it { color: var(--accent); }
   @media (max-width: 1180px) { .who-grid { grid-template-columns: 1fr 1fr; } .who-card.mar { grid-column: 1 / -1; } }
+  .formules-unique { grid-template-columns: minmax(0, 720px) !important; justify-content: center; }
   .formule-garanties { margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .formule-garanties div { border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; font-size: 14px; line-height: 1.55; color: var(--ink-dim); }
   .formule-garanties b { display: block; color: var(--ink); font-weight: 600; font-size: 15px; margin-bottom: 4px; }
@@ -2041,61 +2042,36 @@
     <div class="section-eyebrow">Tarifs · Formules</div>
     <h2 class="section-h">Un site professionnel, <span class="it">sans frais de départ ni engagement.</span></h2>
     <p class="section-lead">
-      Vous découvrez votre maquette avant de décider. Ensuite, un abonnement mensuel clair,
+      Vous découvrez votre maquette avant de décider. Ensuite, une seule formule, tout compris,
       résiliable à tout moment : vous restez parce que le site vous apporte des demandes.
     </p>
 
-    <div class="formules-grid">
+    <div class="formules-grid formules-unique">
 
       <div class="formule-card formule-signature">
-        <div class="formule-badge">Recommandé</div>
-        <div class="formule-eyebrow">Formule 01 · Tout compris</div>
+        <div class="formule-badge">Tout compris</div>
+        <div class="formule-eyebrow">Une seule formule · tout inclus</div>
         <div class="formule-price">
           <span class="formule-price-num">89€/mois</span>
           <span class="formule-price-sub">sans frais de mise en place · sans engagement · résiliable avec un mois de préavis</span>
         </div>
-        <h3 class="formule-h">Un service <span class="it">complet.</span></h3>
+        <h3 class="formule-h">Un site qui vous apporte <span class="it">des demandes.</span></h3>
         <p class="formule-tagline">
-          Le site, son hébergement, ses mises à jour et votre fiche Google,
-          pour un montant mensuel fixe.
+          Le site, sa visibilité sur Google et le suivi de vos demandes,
+          pour un montant mensuel fixe. Rien à gérer de votre côté.
         </p>
         <ul class="formule-list">
-          <li>Site complet, adapté à <strong>votre métier et votre ville</strong></li>
-          <li>Textes rédigés pour vous, mise en valeur de vos photos</li>
+          <li>Site complet, adapté à <strong>votre métier et votre ville</strong>, textes rédigés pour vous</li>
           <li>Demande de devis qualifiée et <strong>calendrier des disponibilités</strong> si votre activité s'y prête</li>
           <li>Référencement local + <strong>fiche Google Business</strong> optimisée</li>
+          <li><strong>Campagne d'avis Google</strong> : message prêt à envoyer à vos clients et QR code</li>
+          <li><strong>Réponse automatique</strong> à chaque demande, avec vos formules ou votre brochure</li>
+          <li><strong>Relance automatique</strong> des devis restés sans réponse</li>
           <li>Domaine, hébergement, e-mail professionnel et sécurité inclus</li>
           <li><strong>Modifications illimitées</strong> : horaires, photos, tarifs, dates</li>
           <li>Bilan mensuel : visites, demandes reçues et appels</li>
         </ul>
-        <div class="formule-example">
-          Exemple : <a href="https://plomberie-diego-rodriguez.fr/" target="_blank" rel="noopener">Plomberie Diego Rodriguez →</a>
-        </div>
-        <a href="#contact" class="formule-cta formule-cta-prim" data-formule="Formule 01 · Tout compris (89 €/mois)">Demander ma maquette offerte</a>
-      </div>
-
-      <div class="formule-card formule-express">
-        <div class="formule-eyebrow">Formule 02 · Sur mesure</div>
-        <div class="formule-price">
-          <span class="formule-price-num">Sur devis</span>
-          <span class="formule-price-sub">selon votre fonctionnement</span>
-        </div>
-        <h3 class="formule-h">Des outils <span class="it">à votre mesure.</span></h3>
-        <p class="formule-tagline">
-          Pour les activités qui ont besoin de plus qu'un site : réservation, rendez-vous,
-          espace client ou suivi de vos projets.
-        </p>
-        <ul class="formule-list">
-          <li>Tout le contenu de la formule 01</li>
-          <li>Réservation de table ou <strong>prise de rendez-vous en ligne</strong></li>
-          <li>Espace client et suivi de projet</li>
-          <li>Connexion à vos outils : agenda, messagerie, e-mails</li>
-          <li>Accompagnement à la mise en route</li>
-        </ul>
-        <div class="formule-example">
-          Exemple : <a href="https://www.pharmaciedechateauneuf.fr/" target="_blank" rel="noopener">Pharmacie des Arcades →</a>
-        </div>
-        <a href="#contact" class="formule-cta" data-formule="Formule 02 · Sur mesure (sur devis)">Décrire mon besoin</a>
+        <a href="#contact" class="formule-cta formule-cta-prim" data-formule="Formule tout compris (89 €/mois)">Demander ma maquette offerte</a>
       </div>
 
     </div>
@@ -2105,7 +2081,7 @@
       <div><b>Votre nom de domaine</b>Il est à votre nom et vous suit si vous partez.</div>
       <div><b>3 projets par mois</b>Pour garder le temps de soigner chaque site.</div>
     </div>
-    <div class="formule-option"><svg class="picto" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><div><b>Vous préférez être propriétaire de votre site ?</b> Une formule d'achat en une fois est possible sur demande.</div></div>
+    <div class="formule-option"><svg class="picto" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5.2" r="1.9"/><path d="M10.1 7.6h3.8l-.5 9.2a1.4 1.4 0 0 1-2.8 0Z"/><path d="M10.3 8.2C7.3 9.3 5.4 13.2 5.7 19c2.4-1.4 4.2-4.4 4.8-8.6"/><path d="M13.7 8.2c3 1.1 4.9 5 4.6 10.8-2.4-1.4-4.2-4.4-4.8-8.6"/><path d="M10.4 11.5h3.2M10.6 14h2.8"/></svg><div><b>Besoin de plus ?</b> Réservation de table, prise de rendez-vous, espace client ou outils métier : en complément, sur devis. Une formule d'achat en une fois est aussi possible sur demande.</div></div>
   </div>
 </section>
 

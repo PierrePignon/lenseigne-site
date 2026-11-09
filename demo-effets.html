@@ -3,114 +3,192 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Démonstration d'effets visuels — L'enseigne</title>
-<meta name="description" content="Quelques effets visuels que L'enseigne peut intégrer à votre site : dégradés animés, métal liquide, verre dépoli, animations au défilement.">
+<title>Démonstration — L'enseigne</title>
+<meta name="description" content="Ce que L'enseigne peut intégrer à votre site : dégradés animés, logo en métal liquide, verre dépoli, animations au défilement.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.css">
 <!--
-  Page vitrine des effets. Bibliothèques (versions figées) :
-  - Paper Shaders  @paper-design/shaders@0.0.81  (WebGL : mesh gradient, liquid metal)
-  - GSAP + ScrollTrigger  gsap@3.15.0           (apparitions au défilement)
+  Vitrine des effets. Bibliothèques (versions figées) :
+  - Paper Shaders  @paper-design/shaders@0.0.81  (WebGL : mesh gradient, métal liquide)
+  - GSAP + ScrollTrigger  gsap@3.15.0           (apparitions, séquence épinglée)
   - Lenis  lenis@1.3.27                          (défilement fluide)
-  - Verre dépoli : CSS pur (backdrop-filter + filtre SVG), sans bibliothèque
-  Tous les effets sont coupés si l'utilisateur a demandé moins d'animations.
+  - Verre dépoli, défilé de texte : CSS natif
+  Si l'utilisateur demande moins d'animations, tout s'affiche directement dans son état final.
 -->
 <style>
   :root{--nuit:#0b0b1f;--nuit2:#141233;--ink:#f3ecdf;--dim:#b9b2c8;--ambre:#f6b26b;--ligne:rgba(255,255,255,.1)}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--nuit);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html{background:var(--nuit)}
+  body{background:var(--nuit);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit}
   .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
   .it{font-style:italic;color:var(--ambre)}
   .eyebrow{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--ambre);font-weight:500}
   section{position:relative;padding:120px 0}
   h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(38px,6vw,64px);line-height:1.05;margin:14px 0 18px}
-  p.lead{color:var(--dim);max-width:620px}
-  .lib{display:inline-block;margin-top:18px;font-size:13px;color:var(--dim);border:1px solid var(--ligne);border-radius:99px;padding:6px 14px}
+  p.lead{color:var(--dim);max-width:600px}
+  .lib{display:inline-block;margin-top:18px;font-size:12.5px;color:var(--dim);border:1px solid var(--ligne);border-radius:99px;padding:6px 14px}
+  .center{text-align:center}.center p.lead{margin:0 auto}
 
-  /* Haut de page : dégradé animé */
-  .hero{min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0}
+  /* Barre */
+  .barre{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;font-size:14px;background:rgba(11,11,31,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .barre a{text-decoration:none;opacity:.85}
+  .barre .cta{background:rgba(246,178,107,.14);border:1px solid rgba(246,178,107,.4);color:var(--ambre);padding:8px 16px;border-radius:99px;opacity:1}
+
+  /* 1. Haut de page */
+  .hero{min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0}
   .hero .shader{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,#3a2a6a,transparent 60%),radial-gradient(ellipse at 70% 80%,#7a4a2a,transparent 55%),var(--nuit2)}
-  .hero .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,31,.15),rgba(11,11,31,.55) 70%,var(--nuit))}
-  .hero .in{position:relative;padding:0 20px;max-width:900px}
-  .hero h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(52px,10vw,124px);line-height:.95;margin:18px 0 22px}
-  .hero p{color:#e7def0;font-size:clamp(17px,2.2vw,20px);max-width:600px;margin:0 auto}
-  .retour{position:absolute;top:22px;left:22px;z-index:2;font-size:14px;text-decoration:none;opacity:.8}
+  .hero .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,31,.1),rgba(11,11,31,.45) 65%,var(--nuit))}
+  .hero .in{position:relative;padding:0 20px;max-width:960px}
+  .hero h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(54px,11vw,140px);line-height:.92;margin:18px 0 24px;letter-spacing:-.01em}
+  .hero h1 .m{display:inline-block;will-change:transform}
+  .hero p{color:#e7def0;font-size:clamp(17px,2.2vw,20px);max-width:580px;margin:0 auto}
+  .defiler{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+  .defiler::after{content:"";display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(var(--ambre),transparent);animation:goutte 2.2s ease-in-out infinite}
+  @keyframes goutte{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-  /* Métal liquide */
-  .metal{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
-  @media(max-width:860px){.metal{grid-template-columns:1fr}}
-  .metal .scene{aspect-ratio:1;border-radius:28px;overflow:hidden;background:#101024;border:1px solid var(--ligne);position:relative}
-  .metal .scene .shader{position:absolute;inset:0}
+  /* 2. Lanterne en métal liquide */
+  .signature{text-align:center;padding-top:60px}
+  .lanterne{position:relative;width:min(460px,80vw);aspect-ratio:1;margin:40px auto 0}
+  .lanterne .shader{position:absolute;inset:0}
+  .lanterne .halo{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(246,178,107,.28),transparent 65%);filter:blur(30px)}
 
-  /* Verre dépoli */
+  /* 3. Défilé de métiers */
+  .defile{padding:28px 0;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);overflow:hidden;white-space:nowrap}
+  .defile .piste{display:inline-flex;gap:56px;animation:defile 38s linear infinite;font-family:"Instrument Serif",Georgia,serif;font-size:clamp(28px,4vw,44px)}
+  .defile .piste span:nth-child(even){font-style:italic;color:var(--ambre)}
+  @keyframes defile{to{transform:translateX(-50%)}}
+
+  /* 4. De la maquette au site (séquence épinglée) */
+  .sequence{padding:0}
+  .scene{height:100svh;display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center;max-width:1120px;margin:0 auto;padding:0 20px}
+  @media(max-width:860px){.scene{grid-template-columns:1fr;gap:28px;align-content:center}.ecran{aspect-ratio:4/3.6}.couche{padding:5% 6%}.fini p{display:none}.fini h3{font-size:26px}.fini .btn-v{margin-top:10px}}
+  .etats{position:relative;height:120px}
+  .etats div{position:absolute;inset:0}
+  .etats .e1,.etats .e2{opacity:0}
+  .etats b{display:block;font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:34px}
+  .etats span{color:var(--dim);font-size:15px}
+  .ecran{position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:1px solid var(--ligne);background:#15142c;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+  .ecran .barre-nav{height:30px;background:#1d1b3a;display:flex;gap:7px;align-items:center;padding:0 12px}
+  .ecran .barre-nav i{width:9px;height:9px;border-radius:50%;background:#3b3760}
+  .couche{position:absolute;inset:30px 0 0 0;padding:6% 7%}
+  /* filaire */
+  .filaire .bloc{background:#2a2848;border-radius:6px;margin-bottom:12px}
+  /* couleurs */
+  .couleur{background:linear-gradient(135deg,#2a1f5c,#7a3f8c 55%,#f6b26b)}
+  .couleur .t1{width:62%;height:34px;background:rgba(255,255,255,.85);border-radius:6px;margin:8% 0 14px}
+  .couleur .t2{width:44%;height:12px;background:rgba(255,255,255,.55);border-radius:6px;margin-bottom:22px}
+  .couleur .btn-f{width:120px;height:34px;background:var(--nuit);border-radius:99px}
+  /* site fini */
+  .fini{background:linear-gradient(160deg,rgba(11,11,31,.2),rgba(11,11,31,.75)),linear-gradient(135deg,#2a1f5c,#7a3f8c 55%,#f6b26b);display:flex;flex-direction:column;justify-content:center}
+  .fini small{letter-spacing:.24em;text-transform:uppercase;font-size:10px;color:#ffe2bf}
+  .fini h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(26px,3.6vw,44px);line-height:1.02;margin:8px 0 10px}
+  .fini p{font-size:13px;color:#efe6f7;max-width:70%}
+  .fini .btn-v{margin-top:16px;align-self:flex-start;background:var(--ambre);color:#1b1206;font-size:12px;font-weight:600;padding:9px 18px;border-radius:99px}
+  .fini .dates{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+  .fini .dates span{font-size:11px;border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:3px 9px}
+  .fini .dates span.pris{opacity:.4;text-decoration:line-through}
+
+  /* 5. Verre dépoli */
   .verre{overflow:hidden}
   .verre .fond{position:absolute;inset:0;background:
     radial-gradient(circle at 20% 30%,#f6b26b 0,transparent 28%),
     radial-gradient(circle at 75% 25%,#8a6cff 0,transparent 30%),
     radial-gradient(circle at 60% 80%,#ff7a9a 0,transparent 26%),var(--nuit2)}
-  .verre .bulles span{position:absolute;border-radius:50%;filter:blur(2px);opacity:.85}
-  .verre .grille{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
-  @media(max-width:860px){.verre .grille{grid-template-columns:1fr}}
-  .carte-verre{position:relative;padding:30px 28px;border-radius:24px;
+  .grille{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+  @media(max-width:860px){.grille{grid-template-columns:1fr}}
+  .carte-verre{position:relative;padding:30px 28px;border-radius:24px;overflow:hidden;
     background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.04));
     border:1px solid rgba(255,255,255,.28);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 60px -24px rgba(0,0,0,.6);
     backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%)}
-  @supports (backdrop-filter:url(#x)){.carte-verre.refract{backdrop-filter:url(#verre-liquide) blur(10px) saturate(170%)}}
+  .carte-verre::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+    background:radial-gradient(240px circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.22),transparent 60%)}
+  .carte-verre:hover::before{opacity:1}
   .carte-verre h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:30px;margin-bottom:6px}
   .carte-verre .prix{color:var(--ambre);font-weight:500;margin-bottom:12px}
   .carte-verre p{color:#e9e2f2;font-size:15px}
 
-  /* Apparitions au défilement */
+  /* 6. Étapes */
   .etapes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
   @media(max-width:860px){.etapes{grid-template-columns:1fr 1fr}}
   .etape{border:1px solid var(--ligne);border-radius:20px;padding:26px 22px;background:rgba(255,255,255,.02)}
   .etape b{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:44px;color:var(--ambre);display:block;line-height:1}
   .etape h3{font-size:18px;font-weight:500;margin:10px 0 6px}
   .etape p{color:var(--dim);font-size:14px}
-  .titre-mots span{display:inline-block}
 
-  .fin{text-align:center;padding:120px 0 140px}
-  .btn{display:inline-block;margin-top:28px;background:var(--ambre);color:#1b1206;text-decoration:none;font-weight:600;padding:16px 30px;border-radius:99px}
+  /* 7. Fin */
+  .fin{text-align:center;padding:140px 0 160px}
+  .btn{display:inline-block;margin-top:30px;background:var(--ambre);color:#1b1206;text-decoration:none;font-weight:600;padding:18px 34px;border-radius:99px;transition:box-shadow .3s}
+  .btn:hover{box-shadow:0 0 0 8px rgba(246,178,107,.15),0 20px 50px -10px rgba(246,178,107,.5)}
 
-  @media (prefers-reduced-motion: reduce){ html.lenis{height:auto} }
+  @media (prefers-reduced-motion: reduce){.defile .piste,.defiler::after{animation:none}}
 </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="verre-liquide" x="0" y="0" width="100%" height="100%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="3" result="bruit"/>
-    <feDisplacementMap in="SourceGraphic" in2="bruit" scale="38" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-</svg>
+<nav class="barre"><a href="/">← L'enseigne</a><a class="cta" href="/#contact">Maquette offerte</a></nav>
 
 <header class="hero">
   <div class="shader" id="sh-hero" aria-hidden="true"></div>
   <div class="voile" aria-hidden="true"></div>
-  <a class="retour" href="/">← L'enseigne</a>
   <div class="in">
     <div class="eyebrow">Démonstration</div>
-    <h1>Un site qui se <span class="it">remarque</span>.</h1>
-    <p>Quelques effets que je peux intégrer à votre site, avec mesure : ils servent votre image sans ralentir la page.</p>
-    <span class="lib">Dégradé animé · WebGL · Paper Shaders</span>
+    <h1 id="titre"><span class="m">Un</span> <span class="m">site</span> <span class="m">qui</span> <span class="m">se</span> <span class="m it">remarque.</span></h1>
+    <p>Ce que je peux intégrer à votre site, avec mesure : des effets qui servent votre image, sans ralentir la page.</p>
+    <span class="lib">Dégradé animé en WebGL · Paper Shaders</span>
   </div>
+  <div class="defiler" aria-hidden="true">Défiler</div>
 </header>
 
-<section>
-  <div class="wrap metal">
+<section class="signature">
+  <div class="wrap">
+    <div class="eyebrow">Signature</div>
+    <h2>Votre logo, en <span class="it">métal liquide</span>.</h2>
+    <p class="lead" style="margin:0 auto">La lanterne de L'enseigne, transformée en matière vivante. Le même traitement peut s'appliquer à votre logo pour un lancement ou une marque haut de gamme.</p>
+    <div class="lanterne"><div class="halo" aria-hidden="true"></div><div class="shader" id="sh-lanterne" role="img" aria-label="Lanterne de L'enseigne en métal liquide animé"></div></div>
+    <span class="lib">WebGL · Paper Shaders</span>
+  </div>
+</section>
+
+<div class="defile" aria-hidden="true"><div class="piste">
+  <span>Traiteurs</span><span>Artisans</span><span>Restaurants</span><span>Décoratrices</span><span>Pharmacies</span><span>Instituts</span><span>Cake designers</span><span>Commerces</span>
+  <span>Traiteurs</span><span>Artisans</span><span>Restaurants</span><span>Décoratrices</span><span>Pharmacies</span><span>Instituts</span><span>Cake designers</span><span>Commerces</span>
+</div></div>
+
+<section class="sequence" id="sequence">
+  <div class="scene">
     <div>
-      <div class="eyebrow">Métal liquide</div>
-      <h2 class="titre-mots">Une matière <span class="it">vivante</span> pour votre logo.</h2>
-      <p class="lead">Idéal pour un bijoutier, une marque haut de gamme ou un visuel de lancement : la forme ondule comme du métal en fusion.</p>
-      <span class="lib">WebGL · Paper Shaders</span>
+      <div class="eyebrow">De la maquette au site</div>
+      <h2>Trois étapes, <span class="it">sous vos yeux</span>.</h2>
+      <div class="etats">
+        <div class="e e1"><b>1. La structure</b><span>Ce que vos clients cherchent, placé au bon endroit.</span></div>
+        <div class="e e2"><b>2. Votre identité</b><span>Vos couleurs, votre ambiance, votre ton.</span></div>
+        <div class="e e3"><b>3. Le site, prêt</b><span>Textes, formules, dates libres et demande de devis.</span></div>
+      </div>
+      <span class="lib">GSAP ScrollTrigger · séquence épinglée</span>
     </div>
-    <div class="scene"><div class="shader" id="sh-metal" aria-hidden="true"></div></div>
+    <div class="ecran" aria-hidden="true">
+      <div class="barre-nav"><i></i><i></i><i></i></div>
+      <div class="couche filaire">
+        <div class="bloc" style="width:30%;height:12px"></div>
+        <div class="bloc" style="width:70%;height:38px;margin-top:9%"></div>
+        <div class="bloc" style="width:50%;height:14px"></div>
+        <div class="bloc" style="width:26%;height:34px;border-radius:99px;margin-top:18px"></div>
+        <div style="display:flex;gap:10px;margin-top:9%"><div class="bloc" style="flex:1;height:60px"></div><div class="bloc" style="flex:1;height:60px"></div><div class="bloc" style="flex:1;height:60px"></div></div>
+      </div>
+      <div class="couche couleur"><div class="t1"></div><div class="t2"></div><div class="btn-f"></div></div>
+      <div class="couche fini">
+        <small>Traiteur · Marseille</small>
+        <h3>Maison Exemple</h3>
+        <p>Des buffets généreux pour le plus beau jour de votre vie.</p>
+        <div class="dates"><span>sam. 5 juin</span><span class="pris">sam. 12 juin</span><span>sam. 19 juin</span><span class="pris">sam. 26 juin</span></div>
+        <span class="btn-v">Demander un devis</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -119,12 +197,12 @@
   <div class="wrap" style="position:relative">
     <div class="eyebrow">Verre dépoli</div>
     <h2>Des cartes en <span class="it">verre</span>.</h2>
-    <p class="lead">L'effet « liquid glass » : le fond se devine à travers des cartes translucides. Utile pour présenter des formules ou des tarifs.</p>
+    <p class="lead">L'effet « liquid glass » : le fond se devine à travers des cartes translucides, qui captent la lumière au passage de la souris.</p>
     <span class="lib">CSS natif · sans bibliothèque</span>
     <div class="grille">
-      <div class="carte-verre refract"><h3>Maquette offerte</h3><div class="prix">Sous 72 heures</div><p>Votre futur site, avant tout engagement.</p></div>
-      <div class="carte-verre refract"><h3>Tout compris</h3><div class="prix">89 € / mois</div><p>Site, fiche Google, avis, relance des devis.</p></div>
-      <div class="carte-verre refract"><h3>Sur mesure</h3><div class="prix">Sur devis</div><p>Réservation, espace client, outils métier.</p></div>
+      <div class="carte-verre"><h3>Maquette offerte</h3><div class="prix">Sous 72 heures</div><p>Votre futur site, avant tout engagement.</p></div>
+      <div class="carte-verre"><h3>Tout compris</h3><div class="prix">89 € / mois</div><p>Site, fiche Google, avis, relance des devis.</p></div>
+      <div class="carte-verre"><h3>Sur mesure</h3><div class="prix">Sur devis</div><p>Réservation, espace client, outils métier.</p></div>
     </div>
   </div>
 </section>
@@ -133,8 +211,8 @@
   <div class="wrap">
     <div class="eyebrow">Apparitions au défilement</div>
     <h2>Le contenu <span class="it">entre en scène</span>.</h2>
-    <p class="lead">Chaque bloc apparaît au moment où le visiteur l'atteint, avec un défilement fluide. Discret, mais c'est ce qui donne une impression de finition.</p>
-    <span class="lib">GSAP + ScrollTrigger · Lenis</span>
+    <p class="lead">Chaque bloc apparaît quand le visiteur l'atteint, avec un défilement fluide. Discret, mais c'est ce qui donne une impression de finition.</p>
+    <span class="lib">GSAP · Lenis</span>
     <div class="etapes">
       <div class="etape reveal"><b>01</b><h3>Premier échange</h3><p>30 minutes pour comprendre votre activité.</p></div>
       <div class="etape reveal"><b>02</b><h3>Maquette offerte</h3><p>Votre futur site, sous 72 heures.</p></div>
@@ -145,10 +223,10 @@
 </section>
 
 <section class="fin">
-  <div class="wrap">
+  <div class="wrap center">
     <h2>Envie d'un site <span class="it">qui vous ressemble</span> ?</h2>
-    <p class="lead" style="margin:0 auto">Chaque effet est choisi selon votre activité, jamais ajouté pour lui-même.</p>
-    <a class="btn" href="/#contact">Demander ma maquette offerte</a>
+    <p class="lead">Chaque effet est choisi selon votre activité, jamais ajouté pour lui-même.</p>
+    <a class="btn" id="aimant" href="/#contact">Demander ma maquette offerte</a>
   </div>
 </section>
 
@@ -156,43 +234,84 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
 <script type="module">
-  import { ShaderMount, meshGradientFragmentShader, liquidMetalFragmentShader, getShaderColorFromString, ShaderFitOptions }
+  import { ShaderMount, meshGradientFragmentShader, liquidMetalFragmentShader, toProcessedLiquidMetal, getShaderColorFromString as c, ShaderFitOptions }
     from "https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/index.js";
 
   const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const c = getShaderColorFromString;
-  const taille = (fit) => ({ u_fit: ShaderFitOptions[fit], u_scale: 1, u_rotation: 0, u_offsetX: 0, u_offsetY: 0,
+  const taille = (fit, scale = 1) => ({ u_fit: ShaderFitOptions[fit], u_scale: scale, u_rotation: 0, u_offsetX: 0, u_offsetY: 0,
     u_originX: .5, u_originY: .5, u_worldWidth: 0, u_worldHeight: 0 });
 
+  // Dégradé animé du haut de page
   try {
     const couleurs = ["#0b0b1f", "#2a1f5c", "#f6b26b", "#7a3f8c", "#141233"];
     new ShaderMount(document.getElementById("sh-hero"), meshGradientFragmentShader, {
-      ...taille("cover"),
-      u_colors: couleurs.map(c), u_colorsCount: couleurs.length,
+      ...taille("cover"), u_colors: couleurs.map(c), u_colorsCount: couleurs.length,
       u_distortion: .8, u_swirl: .35, u_grainMixer: .15, u_grainOverlay: .08,
     }, undefined, calme ? 0 : .35, 0, 1, 1920 * 1080);
+  } catch (e) {}
 
-    new ShaderMount(document.getElementById("sh-metal"), liquidMetalFragmentShader, {
-      ...taille("contain"), u_scale: .75,
-      u_colorBack: c("#101024"), u_colorTint: c("#f6b26b"),
-      u_image: undefined, u_isImage: false, u_shape: 4, u_imageAspectRatio: 1,
-      u_repetition: 2, u_softness: .1, u_shiftRed: .3, u_shiftBlue: .3,
-      u_distortion: .07, u_contour: .4, u_angle: 70,
-    }, undefined, calme ? 0 : 1, 0, 1, 1200 * 1200);
-  } catch (e) { /* sans WebGL : le dégradé CSS de secours reste affiché */ }
+  // Lanterne en métal liquide (silhouette SVG -> masque)
+  const lanterneSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260"><g fill="#000">
+    <rect x="94" y="0" width="12" height="30" rx="6"/>
+    <path d="M40 66 Q100 18 160 66 L168 80 L32 80 Z"/>
+    <path d="M44 86 H156 L146 196 H54 Z"/>
+    <path d="M50 202 H150 L140 222 H60 Z"/>
+    <path d="M78 226 H122 L116 252 H84 Z"/></g>
+    <g fill="#fff"><rect x="96" y="92" width="8" height="98"/><rect x="50" y="134" width="100" height="8"/></g></svg>`;
+  try {
+    const { pngBlob } = await toProcessedLiquidMetal("data:image/svg+xml;charset=utf-8," + encodeURIComponent(lanterneSVG));
+    const img = new Image(); img.src = URL.createObjectURL(pngBlob); await img.decode();
+    new ShaderMount(document.getElementById("sh-lanterne"), liquidMetalFragmentShader, {
+      ...taille("contain", .82), u_colorBack: c("#00000000"), u_colorTint: c("#f6b26b"),
+      u_image: img, u_isImage: true, u_shape: 0, u_imageAspectRatio: 200 / 260,
+      u_repetition: 3, u_softness: .15, u_shiftRed: .3, u_shiftBlue: .3,
+      u_distortion: .1, u_contour: .5, u_angle: 70,
+    }, { premultipliedAlpha: false, alpha: true }, calme ? 0 : 1, 0, 1, 1400 * 1400);
+  } catch (e) {}
 
-  addEventListener("load", () => {
-    if (calme || !window.gsap) return;
-    const lenis = window.Lenis ? new Lenis({ autoRaf: false }) : null;
+  // Animations GSAP + défilement fluide
+  const lancer = () => {
+    if (calme || !window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
-    if (lenis) { lenis.on("scroll", ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
-    gsap.utils.toArray(".reveal").forEach((el, i) => gsap.from(el, {
+    if (window.Lenis) {
+      const lenis = new Lenis({ autoRaf: false });
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    }
+    // Titre : mots qui montent
+    gsap.from("#titre .m", { yPercent: 110, opacity: 0, filter: "blur(8px)", duration: 1.1, ease: "power4.out", stagger: .09, delay: .15 });
+
+    // Séquence épinglée : filaire -> couleurs -> site fini
+    gsap.set(".couleur, .fini", { opacity: 0 }); gsap.set(".e1", { opacity: 1 }); gsap.set(".e2, .e3", { opacity: 0, y: 16 });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#sequence", start: "top top", end: "+=180%", scrub: .6, pin: ".scene" } });
+    tl.to(".filaire .bloc", { opacity: .35, stagger: .02, duration: .4 })
+      .to(".couleur", { opacity: 1, duration: .6 }, "<.2")
+      .to(".e1", { opacity: 0, y: -16, duration: .3 }, "<")
+      .to(".e2", { opacity: 1, y: 0, duration: .3 }, "<.15")
+      .to(".fini", { opacity: 1, duration: .6 }, "+=.3")
+      .from(".fini > *", { y: 18, opacity: 0, stagger: .08, duration: .4 }, "<.1")
+      .to(".e2", { opacity: 0, y: -16, duration: .3 }, "<")
+      .to(".e3", { opacity: 1, y: 0, duration: .3 }, "<.15");
+
+    gsap.utils.toArray(".reveal, .carte-verre").forEach((el, i) => gsap.from(el, {
       y: 40, opacity: 0, duration: .9, ease: "power3.out", delay: (i % 4) * .08,
       scrollTrigger: { trigger: el, start: "top 88%" } }));
-    gsap.utils.toArray(".carte-verre").forEach((el, i) => gsap.from(el, {
-      y: 30, opacity: 0, duration: .8, ease: "power3.out", delay: i * .1,
-      scrollTrigger: { trigger: el, start: "top 90%" } }));
-  });
+
+    // Bouton aimanté
+    const b = document.getElementById("aimant");
+    if (matchMedia("(hover: hover)").matches) {
+      b.addEventListener("mousemove", e => { const r = b.getBoundingClientRect();
+        gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4, ease: "power3.out" }); });
+      b.addEventListener("mouseleave", () => gsap.to(b, { x: 0, y: 0, duration: .6, ease: "elastic.out(1,.4)" }));
+    }
+  };
+  document.readyState === "complete" ? lancer() : addEventListener("load", lancer);
+
+  // Reflet qui suit la souris sur les cartes en verre
+  document.querySelectorAll(".carte-verre").forEach(el => el.addEventListener("pointermove", e => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--x", (e.clientX - r.left) + "px"); el.style.setProperty("--y", (e.clientY - r.top) + "px");
+  }));
 </script>
 </body>
 </html>

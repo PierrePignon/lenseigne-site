@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Démonstration — L'enseigne</title>
-<meta name="description" content="Ce que L'enseigne peut intégrer à votre site : dégradés animés, logo en métal liquide, verre dépoli, animations au défilement.">
+<meta name="description" content="Ce que L'enseigne peut intégrer à votre site : scène 3D, verre dépoli, animations au défilement.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.css">
 <!--
   Vitrine des effets. Bibliothèques (versions figées) :
-  - Paper Shaders  @paper-design/shaders@0.0.81  (WebGL : mesh gradient, métal liquide)
+  - three.js  three@0.186.1  (scène 3D de la rue, halo lumineux par post-traitement)
   - GSAP + ScrollTrigger  gsap@3.15.0           (apparitions, séquence épinglée)
   - Lenis  lenis@1.3.27                          (défilement fluide)
   - Verre dépoli, défilé de texte : CSS natif
@@ -38,23 +38,22 @@
   .barre a{text-decoration:none;opacity:.85}
   .barre .cta{background:rgba(246,178,107,.14);border:1px solid rgba(246,178,107,.4);color:var(--ambre);padding:8px 16px;border-radius:99px;opacity:1}
 
-  /* 1. Haut de page */
-  .hero{min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:0}
-  .hero .shader{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,#3a2a6a,transparent 60%),radial-gradient(ellipse at 70% 80%,#7a4a2a,transparent 55%),var(--nuit2)}
-  .hero .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,31,.1),rgba(11,11,31,.45) 65%,var(--nuit))}
-  .hero .in{position:relative;padding:0 20px;max-width:960px}
-  .hero h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(54px,11vw,140px);line-height:.92;margin:18px 0 24px;letter-spacing:-.01em}
-  .hero h1 .m{display:inline-block;will-change:transform}
-  .hero p{color:#e7def0;font-size:clamp(17px,2.2vw,20px);max-width:580px;margin:0 auto}
-  .defiler{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+  /* 1. Scène 3D : la rue */
+  .rue{height:340vh;padding:0}
+  .rue-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+  #scene3d{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .rue-secours{position:absolute;inset:0;display:none;background:radial-gradient(circle at 30% 40%,rgba(255,170,90,.35),transparent 40%),linear-gradient(#0a0a1e,#16132e)}
+  .sans-3d .rue-secours{display:block}
+  .rue-textes{position:absolute;inset:0;display:grid;justify-items:center;align-items:end;text-align:center;padding:0 22px 17vh;pointer-events:none}
+  .rue-textes::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 65% 40% at 50% 78%,rgba(8,8,24,.6),transparent 75%)}
+  .rt{grid-area:1/1;position:relative;max-width:760px;text-shadow:0 2px 30px rgba(0,0,0,.7)}
+  .rt h1,.rt h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(46px,8.5vw,108px);line-height:.95;margin:14px 0 16px}
+  .rt p{color:#ece4f2;font-size:clamp(16px,2vw,20px)}
+  .rt2,.rt3{opacity:0}
+  .defiler{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
   .defiler::after{content:"";display:block;width:1px;height:38px;margin:10px auto 0;background:linear-gradient(var(--ambre),transparent);animation:goutte 2.2s ease-in-out infinite}
   @keyframes goutte{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-  /* 2. Lanterne en métal liquide */
-  .signature{text-align:center;padding-top:60px}
-  .lanterne{position:relative;width:min(460px,80vw);aspect-ratio:1;margin:40px auto 0}
-  .lanterne .shader{position:absolute;inset:0}
-  .lanterne .halo{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(246,178,107,.28),transparent 65%);filter:blur(30px)}
+  @media(max-width:760px){.rue{height:300vh}}
 
   /* 3. Défilé de métiers */
   .defile{padding:28px 0;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);overflow:hidden;white-space:nowrap}
@@ -132,25 +131,27 @@
 
 <nav class="barre"><a href="/">← L'enseigne</a><a class="cta" href="/#contact">Maquette offerte</a></nav>
 
-<header class="hero">
-  <div class="shader" id="sh-hero" aria-hidden="true"></div>
-  <div class="voile" aria-hidden="true"></div>
-  <div class="in">
-    <div class="eyebrow">Démonstration</div>
-    <h1 id="titre"><span class="m">Un</span> <span class="m">site</span> <span class="m">qui</span> <span class="m">se</span> <span class="m it">remarque.</span></h1>
-    <p>Ce que je peux intégrer à votre site, avec mesure : des effets qui servent votre image, sans ralentir la page.</p>
-    <span class="lib">Dégradé animé en WebGL · Paper Shaders</span>
-  </div>
-  <div class="defiler" aria-hidden="true">Défiler</div>
-</header>
-
-<section class="signature">
-  <div class="wrap">
-    <div class="eyebrow">Signature</div>
-    <h2>Votre logo, en <span class="it">métal liquide</span>.</h2>
-    <p class="lead" style="margin:0 auto">La lanterne de L'enseigne, transformée en matière vivante. Le même traitement peut s'appliquer à votre logo pour un lancement ou une marque haut de gamme.</p>
-    <div class="lanterne"><div class="halo" aria-hidden="true"></div><div class="shader" id="sh-lanterne" role="img" aria-label="Lanterne de L'enseigne en métal liquide animé"></div></div>
-    <span class="lib">WebGL · Paper Shaders</span>
+<section class="rue" id="rue">
+  <div class="rue-sticky">
+    <canvas id="scene3d" aria-hidden="true"></canvas>
+    <div class="rue-secours" aria-hidden="true"></div>
+    <div class="rue-textes">
+      <div class="rt rt1">
+        <div class="eyebrow">Démonstration · Provence, 21h47</div>
+        <h1>La rue <span class="it">s'endort</span>.</h1>
+        <p>Les volets se ferment, les vitrines s'éteignent.</p>
+      </div>
+      <div class="rt rt2">
+        <h2>Une enseigne <span class="it">s'allume</span>.</h2>
+        <p>Et toute la rue redevient visible.</p>
+      </div>
+      <div class="rt rt3">
+        <h2>Votre site, c'est <span class="it">cette lumière</span>.</h2>
+        <p>Celle qui guide vos clients jusqu'à vous, même quand vous êtes fermé.</p>
+        <span class="lib">Scène 3D en temps réel · three.js · WebGL</span>
+      </div>
+    </div>
+    <div class="defiler" aria-hidden="true">Défiler</div>
   </div>
 </section>
 
@@ -233,53 +234,216 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+} }
+</script>
 <script type="module">
-  import { ShaderMount, meshGradientFragmentShader, liquidMetalFragmentShader, toProcessedLiquidMetal, getShaderColorFromString as c, ShaderFitOptions }
-    from "https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/index.js";
+  import * as THREE from "three";
+  import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+  import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+  import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+  import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
   const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const taille = (fit, scale = 1) => ({ u_fit: ShaderFitOptions[fit], u_scale: scale, u_rotation: 0, u_offsetX: 0, u_offsetY: 0,
-    u_originX: .5, u_originY: .5, u_worldWidth: 0, u_worldHeight: 0 });
+  const mobile = matchMedia("(max-width: 760px)").matches;
+  const canvas = document.getElementById("scene3d");
+  const section = document.getElementById("rue");
+  const rt = [...document.querySelectorAll(".rt")];
 
-  // Dégradé animé du haut de page
+  // Hasard déterministe : la rue est identique à chaque visite
+  let graine = 7;
+  const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
+  const entre = (a, b) => a + (b - a) * alea();
+  const lisse = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+  let renderer;
   try {
-    const couleurs = ["#0b0b1f", "#2a1f5c", "#f6b26b", "#7a3f8c", "#141233"];
-    new ShaderMount(document.getElementById("sh-hero"), meshGradientFragmentShader, {
-      ...taille("cover"), u_colors: couleurs.map(c), u_colorsCount: couleurs.length,
-      u_distortion: .8, u_swirl: .35, u_grainMixer: .15, u_grainOverlay: .08,
-    }, undefined, calme ? 0 : .35, 0, 1, 1920 * 1080);
-  } catch (e) {}
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: "high-performance" });
+  } catch (e) { document.body.classList.add("sans-3d"); }
 
-  // Lanterne en métal liquide (silhouette SVG -> masque)
-  const lanterneSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260"><g fill="#000">
-    <rect x="94" y="0" width="12" height="30" rx="6"/>
-    <path d="M40 66 Q100 18 160 66 L168 80 L32 80 Z"/>
-    <path d="M44 86 H156 L146 196 H54 Z"/>
-    <path d="M50 202 H150 L140 222 H60 Z"/>
-    <path d="M78 226 H122 L116 252 H84 Z"/></g>
-    <g fill="#fff"><rect x="96" y="92" width="8" height="98"/><rect x="50" y="134" width="100" height="8"/></g></svg>`;
-  try {
-    const { pngBlob } = await toProcessedLiquidMetal("data:image/svg+xml;charset=utf-8," + encodeURIComponent(lanterneSVG));
-    const img = new Image(); img.src = URL.createObjectURL(pngBlob); await img.decode();
-    new ShaderMount(document.getElementById("sh-lanterne"), liquidMetalFragmentShader, {
-      ...taille("contain", .82), u_colorBack: c("#00000000"), u_colorTint: c("#f6b26b"),
-      u_image: img, u_isImage: true, u_shape: 0, u_imageAspectRatio: 200 / 260,
-      u_repetition: 3, u_softness: .15, u_shiftRed: .3, u_shiftBlue: .3,
-      u_distortion: .1, u_contour: .5, u_angle: 70,
-    }, { premultipliedAlpha: false, alpha: true }, calme ? 0 : 1, 0, 1, 1400 * 1400);
-  } catch (e) {}
+  if (renderer) {
+    renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.6));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
 
-  // Animations GSAP + défilement fluide
+    const scene = new THREE.Scene();
+    const nuit = new THREE.Color("#0a0a1e");
+    scene.background = nuit;
+    scene.fog = new THREE.FogExp2(nuit, 0.028);
+
+    const camera = new THREE.PerspectiveCamera(mobile ? 62 : 50, 1, 0.1, 200);
+
+    // Lumières : clair de lune bleu + lanterne chaude
+    scene.add(new THREE.HemisphereLight("#3a4a8c", "#0b0a14", 0.55));
+    const lune = new THREE.DirectionalLight("#8a9ae0", 0.5); lune.position.set(-10, 30, 10); scene.add(lune);
+
+    // --- Pavés (texture dessinée) ---
+    const tex = (() => {
+      const c = document.createElement("canvas"); c.width = c.height = 512; const g = c.getContext("2d");
+      g.fillStyle = "#17161f"; g.fillRect(0, 0, 512, 512);
+      for (let y = 0; y < 512; y += 32) for (let x = (y / 32) % 2 ? -16 : 0; x < 512; x += 32) {
+        const v = 40 + Math.floor(entre(0, 26)); g.fillStyle = `rgb(${v},${v - 4},${v + 6})`;
+        g.beginPath(); g.roundRect(x + 2, y + 2, 28, 28, 7); g.fill();
+      }
+      const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(4, 40);
+      t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+    })();
+    const sol = new THREE.Mesh(new THREE.PlaneGeometry(8, 140), new THREE.MeshStandardMaterial({ map: tex, roughness: .75, metalness: .05 }));
+    sol.rotation.x = -Math.PI / 2; sol.position.z = -50; scene.add(sol);
+
+    // --- Maisons de part et d'autre ---
+    const enduits = ["#c99a6b", "#d4a982", "#b9835e", "#d8b08c", "#c48a6a", "#e0c19c", "#b5907a"];
+    const volets = ["#5f7f6a", "#55708f", "#7c8e74", "#6f8aa0"];
+    const fenetres = []; // {x,y,z,cote}
+    const toit = new THREE.MeshStandardMaterial({ color: "#8a4a35", roughness: .9 });
+    const voletMat = volets.map(c => new THREE.MeshStandardMaterial({ color: c, roughness: .8 }));
+    for (const cote of [-1, 1]) {
+      let z = 14;
+      while (z > -95) {
+        const L = entre(4.5, 7.5), H = entre(6.5, 11), P = 6;
+        const m = new THREE.Mesh(new THREE.BoxGeometry(P, H, L - .15),
+          new THREE.MeshStandardMaterial({ color: enduits[Math.floor(alea() * enduits.length)], roughness: .95 }));
+        m.position.set(cote * (4 + P / 2), H / 2, z - L / 2); scene.add(m);
+        // toit à deux pans
+        const forme = new THREE.Shape(); forme.moveTo(-P / 2 - .3, 0); forme.lineTo(0, 1.6); forme.lineTo(P / 2 + .3, 0); forme.closePath();
+        const r = new THREE.Mesh(new THREE.ExtrudeGeometry(forme, { depth: L - .15, bevelEnabled: false }), toit);
+        r.position.set(cote * (4 + P / 2), H, z - .075); r.rotation.y = Math.PI; scene.add(r);
+        // fenêtres en façade
+        const etages = Math.floor((H - 1.6) / 2.4), cols = Math.max(1, Math.floor(L / 2.4));
+        for (let e = 0; e < etages; e++) for (let k = 0; k < cols; k++) {
+          const fz = z - (k + .5) * (L / cols), fy = 2.2 + e * 2.4;
+          fenetres.push({ x: cote * 3.98, y: fy, z: fz, cote });
+          if (alea() < .55) for (const s of [-1, 1]) { // volets ouverts
+            const v = new THREE.Mesh(new THREE.BoxGeometry(.04, 1.35, .5), voletMat[Math.floor(alea() * voletMat.length)]);
+            v.position.set(cote * 3.96, fy, fz + s * .72); scene.add(v);
+          }
+        }
+        z -= L;
+      }
+    }
+    // clocher au bout de la rue
+    const clocher = new THREE.Mesh(new THREE.BoxGeometry(4, 22, 4), new THREE.MeshStandardMaterial({ color: "#a98667", roughness: .95 }));
+    clocher.position.set(0, 11, -100); scene.add(clocher);
+    const fleche = new THREE.Mesh(new THREE.ConeGeometry(3.2, 5, 4), toit); fleche.position.set(0, 24.5, -100); fleche.rotation.y = Math.PI / 4; scene.add(fleche);
+
+    // Fenêtres : une seule InstancedMesh, couleur par fenêtre
+    const geoF = new THREE.PlaneGeometry(.85, 1.25);
+    const matF = new THREE.MeshBasicMaterial({ toneMapped: false });
+    const instF = new THREE.InstancedMesh(geoF, matF, fenetres.length);
+    const o = new THREE.Object3D(), eteinte = new THREE.Color("#141327");
+    const chaudes = ["#ffa64d", "#ffb860", "#ff963f", "#ffc272"].map(c => new THREE.Color(c).multiplyScalar(1.15));
+    fenetres.forEach((f, i) => {
+      o.position.set(f.x, f.y, f.z); o.rotation.set(0, -f.cote * Math.PI / 2, 0); o.updateMatrix(); instF.setMatrixAt(i, o.matrix);
+      f.chaude = chaudes[Math.floor(alea() * chaudes.length)]; f.seuil = alea(); instF.setColorAt(i, eteinte);
+    });
+    scene.add(instF);
+
+    // --- La lanterne de L'enseigne, accrochée au mur ---
+    const lanterne = new THREE.Group();
+    const fer = new THREE.MeshStandardMaterial({ color: "#1d1a22", roughness: .5, metalness: .6 });
+    const verre = new THREE.MeshStandardMaterial({ color: "#ffd9a0", emissive: "#ffae55", emissiveIntensity: 0, roughness: .3 });
+    const bras = new THREE.Mesh(new THREE.BoxGeometry(1.6, .08, .08), fer); bras.position.set(-.8, .55, 0); lanterne.add(bras);
+    const tige = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .35), fer); tige.position.set(0, .38, 0); lanterne.add(tige);
+    const chapeau = new THREE.Mesh(new THREE.ConeGeometry(.42, .38, 4), fer); chapeau.position.y = .1; chapeau.rotation.y = Math.PI / 4; lanterne.add(chapeau);
+    const corps = new THREE.Mesh(new THREE.CylinderGeometry(.3, .22, .75, 4, 1, true), verre); corps.position.y = -.35; corps.rotation.y = Math.PI / 4; lanterne.add(corps);
+    const base = new THREE.Mesh(new THREE.ConeGeometry(.24, .25, 4), fer); base.position.y = -.85; base.rotation.set(Math.PI, Math.PI / 4, 0); lanterne.add(base);
+    const croix1 = new THREE.Mesh(new THREE.BoxGeometry(.03, .75, .62), fer); croix1.position.y = -.35; lanterne.add(croix1);
+    const croix2 = new THREE.Mesh(new THREE.BoxGeometry(.62, .03, .62), fer); croix2.position.y = -.35; lanterne.add(croix2);
+    lanterne.position.set(-2.4, 5.2, -6); scene.add(lanterne);
+
+    const flamme = new THREE.PointLight("#ffa956", 0, 30, 1.8); flamme.position.set(-2.4, 4.85, -6); scene.add(flamme);
+    const halo = (() => {
+      const c = document.createElement("canvas"); c.width = c.height = 128; const g = c.getContext("2d");
+      const d = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+      d.addColorStop(0, "rgba(255,190,120,1)"); d.addColorStop(.25, "rgba(255,160,80,.45)"); d.addColorStop(1, "rgba(255,140,60,0)");
+      g.fillStyle = d; g.fillRect(0, 0, 128, 128);
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(c), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 }));
+      s.scale.set(3, 3, 1); s.position.copy(flamme.position); scene.add(s); return s;
+    })();
+
+    // Étoiles
+    const nb = mobile ? 350 : 700, pos = new Float32Array(nb * 3);
+    for (let i = 0; i < nb; i++) { pos[i * 3] = entre(-60, 60); pos[i * 3 + 1] = entre(18, 70); pos[i * 3 + 2] = entre(-140, 10); }
+    const geoE = new THREE.BufferGeometry(); geoE.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    scene.add(new THREE.Points(geoE, new THREE.PointsMaterial({ color: "#cfd6ff", size: .18, fog: false })));
+
+    // Post-traitement : halo lumineux (bloom)
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .7, .5, .62);
+    composer.addPass(bloom); composer.addPass(new OutputPass());
+
+    const taille = () => {
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      renderer.setSize(w, h, false); composer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+    };
+    addEventListener("resize", taille); taille();
+
+    // --- Animation : allumage puis progression au défilement ---
+    const cible = new THREE.Vector3();
+    let visible = true;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(section);
+
+    const progression = () => {
+      const r = section.getBoundingClientRect();
+      return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+    };
+
+    const image = (t) => {
+      const p = calme ? 1 : progression();
+      // allumage : la lanterne vacille puis se stabilise (indépendant du défilement)
+      // l'allumage suit le défilement : la rue est d'abord plongée dans la nuit
+      const a = lisse(.14, .26, p);
+      const allume = a * (a > 0 && a < 1 ? (.5 + .5 * Math.abs(Math.sin(t * .05) * Math.sin(t * .017))) : 1);
+      const vacille = 1 + Math.sin(t * .012) * .04 + Math.sin(t * .031) * .03;
+      const force = allume * vacille;
+      flamme.intensity = force * (mobile ? 22 : 28);
+      verre.emissiveIntensity = force * 3.2;
+      halo.material.opacity = force * .55;
+
+      // les fenêtres s'allument de proche en proche à partir de la lanterne
+      const vague = lisse(.3, .9, p) * 70;
+      for (let i = 0; i < fenetres.length; i++) {
+        const f = fenetres[i], d = Math.hypot(f.z - lanterne.position.z, f.y - 5);
+        const on = d < vague * (.55 + f.seuil * .45) && f.seuil > .18 ? 1 : 0;
+        instF.setColorAt(i, on ? f.chaude : eteinte);
+      }
+      instF.instanceColor.needsUpdate = true;
+
+      // caméra : avance dans la rue et lève les yeux vers la lanterne
+      const avance = lisse(0, 1, p);
+      camera.position.set(Math.sin(t * .0002) * .15 + .5 * avance, 1.9 + avance * .7, 22 - avance * 13);
+      cible.set(-.8 * avance, 3 + avance * .8, -30 + avance * 8);
+      camera.lookAt(cible);
+
+      // textes
+      const o1 = 1 - lisse(.08, .16, p), o2 = lisse(.2, .3, p) * (1 - lisse(.55, .65, p)), o3 = lisse(.68, .8, p);
+      rt[0].style.opacity = calme ? 0 : o1; rt[1].style.opacity = calme ? 0 : o2; rt[2].style.opacity = o3;
+      rt[1].style.transform = `translateY(${(1 - lisse(.2, .3, p)) * 24}px)`;
+      rt[2].style.transform = `translateY(${(1 - lisse(.68, .8, p)) * 24}px)`;
+
+      composer.render();
+    };
+
+    const boucle = (t) => { if (visible) image(t); if (!calme) requestAnimationFrame(boucle); };
+    requestAnimationFrame(boucle);
+    if (calme) addEventListener("scroll", () => image(performance.now()), { passive: true });
+  }
+</script>
+<script>
+  const calme2 = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lancer = () => {
-    if (calme || !window.gsap || !window.ScrollTrigger) return;
+    if (calme2 || !window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
     if (window.Lenis) {
       const lenis = new Lenis({ autoRaf: false });
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
     }
-    // Titre : mots qui montent
-    gsap.from("#titre .m", { yPercent: 110, opacity: 0, filter: "blur(8px)", duration: 1.1, ease: "power4.out", stagger: .09, delay: .15 });
 
     // Séquence épinglée : filaire -> couleurs -> site fini
     gsap.set(".couleur, .fini", { opacity: 0 }); gsap.set(".e1", { opacity: 1 }); gsap.set(".e2, .e3", { opacity: 0, y: 16 });
@@ -305,13 +469,13 @@
       b.addEventListener("mouseleave", () => gsap.to(b, { x: 0, y: 0, duration: .6, ease: "elastic.out(1,.4)" }));
     }
   };
-  document.readyState === "complete" ? lancer() : addEventListener("load", lancer);
-
+  addEventListener("load", lancer);
   // Reflet qui suit la souris sur les cartes en verre
   document.querySelectorAll(".carte-verre").forEach(el => el.addEventListener("pointermove", e => {
     const r = el.getBoundingClientRect();
     el.style.setProperty("--x", (e.clientX - r.left) + "px"); el.style.setProperty("--y", (e.clientY - r.top) + "px");
   }));
 </script>
+
 </body>
 </html>

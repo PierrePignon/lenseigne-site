@@ -182,8 +182,11 @@
     line-height: 1.6;
   }
 
+  .passer-intro{position:fixed;right:22px;bottom:22px;z-index:60;font:500 13px/1 Inter,system-ui,sans-serif;color:var(--ink);text-decoration:none;
+    padding:11px 16px;border-radius:99px;background:rgba(11,10,30,.7);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:opacity .3s,transform .3s}
+  .passer-intro.cache{opacity:0;transform:translateY(10px);pointer-events:none}
   /* ============ ACT 1 — LA RUE ============ */
-  #act1 { height: 280vh; }
+  #act1 { height: 170vh; }
   .scene-street {
     background:
       radial-gradient(ellipse 80% 45% at 50% 100%, rgba(12,12,34,1) 0%, transparent 70%),
@@ -216,7 +219,7 @@
   .act1-text { z-index: 30; }
 
   /* ============ ACT 2 — ZOOM OUT ============ */
-  #act2 { height: 320vh; }
+  #act2 { height: 180vh; }
   .scene-sky {
     background:
       radial-gradient(ellipse 100% 60% at 50% 30%, rgba(180,162,240,0.06) 0%, transparent 60%),
@@ -244,7 +247,7 @@
   }
 
   /* ============ ACT 3 — LE RÉSEAU ============ */
-  #act3 { height: 360vh; }
+  #act3 { height: 200vh; }
   .scene-network {
     background:
       radial-gradient(ellipse 70% 50% at 50% 50%, rgba(180,162,240,0.08) 0%, transparent 60%),
@@ -350,7 +353,7 @@
   }
 
   /* ============ ACT 4 — ENTRER DANS UN SITE ============ */
-  #act4 { height: 300vh; }
+  #act4 { height: 180vh; }
   .scene-zoom {
     background:
       radial-gradient(ellipse 90% 60% at 50% 50%, rgba(var(--glow-warm), 0.06) 0%, transparent 60%),
@@ -1169,10 +1172,10 @@
     .contact-section { padding: 100px 0; }
     .contact-direct { gap: 20px; }
     .float-card { width: 180px; }
-    #act1 { height: 220vh; }
-    #act2 { height: 260vh; }
-    #act3 { height: 280vh; }
-    #act4 { height: 240vh; }
+    #act1 { height: 140vh; }
+    #act2 { height: 150vh; }
+    #act3 { height: 165vh; }
+    #act4 { height: 150vh; }
     .transparency-grid { grid-template-columns: 1fr; gap: 36px; }
     .formules-grid { grid-template-columns: 1fr; gap: 20px; }
     .formule-card { padding: 36px 28px; }
@@ -1332,6 +1335,7 @@
 </div>
 
 <!-- ===== ACT 1 — LA RUE ===== -->
+<a href="#pour-qui" class="passer-intro" id="passer-intro">Passer l'introduction ↓</a>
 <section id="act1" class="act">
   <div class="act-sticky scene-street" data-scene="1">
 
@@ -2339,8 +2343,8 @@
       stars.style.opacity = 1 - zoomOut * 0.4;
       ground.style.opacity = 1 - zoomOut * 0.6;
 
-      const textOpacity = p < 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) * 4);
-      const textShift = p < 0.7 ? 0 : (p - 0.7) * -100;
+      const textOpacity = p < 0.82 ? 1 : Math.max(0, 1 - (p - 0.82) * 6);
+      const textShift = p < 0.82 ? 0 : (p - 0.82) * -100;
       text.style.opacity = textOpacity;
       text.style.transform = `translateY(${textShift}px)`;
     }
@@ -2352,7 +2356,7 @@
       const nodes = sticky.querySelector('.network-nodes');
       const text = sticky.querySelector('.scene-text');
 
-      const fadeIn = Math.min(1, p * 2);
+      const fadeIn = Math.min(1, 0.25 + p * 3);
       cityNet.style.opacity = fadeIn;
       cityNet.style.transform = `translateY(${(1 - fadeIn) * 30}px)`;
 
@@ -2360,13 +2364,13 @@
       nodes.style.transform = `scale(${nodeScale})`;
       nodes.style.opacity = fadeIn;
 
-      const zoomIn = Math.max(0, (p - 0.65) * 3);
+      const zoomIn = Math.max(0, (p - 0.8) * 4);
       nodes.style.transform = `scale(${nodeScale + zoomIn * 1.4})`;
       cityNet.style.transform = `translateY(${(1 - fadeIn) * 30 + zoomIn * 200}px) scale(${1 + zoomIn * 0.4})`;
       cityNet.style.opacity = fadeIn * (1 - zoomIn);
 
-      const textIn = Math.min(1, Math.max(0, (p - 0.1) * 3));
-      const textOut = Math.max(0, (p - 0.7) * 4);
+      const textIn = Math.min(1, Math.max(0, (p - 0.02) * 4));
+      const textOut = Math.max(0, (p - 0.84) * 6);
       text.style.opacity = textIn * (1 - Math.min(1, textOut));
       text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
     }
@@ -2379,19 +2383,19 @@
       const text = sticky.querySelector('.scene-text');
 
       grid.style.transform = `scale(${1 + p * 0.4}) rotate(${p * 6}deg)`;
-      grid.style.opacity = Math.min(1, p * 2);
+      grid.style.opacity = Math.min(1, 0.3 + p * 3);
 
       const cards = sites.querySelectorAll('.float-card');
       cards.forEach((c, i) => {
         const delay = (i % 3) * 0.08;
-        const ip = Math.min(1, Math.max(0, (p - delay) * 2));
-        c.style.opacity = ip * (1 - Math.max(0, (p - 0.75) * 4));
+        const ip = Math.min(1, Math.max(0, (p - delay * 0.5) * 3));
+        c.style.opacity = ip * (1 - Math.max(0, (p - 0.86) * 7));
       });
 
-      ticker.style.opacity = Math.min(1, Math.max(0, (p - 0.1) * 2)) * (1 - Math.max(0, (p - 0.75) * 4));
+      ticker.style.opacity = Math.min(1, Math.max(0, (p - 0.02) * 3)) * (1 - Math.max(0, (p - 0.86) * 7));
 
-      const textIn = Math.min(1, Math.max(0, (p - 0.15) * 3));
-      const textOut = Math.max(0, (p - 0.75) * 4);
+      const textIn = Math.min(1, Math.max(0, (p - 0.04) * 4));
+      const textOut = Math.max(0, (p - 0.86) * 7);
       text.style.opacity = textIn * (1 - Math.min(1, textOut));
       text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
     }
@@ -2405,12 +2409,12 @@
       const scale = 0.3 + Math.min(1, p * 1.5) * 0.8;
       const finalScale = p > 0.75 ? 1.1 + (p - 0.75) * 0.4 : scale;
       browser.style.transform = `translate(-50%, -50%) scale(${finalScale})`;
-      browser.style.opacity = Math.min(1, p * 2);
+      browser.style.opacity = Math.min(1, 0.35 + p * 3);
 
       ring.style.opacity = Math.min(1, p * 1.5);
       ring.style.transform = `translate(-50%, -50%) scale(${0.5 + p})`;
 
-      const textIn = Math.min(1, Math.max(0, (p - 0.05) * 3));
+      const textIn = Math.min(1, Math.max(0, p * 4));
       text.style.opacity = textIn * (p > 0.85 ? Math.max(0, 1 - (p - 0.85) * 5) : 1);
       text.style.transform = `translateY(${(1 - textIn) * 30}px)`;
     }
@@ -2487,6 +2491,26 @@
       })
       .finally(function(){ btn.disabled=false; });
   });
+})();
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.css">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>
+(function () {
+  // Défilement fluide (désactivé si l'utilisateur demande moins d'animations)
+  if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1.1 });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href'); const el = id.length > 1 && document.querySelector(id);
+      if (el) { e.preventDefault(); e.stopImmediatePropagation(); lenis.scrollTo(el, { offset: -10, duration: 1.2 }); }
+    }, true));
+  }
+  // Bouton « Passer l'introduction » visible seulement pendant les actes
+  const btn = document.getElementById('passer-intro'), cible = document.getElementById('pour-qui');
+  const maj = () => btn.classList.toggle('cache', cible.getBoundingClientRect().top < innerHeight * 0.9);
+  addEventListener('scroll', maj, { passive: true }); maj();
 })();
 </script>
 </body>

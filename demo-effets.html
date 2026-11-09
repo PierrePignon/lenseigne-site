@@ -420,6 +420,17 @@
   }
 
   section.act{padding:0}
+  /* Voyage 3D : actes I à III */
+  .voyage{height:520vh;padding:0}
+  .voyage-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+  #voyage3d{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .voyage-secours{position:absolute;inset:0;display:none;background:linear-gradient(#0c0b26,#2b2560)}
+  .sans-3d .voyage-secours{display:block}
+  .vt{position:absolute;left:0;right:0;top:15vh;text-align:center;padding:0 22px;pointer-events:none;opacity:0;text-shadow:0 2px 30px rgba(0,0,0,.75)}
+  .vt1{opacity:1}
+  .vt h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(34px,5.6vw,72px);line-height:1.04;margin-top:12px}
+  @media(max-width:760px){.voyage{height:460vh}.vt{top:12vh}}
+
   /* 3D : profondeur à la souris et réseau en 3D */
   .act-sticky .layer{transition:translate .2s linear}
   #reseau3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.6}
@@ -500,440 +511,18 @@
 
 <nav class="barre"><a href="/">← L'enseigne</a><a class="cta" href="/#contact">Maquette offerte</a></nav>
 
-<div class="intro-demo" style="padding:120px 20px 40px;text-align:center"><div class="eyebrow">Démonstration</div><h2 style="max-width:820px;margin:14px auto 12px">Une histoire racontée <span class="it">au défilement</span>.</h2><p class="lead" style="margin:0 auto">Scènes illustrées, parallaxe en profondeur et réseau en 3D : faites défiler.</p></div>
-<!-- ===== SCROLL HINT ===== -->
-<div class="scroll-hint">
-  <span>Scroll</span>
-  <span class="line"></span>
-</div>
-
-<!-- ===== ACT 1 — LA RUE ===== -->
-<section id="act1" class="act">
-  <div class="act-sticky scene-street" data-scene="1">
-
-    <!-- Stars background -->
-    <div class="layer star-field">
-      <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1600 900">
-        <defs>
-          <radialGradient id="moonGrad">
-            <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
-            <stop offset="40%" stop-color="#fff" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <!-- Moon glow -->
-        <circle cx="960" cy="150" r="200" fill="url(#moonGrad)" opacity="0.25"/>
-        <circle cx="960" cy="150" r="42" fill="#fdf6e3" opacity="0.85"/>
-        <!-- Stars -->
-        <g fill="#fff">
-          <circle cx="120" cy="80" r="0.9" opacity="0.8"/>
-          <circle cx="240" cy="150" r="1.2" opacity="0.6"/>
-          <circle cx="380" cy="60" r="0.7" opacity="0.5"/>
-          <circle cx="510" cy="200" r="1" opacity="0.7"/>
-          <circle cx="680" cy="90" r="1.3" opacity="0.85"/>
-          <circle cx="780" cy="180" r="0.8" opacity="0.5"/>
-          <circle cx="940" cy="120" r="1.1" opacity="0.7"/>
-          <circle cx="1100" cy="60" r="0.9" opacity="0.6"/>
-          <circle cx="180" cy="300" r="1" opacity="0.55"/>
-          <circle cx="420" cy="280" r="0.8" opacity="0.45"/>
-          <circle cx="620" cy="320" r="1.1" opacity="0.6"/>
-          <circle cx="860" cy="270" r="0.7" opacity="0.4"/>
-          <circle cx="1180" cy="330" r="1" opacity="0.55"/>
-          <circle cx="1500" cy="280" r="0.9" opacity="0.5"/>
-          <circle cx="80" cy="420" r="0.7" opacity="0.35"/>
-          <circle cx="1450" cy="80" r="0.8" opacity="0.5"/>
-          <circle cx="60" cy="220" r="1.2" opacity="0.7"/>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Paysage : Sainte-Victoire, village perché, cyprès -->
-    <div class="layer city-far">
-      <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-        <!-- Sainte-Victoire, éclairée par la lune -->
-        <g transform="translate(1600,0) scale(-1,1)">
-        <path d="M0,300 L0,210 C120,200 220,190 330,175 C430,160 520,150 600,138 C680,124 760,112 840,98 C900,88 950,80 990,62 L1010,55 L1030,64 C1060,86 1090,110 1130,128 C1200,156 1290,170 1380,182 C1470,192 1540,200 1600,204 L1600,300 Z" fill="#2c2252"/>
-        <path d="M600,138 C680,124 760,112 840,98 C900,88 950,80 990,62 L1010,55" stroke="#c9bbff" stroke-opacity="0.6" stroke-width="2" fill="none"/>
-        <!-- Croix de Provence -->
-        <g stroke="#d9cfff" stroke-opacity="0.8" stroke-width="2.5"><line x1="1010" y1="55" x2="1010" y2="34"/><line x1="1003" y1="41" x2="1017" y2="41"/></g>
-        </g>
-        <!-- Village perché : toits en tuiles, campanile -->
-        <path d="M0,300 L0,250 L60,250 L60,236 L110,226 L160,236 L160,244 L210,244 L210,230 L250,220 L290,230 L290,248 L340,248 L340,234 L380,226 L420,234 L420,252 L470,252 L470,240 L520,232 L570,240 L570,256 L1020,256 L1020,236 L1060,226 L1100,236 L1100,246 L1150,246 L1150,226 L1170,226 L1170,190 L1166,190 L1166,184 L1192,184 L1192,190 L1188,190 L1188,226 L1210,226 L1210,238 L1260,238 L1260,228 L1300,220 L1340,228 L1340,246 L1400,246 L1400,234 L1450,224 L1500,234 L1500,250 L1600,250 L1600,300 Z" fill="#0b0814"/>
-        <!-- Cage du campanile en fer forgé -->
-        <g stroke="#0b0814" stroke-width="2" fill="none"><path d="M1166,184 C1166,166 1192,166 1192,184"/><line x1="1179" y1="168" x2="1179" y2="156"/><line x1="1174" y1="160" x2="1184" y2="160"/></g>
-        <!-- Cyprès -->
-        <g fill="#0b0814">
-          <path d="M610,256 C602,226 606,196 616,172 C626,196 630,226 622,256 Z"/>
-          <path d="M640,256 C634,232 637,210 645,192 C653,210 656,232 650,256 Z"/>
-          <path d="M930,256 C922,222 926,190 937,164 C948,190 952,222 944,256 Z"/>
-          <path d="M1530,250 C1523,224 1526,200 1535,180 C1544,200 1547,224 1540,250 Z"/>
-        </g>
-        <!-- Fenêtres allumées -->
-        <g fill="#ffd28a" opacity="0.55">
-          <rect x="80" y="258" width="3" height="5"/><rect x="230" y="246" width="3" height="5"/><rect x="360" y="250" width="3" height="5"/>
-          <rect x="500" y="254" width="3" height="5"/><rect x="1080" y="248" width="3" height="5"/><rect x="1280" y="244" width="3" height="5"/>
-          <rect x="1430" y="252" width="3" height="5"/><rect x="1176" y="200" width="5" height="6" opacity="0.8"/>
-        </g>
-      </svg>
-    </div>
-
-    <!-- The atelier (lone artisan shop) -->
-    <div class="layer atelier-wrap">
-      <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="signGlow" cx="50%" cy="50%">
-            <stop offset="0%" stop-color="#FFB661" stop-opacity="0.6"/>
-            <stop offset="60%" stop-color="#FFB661" stop-opacity="0.1"/>
-            <stop offset="100%" stop-color="#FFB661" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="windowLight" cx="50%" cy="50%">
-            <stop offset="0%" stop-color="#FFE0B2" stop-opacity="0.95"/>
-            <stop offset="100%" stop-color="#FFB661" stop-opacity="0.6"/>
-          </radialGradient>
-          <filter id="windowBlur"><feGaussianBlur stdDeviation="6"/></filter>
-        </defs>
-
-        <!-- Sidewalk shadow -->
-        <ellipse cx="300" cy="475" rx="280" ry="8" fill="#000" opacity="0.4"/>
-
-        <!-- Sign glow halo -->
-        <ellipse cx="300" cy="120" rx="240" ry="100" fill="url(#signGlow)"/>
-
-        <!-- Building -->
-        <rect x="80" y="180" width="440" height="280" fill="#1a1815" />
-        <!-- Toit en tuiles romaines -->
-        <path d="M54,184 L300,146 L546,184 Z" fill="#3a1d14"/>
-        <g stroke="#1e0e09" stroke-width="1.4" opacity="0.9">
-          <line x1="300" y1="146" x2="300" y2="184"/>
-          <line x1="250" y1="154" x2="250" y2="184"/><line x1="350" y1="154" x2="350" y2="184"/>
-          <line x1="200" y1="161" x2="200" y2="184"/><line x1="400" y1="161" x2="400" y2="184"/>
-          <line x1="150" y1="169" x2="150" y2="184"/><line x1="450" y1="169" x2="450" y2="184"/>
-          <line x1="100" y1="177" x2="100" y2="184"/><line x1="500" y1="177" x2="500" y2="184"/>
-        </g>
-        <path d="M54,184 L300,146 L546,184" stroke="#c98a6a" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
-        <!-- Génoise -->
-        <rect x="70" y="184" width="460" height="5" fill="#2a1712"/>
-        <g fill="#2a1712"><circle cx="78" cy="190" r="3.2"/><circle cx="88" cy="190" r="3.2"/><circle cx="98" cy="190" r="3.2"/><circle cx="108" cy="190" r="3.2"/><circle cx="118" cy="190" r="3.2"/><circle cx="128" cy="190" r="3.2"/><circle cx="138" cy="190" r="3.2"/><circle cx="148" cy="190" r="3.2"/><circle cx="158" cy="190" r="3.2"/><circle cx="168" cy="190" r="3.2"/><circle cx="178" cy="190" r="3.2"/><circle cx="188" cy="190" r="3.2"/><circle cx="198" cy="190" r="3.2"/><circle cx="208" cy="190" r="3.2"/><circle cx="218" cy="190" r="3.2"/><circle cx="228" cy="190" r="3.2"/><circle cx="238" cy="190" r="3.2"/><circle cx="248" cy="190" r="3.2"/><circle cx="258" cy="190" r="3.2"/><circle cx="268" cy="190" r="3.2"/><circle cx="278" cy="190" r="3.2"/><circle cx="288" cy="190" r="3.2"/><circle cx="298" cy="190" r="3.2"/><circle cx="308" cy="190" r="3.2"/><circle cx="318" cy="190" r="3.2"/><circle cx="328" cy="190" r="3.2"/><circle cx="338" cy="190" r="3.2"/><circle cx="348" cy="190" r="3.2"/><circle cx="358" cy="190" r="3.2"/><circle cx="368" cy="190" r="3.2"/><circle cx="378" cy="190" r="3.2"/><circle cx="388" cy="190" r="3.2"/><circle cx="398" cy="190" r="3.2"/><circle cx="408" cy="190" r="3.2"/><circle cx="418" cy="190" r="3.2"/><circle cx="428" cy="190" r="3.2"/><circle cx="438" cy="190" r="3.2"/><circle cx="448" cy="190" r="3.2"/><circle cx="458" cy="190" r="3.2"/><circle cx="468" cy="190" r="3.2"/><circle cx="478" cy="190" r="3.2"/><circle cx="488" cy="190" r="3.2"/><circle cx="498" cy="190" r="3.2"/><circle cx="508" cy="190" r="3.2"/><circle cx="518" cy="190" r="3.2"/></g>
-        <!-- Storefront top sign panel -->
-        <rect x="100" y="200" width="400" height="58" fill="#1f1c18"/>
-        <!-- Sign text glow background -->
-        <rect x="120" y="212" width="360" height="34" rx="3" fill="#0d0c0a"/>
-        <!-- Sign text -->
-        <text x="300" y="237" text-anchor="middle"
-              font-family="Inter, system-ui" font-weight="800" font-size="22"
-              fill="#FFB661" letter-spacing="3" style="text-transform:uppercase;">
-          ATELIER
-        </text>
-        <!-- subtle glow under text -->
-        <text x="300" y="237" text-anchor="middle"
-              font-family="Inter, system-ui" font-weight="800" font-size="22"
-              fill="#FFB661" opacity="0.4" filter="url(#windowBlur)" letter-spacing="3" style="text-transform:uppercase;">
-          ATELIER
-        </text>
-
-        <!-- Door -->
-        <rect x="265" y="280" width="70" height="170" fill="#0d0c0a"/>
-        <rect x="270" y="285" width="60" height="160" fill="#1c1a16" />
-        <!-- Door knob -->
-        <circle cx="322" cy="370" r="2" fill="#FFB661" opacity="0.6"/>
-        <!-- Door window -->
-        <rect x="278" y="300" width="44" height="50" fill="url(#windowLight)" opacity="0.7"/>
-
-        <!-- Left window -->
-        <rect x="120" y="290" width="120" height="120" fill="#0d0c0a"/>
-        <rect x="125" y="295" width="110" height="110" fill="url(#windowLight)" opacity="0.85"/>
-        <!-- Cross bars -->
-        <line x1="180" y1="295" x2="180" y2="405" stroke="#0d0c0a" stroke-width="2"/>
-        <line x1="125" y1="350" x2="235" y2="350" stroke="#0d0c0a" stroke-width="2"/>
-
-        <!-- Volets -->
-        <g fill="#33405f" stroke="#1b2133" stroke-width="1">
-          <rect x="100" y="290" width="18" height="120"/><rect x="242" y="290" width="18" height="120"/>
-          <rect x="340" y="290" width="18" height="120"/><rect x="482" y="290" width="18" height="120"/>
-        </g>
-        <g stroke="#1b2133" stroke-width="1" opacity="0.8"><line x1="100" y1="300" x2="118" y2="300"/><line x1="100" y1="312" x2="118" y2="312"/><line x1="100" y1="324" x2="118" y2="324"/><line x1="100" y1="336" x2="118" y2="336"/><line x1="100" y1="348" x2="118" y2="348"/><line x1="100" y1="360" x2="118" y2="360"/><line x1="100" y1="372" x2="118" y2="372"/><line x1="100" y1="384" x2="118" y2="384"/><line x1="100" y1="396" x2="118" y2="396"/><line x1="100" y1="408" x2="118" y2="408"/><line x1="242" y1="300" x2="260" y2="300"/><line x1="242" y1="312" x2="260" y2="312"/><line x1="242" y1="324" x2="260" y2="324"/><line x1="242" y1="336" x2="260" y2="336"/><line x1="242" y1="348" x2="260" y2="348"/><line x1="242" y1="360" x2="260" y2="360"/><line x1="242" y1="372" x2="260" y2="372"/><line x1="242" y1="384" x2="260" y2="384"/><line x1="242" y1="396" x2="260" y2="396"/><line x1="242" y1="408" x2="260" y2="408"/><line x1="340" y1="300" x2="358" y2="300"/><line x1="340" y1="312" x2="358" y2="312"/><line x1="340" y1="324" x2="358" y2="324"/><line x1="340" y1="336" x2="358" y2="336"/><line x1="340" y1="348" x2="358" y2="348"/><line x1="340" y1="360" x2="358" y2="360"/><line x1="340" y1="372" x2="358" y2="372"/><line x1="340" y1="384" x2="358" y2="384"/><line x1="340" y1="396" x2="358" y2="396"/><line x1="340" y1="408" x2="358" y2="408"/><line x1="482" y1="300" x2="500" y2="300"/><line x1="482" y1="312" x2="500" y2="312"/><line x1="482" y1="324" x2="500" y2="324"/><line x1="482" y1="336" x2="500" y2="336"/><line x1="482" y1="348" x2="500" y2="348"/><line x1="482" y1="360" x2="500" y2="360"/><line x1="482" y1="372" x2="500" y2="372"/><line x1="482" y1="384" x2="500" y2="384"/><line x1="482" y1="396" x2="500" y2="396"/><line x1="482" y1="408" x2="500" y2="408"/></g>
-        <!-- Right window -->
-        <rect x="360" y="290" width="120" height="120" fill="#0d0c0a"/>
-        <rect x="365" y="295" width="110" height="110" fill="url(#windowLight)" opacity="0.85"/>
-        <line x1="420" y1="295" x2="420" y2="405" stroke="#0d0c0a" stroke-width="2"/>
-        <line x1="365" y1="350" x2="475" y2="350" stroke="#0d0c0a" stroke-width="2"/>
-
-        <!-- Awning -->
-        <path d="M 90 260 L 510 260 L 530 270 L 70 270 Z" fill="#2a1f15"/>
-        <!-- Awning stripes -->
-        <line x1="150" y1="262" x2="160" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
-        <line x1="220" y1="262" x2="230" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
-        <line x1="290" y1="262" x2="300" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
-        <line x1="360" y1="262" x2="370" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
-        <line x1="430" y1="262" x2="440" y2="268" stroke="#FFB661" stroke-width="1.5" opacity="0.4"/>
-
-        <!-- Jardinières de lavande -->
-        <g>
-          <rect x="118" y="410" width="124" height="10" fill="#2a1712"/>
-          <rect x="358" y="410" width="124" height="10" fill="#2a1712"/>
-          <g stroke="#3d5a3a" stroke-width="1.2"><line x1="124" y1="410" x2="124" y2="396"/><line x1="132" y1="410" x2="132" y2="396"/><line x1="140" y1="410" x2="140" y2="396"/><line x1="148" y1="410" x2="148" y2="396"/><line x1="156" y1="410" x2="156" y2="396"/><line x1="164" y1="410" x2="164" y2="396"/><line x1="172" y1="410" x2="172" y2="396"/><line x1="180" y1="410" x2="180" y2="396"/><line x1="188" y1="410" x2="188" y2="396"/><line x1="196" y1="410" x2="196" y2="396"/><line x1="204" y1="410" x2="204" y2="396"/><line x1="212" y1="410" x2="212" y2="396"/><line x1="220" y1="410" x2="220" y2="396"/><line x1="228" y1="410" x2="228" y2="396"/><line x1="236" y1="410" x2="236" y2="396"/><line x1="364" y1="410" x2="364" y2="396"/><line x1="372" y1="410" x2="372" y2="396"/><line x1="380" y1="410" x2="380" y2="396"/><line x1="388" y1="410" x2="388" y2="396"/><line x1="396" y1="410" x2="396" y2="396"/><line x1="404" y1="410" x2="404" y2="396"/><line x1="412" y1="410" x2="412" y2="396"/><line x1="420" y1="410" x2="420" y2="396"/><line x1="428" y1="410" x2="428" y2="396"/><line x1="436" y1="410" x2="436" y2="396"/><line x1="444" y1="410" x2="444" y2="396"/><line x1="452" y1="410" x2="452" y2="396"/><line x1="460" y1="410" x2="460" y2="396"/><line x1="468" y1="410" x2="468" y2="396"/><line x1="476" y1="410" x2="476" y2="396"/></g>
-          <g fill="#9b86e0"><ellipse cx="124" cy="393" rx="2" ry="4.5"/><ellipse cx="132" cy="394" rx="2" ry="4.5"/><ellipse cx="140" cy="392" rx="2" ry="4.5"/><ellipse cx="148" cy="393" rx="2" ry="4.5"/><ellipse cx="156" cy="394" rx="2" ry="4.5"/><ellipse cx="164" cy="392" rx="2" ry="4.5"/><ellipse cx="172" cy="393" rx="2" ry="4.5"/><ellipse cx="180" cy="394" rx="2" ry="4.5"/><ellipse cx="188" cy="392" rx="2" ry="4.5"/><ellipse cx="196" cy="393" rx="2" ry="4.5"/><ellipse cx="204" cy="394" rx="2" ry="4.5"/><ellipse cx="212" cy="392" rx="2" ry="4.5"/><ellipse cx="220" cy="393" rx="2" ry="4.5"/><ellipse cx="228" cy="394" rx="2" ry="4.5"/><ellipse cx="236" cy="392" rx="2" ry="4.5"/><ellipse cx="364" cy="393" rx="2" ry="4.5"/><ellipse cx="372" cy="394" rx="2" ry="4.5"/><ellipse cx="380" cy="392" rx="2" ry="4.5"/><ellipse cx="388" cy="393" rx="2" ry="4.5"/><ellipse cx="396" cy="394" rx="2" ry="4.5"/><ellipse cx="404" cy="392" rx="2" ry="4.5"/><ellipse cx="412" cy="393" rx="2" ry="4.5"/><ellipse cx="420" cy="394" rx="2" ry="4.5"/><ellipse cx="428" cy="392" rx="2" ry="4.5"/><ellipse cx="436" cy="393" rx="2" ry="4.5"/><ellipse cx="444" cy="394" rx="2" ry="4.5"/><ellipse cx="452" cy="392" rx="2" ry="4.5"/><ellipse cx="460" cy="393" rx="2" ry="4.5"/><ellipse cx="468" cy="394" rx="2" ry="4.5"/><ellipse cx="476" cy="392" rx="2" ry="4.5"/></g>
-        </g>
-        <!-- Cyprès -->
-        <path d="M566,462 C552,410 554,330 572,262 C590,330 592,410 578,462 Z" fill="#0b0d0a"/>
-        <!-- Closed sign -->
-        <rect x="290" y="305" width="20" height="14" rx="1" fill="#3a1818"/>
-        <text x="300" y="315" text-anchor="middle" font-family="Inter" font-size="6" font-weight="700" fill="#ff6b6b">FERMÉ</text>
-
-        <!-- Lanterne provençale -->
-        <line x1="40" y1="460" x2="40" y2="236" stroke="#0a0a0a" stroke-width="3"/>
-        <path d="M40,236 C40,226 52,224 60,226" stroke="#0a0a0a" stroke-width="2.5" fill="none"/>
-        <path d="M54,226 L66,226 L68,230 L52,230 Z" fill="#0a0a0a"/>
-        <path d="M53,230 L67,230 L65,246 L55,246 Z" fill="#FFB661" opacity="0.85"/>
-        <rect x="54" y="246" width="12" height="3" fill="#0a0a0a"/>
-        <circle cx="60" cy="238" r="22" fill="url(#signGlow)" opacity="0.7"/>
-
-        <!-- Calade (pavés) -->
-        <rect x="0" y="460" width="600" height="20" fill="#0a0808"/>
-        <g stroke="#1a1512" stroke-width="1"><line x1="10" y1="462" x2="4" y2="480"/><line x1="32" y1="462" x2="26" y2="480"/><line x1="54" y1="462" x2="48" y2="480"/><line x1="76" y1="462" x2="70" y2="480"/><line x1="98" y1="462" x2="92" y2="480"/><line x1="120" y1="462" x2="114" y2="480"/><line x1="142" y1="462" x2="136" y2="480"/><line x1="164" y1="462" x2="158" y2="480"/><line x1="186" y1="462" x2="180" y2="480"/><line x1="208" y1="462" x2="202" y2="480"/><line x1="230" y1="462" x2="224" y2="480"/><line x1="252" y1="462" x2="246" y2="480"/><line x1="274" y1="462" x2="268" y2="480"/><line x1="296" y1="462" x2="290" y2="480"/><line x1="318" y1="462" x2="312" y2="480"/><line x1="340" y1="462" x2="334" y2="480"/><line x1="362" y1="462" x2="356" y2="480"/><line x1="384" y1="462" x2="378" y2="480"/><line x1="406" y1="462" x2="400" y2="480"/><line x1="428" y1="462" x2="422" y2="480"/><line x1="450" y1="462" x2="444" y2="480"/><line x1="472" y1="462" x2="466" y2="480"/><line x1="494" y1="462" x2="488" y2="480"/><line x1="516" y1="462" x2="510" y2="480"/><line x1="538" y1="462" x2="532" y2="480"/><line x1="560" y1="462" x2="554" y2="480"/><line x1="582" y1="462" x2="576" y2="480"/><line x1="0" y1="470" x2="600" y2="470"/></g>
-      </svg>
-    </div>
-
-    <div class="layer ground"></div>
-
-    <!-- Scene text -->
-    <div class="scene-text act1-text">
-      <div class="scene-eyebrow">Acte I · Provence, 21h47</div>
-      <p class="scene-h">
-        Votre boutique<br>
-        ferme à 19h.<br>
-        <span class="it">Internet, lui,</span><br>
-        <span class="it">ne ferme jamais.</span>
-      </p>
-      <h1 class="act1-sub">Création de sites internet pour prestataires de mariage, artisans et commerçants<br>Marseille · Aix-en-Provence · Bouches-du-Rhône</h1>
-    </div>
+<div class="intro-demo" style="padding:120px 20px 40px;text-align:center"><div class="eyebrow">Démonstration</div><h2 style="max-width:820px;margin:14px auto 12px">Une histoire racontée <span class="it">au défilement</span>.</h2><p class="lead" style="margin:0 auto">Un voyage en 3D, de la boutique au réseau des sites : faites défiler.</p></div>
+<section class="voyage" id="voyage">
+  <div class="voyage-sticky">
+    <canvas id="voyage3d" aria-hidden="true"></canvas>
+    <div class="voyage-secours" aria-hidden="true"></div>
+    <div class="vt vt1"><div class="eyebrow">Acte I · Provence, 21h47</div><h2>Votre boutique ferme à 19h.<br><span class="it">Internet, lui, ne ferme jamais.</span></h2></div>
+    <div class="vt vt2"><div class="eyebrow">Acte II · Au-dessus des toits</div><h2>À cette heure, des gens cherchent<br><span class="it">un artisan, une table, un rendez-vous.</span></h2></div>
+    <div class="vt vt3"><div class="eyebrow">Acte III · Le réseau</div><h2>Ceux qu'ils trouvent ?<br><span class="it">Ceux qui ont un site.</span></h2></div>
+    <div class="vt vt4"><div class="eyebrow">Acte IV · Voilà où j'interviens</div><h2>Je vous construis <span class="it">une porte d'entrée</span><br>dans ce monde-là.</h2><span class="lib">Scène 3D en temps réel · three.js</span></div>
   </div>
 </section>
 
-<!-- ===== ACT 2 — ZOOM OUT ===== -->
-<section id="act2" class="act">
-  <div class="act-sticky scene-sky" data-scene="2">
-
-    <!-- Earth curve at bottom -->
-    <div class="layer">
-      <div class="earth-curve"></div>
-    </div>
-
-    <!-- Tiny city below -->
-    <div class="layer city-network">
-      <svg width="100%" height="100%" viewBox="0 0 1600 200" preserveAspectRatio="none">
-        <!-- City silhouette small -->
-        <path d="M0,200 L0,170 L60,170 L60,155 L120,155 L120,165 L180,165 L180,150 L240,150 L240,160 L300,160 L300,145 L360,145 L360,170 L420,170 L420,155 L480,155 L480,165 L540,165 L540,150 L600,150 L600,160 L660,160 L660,145 L720,145 L720,170 L780,170 L780,155 L840,155 L840,165 L900,165 L900,150 L960,150 L960,160 L1020,160 L1020,170 L1080,170 L1080,155 L1140,155 L1140,165 L1200,165 L1200,150 L1260,150 L1260,160 L1320,160 L1320,170 L1380,170 L1380,155 L1440,155 L1440,165 L1500,165 L1500,150 L1560,150 L1560,170 L1600,170 L1600,200 Z"
-              fill="#080a1c"/>
-        <!-- Lit windows in city -->
-        <g fill="#FFB661" opacity="0.7">
-          <circle cx="80" cy="172" r="1"/>
-          <circle cx="200" cy="167" r="1"/>
-          <circle cx="350" cy="160" r="1"/>
-          <circle cx="510" cy="160" r="1"/>
-          <circle cx="680" cy="158" r="1"/>
-          <circle cx="850" cy="170" r="1"/>
-          <circle cx="1020" cy="167" r="1"/>
-          <circle cx="1200" cy="160" r="1"/>
-          <circle cx="1380" cy="167" r="1"/>
-          <circle cx="1520" cy="158" r="1"/>
-        </g>
-        <!-- The atelier — highlighted -->
-        <g>
-          <rect x="795" y="148" width="14" height="14" fill="#FFB661" opacity="0.9"/>
-          <circle cx="802" cy="155" r="20" fill="rgba(255,182,97,0.3)" />
-          <circle cx="802" cy="155" r="35" fill="rgba(255,182,97,0.1)" />
-        </g>
-      </svg>
-    </div>
-
-    <!-- Network nodes appearing above the city -->
-    <div class="layer network-nodes" id="network-nodes">
-      <svg width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <radialGradient id="nodeGlow">
-            <stop offset="0%" stop-color="#B4A2F0" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#B4A2F0" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <!-- Connection lines -->
-        <g stroke="#B4A2F0" stroke-width="0.6" opacity="0.18" fill="none">
-          <path d="M200,300 Q500,180 800,250"/>
-          <path d="M800,250 Q1100,200 1400,280"/>
-          <path d="M300,450 Q600,380 900,420"/>
-          <path d="M900,420 Q1200,400 1500,440"/>
-          <path d="M150,200 Q400,300 600,200"/>
-          <path d="M600,200 Q800,150 1100,180"/>
-          <path d="M1100,180 Q1300,200 1450,160"/>
-          <path d="M400,500 Q700,470 1000,520"/>
-          <path d="M200,300 Q400,400 600,200"/>
-          <path d="M800,250 Q900,350 900,420"/>
-          <path d="M1100,180 Q1100,300 1200,400"/>
-          <path d="M300,450 Q500,350 600,200"/>
-        </g>
-
-        <!-- Nodes -->
-        <g>
-          <circle cx="200" cy="300" r="14" fill="url(#nodeGlow)"/>
-          <circle cx="200" cy="300" r="3" fill="#B4A2F0"/>
-
-          <circle cx="800" cy="250" r="18" fill="url(#nodeGlow)"/>
-          <circle cx="800" cy="250" r="4" fill="#B4A2F0"/>
-
-          <circle cx="1400" cy="280" r="14" fill="url(#nodeGlow)"/>
-          <circle cx="1400" cy="280" r="3" fill="#B4A2F0"/>
-
-          <circle cx="300" cy="450" r="12" fill="url(#nodeGlow)"/>
-          <circle cx="300" cy="450" r="3" fill="#B4A2F0"/>
-
-          <circle cx="900" cy="420" r="16" fill="url(#nodeGlow)"/>
-          <circle cx="900" cy="420" r="4" fill="#B4A2F0"/>
-
-          <circle cx="1500" cy="440" r="13" fill="url(#nodeGlow)"/>
-          <circle cx="1500" cy="440" r="3" fill="#B4A2F0"/>
-
-          <circle cx="150" cy="200" r="11" fill="url(#nodeGlow)"/>
-          <circle cx="150" cy="200" r="3" fill="#B4A2F0"/>
-
-          <circle cx="600" cy="200" r="14" fill="url(#nodeGlow)"/>
-          <circle cx="600" cy="200" r="3" fill="#B4A2F0"/>
-
-          <circle cx="1100" cy="180" r="12" fill="url(#nodeGlow)"/>
-          <circle cx="1100" cy="180" r="3" fill="#B4A2F0"/>
-
-          <circle cx="1450" cy="160" r="11" fill="url(#nodeGlow)"/>
-          <circle cx="1450" cy="160" r="3" fill="#B4A2F0"/>
-
-          <circle cx="400" cy="500" r="13" fill="url(#nodeGlow)"/>
-          <circle cx="400" cy="500" r="3" fill="#B4A2F0"/>
-
-          <circle cx="1000" cy="520" r="14" fill="url(#nodeGlow)"/>
-          <circle cx="1000" cy="520" r="3" fill="#B4A2F0"/>
-
-          <circle cx="1200" cy="400" r="12" fill="url(#nodeGlow)"/>
-          <circle cx="1200" cy="400" r="3" fill="#B4A2F0"/>
-        </g>
-      </svg>
-    </div>
-
-    <div class="scene-text">
-      <div class="scene-eyebrow">Acte II · Au-dessus des toits</div>
-      <h2 class="scene-h">
-        À cette heure,<br>
-        des gens cherchent<br>
-        <span class="it it-cool">un artisan, une table,</span><br><span class="it it-cool">un rendez-vous.</span>
-      </h2>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ACT 3 — LE RÉSEAU ===== -->
-<section id="act3" class="act">
-  <div class="act-sticky scene-network" data-scene="3">
-    <canvas id="reseau3d" aria-hidden="true"></canvas>
-
-    <div class="layer grid-bg"></div>
-
-    <!-- Search ticker -->
-    <div class="search-ticker">
-      <div class="row">
-        <span class="search-chip">plombier marseille 13013 urgence</span>
-        <span class="search-chip">électricien aix-en-provence devis</span>
-        <span class="search-chip">chauffagiste aubagne</span>
-        <span class="search-chip">serrurier marseille 5e</span>
-        <span class="search-chip">pharmacie de garde gardanne</span>
-        <span class="search-chip">carreleur martigues</span>
-        <span class="search-chip">boulangerie ouverte la ciotat</span>
-        <span class="search-chip">climatisation vitrolles</span>
-        <span class="search-chip">plombier marseille 13013 urgence</span>
-        <span class="search-chip">électricien aix-en-provence devis</span>
-        <span class="search-chip">chauffagiste aubagne</span>
-        <span class="search-chip">serrurier marseille 5e</span>
-      </div>
-      <div class="row r2">
-        <span class="search-chip">maçon salon-de-provence</span>
-        <span class="search-chip">menuisier trets</span>
-        <span class="search-chip">peintre en bâtiment marseille 8e</span>
-        <span class="search-chip">fleuriste cours julien</span>
-        <span class="search-chip">rénovation salle de bain aix</span>
-        <span class="search-chip">artisan rge bouches-du-rhône</span>
-        <span class="search-chip">débouchage canalisation marignane</span>
-        <span class="search-chip">vitrier istres</span>
-        <span class="search-chip">maçon salon-de-provence</span>
-        <span class="search-chip">menuisier trets</span>
-        <span class="search-chip">peintre en bâtiment marseille 8e</span>
-        <span class="search-chip">fleuriste cours julien</span>
-      </div>
-    </div>
-
-    <!-- Floating site cards -->
-    <div class="layer floating-sites">
-      <div class="float-card" style="top: 10%; left: 6%; transform: rotate(-4deg);" data-style="warm">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line"></div>
-          <div class="fc-line short"></div>
-          <div class="fc-line color"></div>
-        </div>
-        <div class="fc-url">plomberie-…fr</div>
-      </div>
-      <div class="float-card" style="top: 14%; right: 8%; transform: rotate(3deg);" data-style="cool">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line"></div>
-          <div class="fc-line"></div>
-          <div class="fc-line short"></div>
-        </div>
-        <div class="fc-url">electricite-…com</div>
-      </div>
-      <div class="float-card" style="bottom: 12%; left: 10%; transform: rotate(2deg);" data-style="cool">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line short"></div>
-          <div class="fc-line"></div>
-          <div class="fc-line color"></div>
-        </div>
-        <div class="fc-url">chauffage-…fr</div>
-      </div>
-      <div class="float-card" style="bottom: 18%; right: 6%; transform: rotate(-3deg);" data-style="warm">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line"></div>
-          <div class="fc-line short"></div>
-        </div>
-        <div class="fc-url">menuiserie-…fr</div>
-      </div>
-      <div class="float-card" style="top: 50%; left: 2%; transform: translate(0,-50%) rotate(1deg);" data-style="cool">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line"></div>
-          <div class="fc-line short"></div>
-          <div class="fc-line color"></div>
-        </div>
-        <div class="fc-url">peintre-…com</div>
-      </div>
-      <div class="float-card" style="top: 50%; right: 2%; transform: translate(0,-50%) rotate(-2deg);" data-style="warm">
-        <div class="fc-bar"><span></span><span></span><span></span></div>
-        <div class="fc-content">
-          <div class="fc-line short"></div>
-          <div class="fc-line"></div>
-        </div>
-        <div class="fc-url">artisan-…fr</div>
-      </div>
-    </div>
-
-    <div class="scene-text">
-      <div class="scene-eyebrow">Acte III · Le réseau</div>
-      <h2 class="scene-h">
-        Ceux qu'ils trouvent ?<br>
-        <span class="it it-cool">Ceux qui ont</span><br>
-        <span class="it it-cool">un site.</span>
-      </h2>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ACT 4 — ENTRER DANS UN SITE ===== -->
 <section id="act4" class="act">
   <div class="act-sticky scene-zoom" data-scene="4">
 
@@ -1237,66 +826,184 @@
 })();
 </script>
 <script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js" } }
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+} }
 </script>
 <script type="module">
   import * as THREE from "three";
+  import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+  import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+  import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+  import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
   const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mobile = matchMedia("(max-width: 760px)").matches;
+  const canvas = document.getElementById("voyage3d"), section = document.getElementById("voyage");
+  const textes = [...document.querySelectorAll(".vt")];
+  let graine = 11; const alea = () => (graine = (graine * 16807) % 2147483647) / 2147483647;
+  const entre = (a, b) => a + (b - a) * alea();
+  const lisse = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
-  // 1. Profondeur à la souris : chaque calque des scènes bouge selon sa profondeur
-  if (!calme && matchMedia("(hover: hover)").matches) {
-    let mx = 0, my = 0, cx = 0, cy = 0;
-    addEventListener("pointermove", e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; });
-    const calques = [...document.querySelectorAll(".act-sticky")].map(st => [...st.querySelectorAll(":scope > .layer")]);
-    const tick = () => {
-      cx += (mx - cx) * .06; cy += (my - cy) * .06;
-      calques.forEach(ls => ls.forEach((l, i) => { const d = (i + 1) / ls.length; l.style.translate = `${-cx * 40 * d}px ${-cy * 24 * d}px`; }));
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-
-  // 2. Acte III : un réseau de sites en 3D qui tourne derrière les cartes
-  const canvas = document.getElementById("reseau3d"), acte = document.getElementById("act3");
-  let renderer; try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !mobile }); } catch (e) {}
-  if (renderer && acte) {
+  let renderer; try { renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: "high-performance" }); } catch (e) { document.body.classList.add("sans-3d"); }
+  if (renderer) {
     renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.6));
-    const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(55, 1, .1, 100); camera.position.z = 9;
-    const groupe = new THREE.Group(); scene.add(groupe);
-    const N = mobile ? 90 : 160, pts = [];
-    for (let i = 0; i < N; i++) { // points répartis sur une sphère (spirale de Fibonacci)
-      const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), t = i * 2.39996;
-      pts.push(new THREE.Vector3(Math.cos(t) * r, y, Math.sin(t) * r).multiplyScalar(3));
-    }
-    const geoP = new THREE.BufferGeometry().setFromPoints(pts);
-    const halo = (() => { const c = document.createElement("canvas"); c.width = c.height = 64; const g = c.getContext("2d");
-      const d = g.createRadialGradient(32, 32, 0, 32, 32, 32); d.addColorStop(0, "rgba(255,255,255,1)"); d.addColorStop(.3, "rgba(200,180,255,.6)"); d.addColorStop(1, "rgba(180,160,255,0)");
-      g.fillStyle = d; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
-    groupe.add(new THREE.Points(geoP, new THREE.PointsMaterial({ size: .32, map: halo, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, color: "#c9b8ff" })));
-    const liens = [];
-    pts.forEach((a, i) => pts.forEach((b, j) => { if (j > i && a.distanceTo(b) < 1.25) liens.push(a, b); }));
-    groupe.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(liens),
-      new THREE.LineBasicMaterial({ color: "#8f7cff", transparent: true, opacity: .28, blending: THREE.AdditiveBlending, depthWrite: false })));
-    // quelques points chauds : les commerces qui ont un site
-    const chauds = pts.filter((_, i) => i % 9 === 0);
-    groupe.add(new THREE.Points(new THREE.BufferGeometry().setFromPoints(chauds), new THREE.PointsMaterial({ size: .6, map: halo, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, color: "#ffb661" })));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    const scene = new THREE.Scene(); const ciel = new THREE.Color("#0c0b26");
+    scene.background = ciel; scene.fog = new THREE.Fog(ciel, 60, 330);
+    const camera = new THREE.PerspectiveCamera(mobile ? 64 : 52, 1, .1, 400);
+    scene.add(new THREE.HemisphereLight("#4a4f9c", "#0a0918", .55));
+    const lune = new THREE.DirectionalLight("#9fa8ff", 1.1); lune.position.set(-70, 90, 60); scene.add(lune);
 
-    const taille = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
-    addEventListener("resize", taille); taille();
-    let visible = false; new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(acte);
-    const boucle = (t) => {
-      if (visible) {
-        const r = acte.getBoundingClientRect(), p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-        groupe.rotation.y = t * .00012 + p * 2.2; groupe.rotation.x = .35 + p * .4;
-        camera.position.z = 10 - p * 1.5;
-        renderer.render(scene, camera);
-      }
-      if (!calme) requestAnimationFrame(boucle);
+    const texte = (txt, { w = 512, h = 96, taille = 34, fond = "rgba(20,18,50,.82)", bord = "rgba(255,182,97,.6)", couleur = "#f3ecdf", police = "500 34px Inter, sans-serif" } = {}) => {
+      const c = document.createElement("canvas"); c.width = w; c.height = h; const g = c.getContext("2d");
+      g.fillStyle = fond; g.strokeStyle = bord; g.lineWidth = 3; g.beginPath(); g.roundRect(3, 3, w - 6, h - 6, h / 2); g.fill(); g.stroke();
+      g.fillStyle = couleur; g.font = police; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(txt, w / 2, h / 2 + 2);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
     };
-    requestAnimationFrame(boucle); if (calme) { visible = true; boucle(0); }
+
+    // Sol
+    const sol = new THREE.Mesh(new THREE.PlaneGeometry(400, 300), new THREE.MeshStandardMaterial({ color: "#14122a", roughness: 1 }));
+    sol.rotation.x = -Math.PI / 2; sol.position.z = -60; scene.add(sol);
+
+    // La Sainte-Victoire : relief en facettes
+    const geoM = new THREE.PlaneGeometry(320, 70, mobile ? 90 : 160, 30); geoM.rotateX(-Math.PI / 2);
+    const pm = geoM.attributes.position;
+    for (let i = 0; i < pm.count; i++) {
+      const x = pm.getX(i), z = pm.getZ(i);
+      const crete = 70 * Math.exp(-(((x + 25) / 70) ** 2)) + 30 * Math.exp(-(((x - 60) / 45) ** 2));
+      const profil = Math.max(0, 1 - Math.abs(z + 8) / 30) ** 1.4;
+      const bruit = Math.sin(x * .21) * 2.2 + Math.sin(x * .07 + z * .3) * 3 + Math.sin(x * .5 + z) * .8;
+      pm.setY(i, Math.max(0, (crete + bruit) * profil));
+    }
+    geoM.computeVertexNormals();
+    const montagne = new THREE.Mesh(geoM, new THREE.MeshStandardMaterial({ color: "#4a3f86", roughness: .85, flatShading: true }));
+    montagne.position.set(0, 0, -170); scene.add(montagne);
+
+    // Étoiles
+    const nbE = mobile ? 500 : 1000, pe = new Float32Array(nbE * 3);
+    for (let i = 0; i < nbE; i++) { pe[i * 3] = entre(-250, 250); pe[i * 3 + 1] = entre(30, 180); pe[i * 3 + 2] = entre(-260, -60); }
+    const gE = new THREE.BufferGeometry(); gE.setAttribute("position", new THREE.BufferAttribute(pe, 3));
+    scene.add(new THREE.Points(gE, new THREE.PointsMaterial({ color: "#d8dcff", size: .5, fog: false })));
+
+    // Le village : maisons, toits, fenêtres
+    const nbM = mobile ? 110 : 220, maisons = [];
+    const geoB = new THREE.BoxGeometry(1, 1, 1), geoT = new THREE.ConeGeometry(.75, .5, 4);
+    const instB = new THREE.InstancedMesh(geoB, new THREE.MeshStandardMaterial({ color: "#6b5068", roughness: .95 }), nbM);
+    const instT = new THREE.InstancedMesh(geoT, new THREE.MeshStandardMaterial({ color: "#5a2e2a", roughness: .9 }), nbM);
+    const o = new THREE.Object3D(), coul = new THREE.Color();
+    for (let i = 0; i < nbM; i++) {
+      let x, z; do { x = entre(-70, 70); z = entre(-75, 2); } while (Math.abs(x) < 9 && z > -6);
+      const w = entre(3, 6), d = entre(3, 6), h = entre(3, 7);
+      o.position.set(x, h / 2, z); o.rotation.set(0, Math.round(alea()) * Math.PI / 2, 0); o.scale.set(w, h, d); o.updateMatrix(); instB.setMatrixAt(i, o.matrix);
+      instB.setColorAt(i, coul.setHSL(entre(.02, .1), entre(.25, .4), entre(.3, .45)));
+      o.position.set(x, h + w * .25, z); o.rotation.set(0, Math.PI / 4 + o.rotation.y, 0); o.scale.set(w * .98, w, d * .98); o.updateMatrix(); instT.setMatrixAt(i, o.matrix);
+      maisons.push({ x, z, h, w, d });
+    }
+    scene.add(instB, instT);
+
+    const fen = [], fenCouleurs = [];
+    maisons.forEach(m => { const n = 1 + Math.floor(alea() * 3); for (let k = 0; k < n; k++) fen.push(m.x + entre(-m.w / 3, m.w / 3), entre(1.2, m.h - .8), m.z + m.d / 2 + .05); });
+    const gF = new THREE.BufferGeometry(); gF.setAttribute("position", new THREE.Float32BufferAttribute(fen, 3));
+    const matF = new THREE.PointsMaterial({ color: "#ffb35c", size: mobile ? .9 : .7, transparent: true, opacity: 0, toneMapped: false });
+    scene.add(new THREE.Points(gF, matF));
+
+    // L'atelier au premier plan
+    const atelier = new THREE.Group();
+    const mur = new THREE.Mesh(new THREE.BoxGeometry(10, 5, 4), new THREE.MeshStandardMaterial({ color: "#3a2f45", roughness: .95 })); mur.position.y = 2.5; atelier.add(mur);
+    const toitA = new THREE.Mesh(new THREE.BoxGeometry(10.8, .5, 4.8), new THREE.MeshStandardMaterial({ color: "#4a2a26" })); toitA.position.y = 5.2; atelier.add(toitA);
+    const vitreMat = new THREE.MeshBasicMaterial({ color: new THREE.Color("#ffb35c").multiplyScalar(1.05), toneMapped: false });
+    for (const x of [-2.9, 2.9]) { const v = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 2.2), vitreMat); v.position.set(x, 2.3, 2.02); atelier.add(v); }
+    const porte = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 3), new THREE.MeshStandardMaterial({ color: "#1d1a2b" })); porte.position.set(0, 1.5, 2.02); atelier.add(porte);
+    const enseigne = new THREE.Mesh(new THREE.PlaneGeometry(4.2, .8), new THREE.MeshBasicMaterial({ map: texte("ATELIER", { w: 512, h: 96, fond: "rgba(24,20,40,1)", bord: "rgba(255,182,97,.9)", couleur: "#ffcf8a", police: "600 54px Georgia, serif" }), toneMapped: false }));
+    enseigne.position.set(0, 4.25, 2.03); atelier.add(enseigne);
+    atelier.position.set(0, 0, 5); scene.add(atelier);
+    const lumAtelier = new THREE.PointLight("#ffa956", 30, 25, 1.6); lumAtelier.position.set(0, 3, 9); scene.add(lumAtelier);
+
+    // Les recherches qui montent des toits
+    const recherches = ["plombier marseille 13013 urgence", "traiteur mariage aix", "électricien aix devis", "restaurant ouvert ce soir", "pharmacie de garde gardanne", "fleuriste cours julien", "coiffeur rdv samedi", "wedding cake marseille"];
+    const bulles = recherches.map((r, i) => {
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: texte("🔍  " + r, { w: 768, h: 96, police: "500 32px Inter, sans-serif" }), transparent: true, opacity: 0, depthWrite: false }));
+      s.scale.set(16, 2, 1); const m = maisons[(i * 23) % maisons.length];
+      s.userData = { x: (i % 2 ? 1 : -1) * entre(6, 22), y0: entre(9, 16), z: entre(-30, -4), d: i * .02 }; scene.add(s); return s;
+    });
+
+    // Le réseau : arcs lumineux entre les commerces qui ont un site
+    const noeuds = maisons.filter((_, i) => i % 6 === 0).map(m => new THREE.Vector3(m.x, m.h + 1.2, m.z));
+    const arcs = [];
+    noeuds.forEach((a, i) => noeuds.forEach((b, j) => {
+      if (j > i && a.distanceTo(b) < 26) {
+        const mil = a.clone().add(b).multiplyScalar(.5); mil.y += a.distanceTo(b) * .35;
+        const pts = new THREE.QuadraticBezierCurve3(a, mil, b).getPoints(14);
+        for (let k = 0; k < pts.length - 1; k++) arcs.push(pts[k], pts[k + 1]);
+      }
+    }));
+    const gA = new THREE.BufferGeometry().setFromPoints(arcs); gA.setDrawRange(0, 0);
+    scene.add(new THREE.LineSegments(gA, new THREE.LineBasicMaterial({ color: "#b49cff", transparent: true, opacity: .75, toneMapped: false })));
+    const gN = new THREE.BufferGeometry().setFromPoints(noeuds);
+    const matN = new THREE.PointsMaterial({ color: "#ffd08a", size: 2.2, transparent: true, opacity: 0, toneMapped: false, depthWrite: false });
+    scene.add(new THREE.Points(gN, matN));
+
+    // Les sites qui flottent au-dessus de la ville
+    const miniSite = (teinte, titre) => {
+      const c = document.createElement("canvas"); c.width = 512; c.height = 340; const g = c.getContext("2d");
+      g.fillStyle = "#f8f3ea"; g.beginPath(); g.roundRect(0, 0, 512, 340, 18); g.fill();
+      g.fillStyle = "#1d1b3a"; g.fillRect(0, 0, 512, 34); g.fillStyle = "#ff6b6b"; [16, 32, 48].forEach((x, k) => { g.fillStyle = ["#ff6b6b", "#ffd166", "#06d6a0"][k]; g.beginPath(); g.arc(x, 17, 5, 0, 7); g.fill(); });
+      g.fillStyle = teinte; g.fillRect(24, 60, 220, 150);
+      g.fillStyle = "#1d1b3a"; g.font = "600 30px Georgia, serif"; g.fillText(titre, 264, 92);
+      g.fillStyle = "#8a86a3"; for (let k = 0; k < 4; k++) g.fillRect(264, 112 + k * 18, 200 - k * 30, 8);
+      g.fillStyle = teinte; g.beginPath(); g.roundRect(264, 190, 140, 34, 17); g.fill();
+      g.fillStyle = "#d9d3c7"; for (let k = 0; k < 3; k++) g.fillRect(24 + k * 160, 236, 144, 80);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+    };
+    const sites = [["#c86b4a", "Le Cabanon"], ["#3f6b46", "Pharmacie"], ["#b4904a", "Plomberie"], ["#7a4a8c", "Traiteur"], ["#4a6a9c", "Coiffure"], ["#a0524a", "Boulangerie"], ["#5a8a7a", "Fleuriste"]].map(([c, t], i, arr) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(6, 4), new THREE.MeshBasicMaterial({ map: miniSite(c, t), color: "#8d8a98", transparent: true, opacity: 0, side: THREE.DoubleSide }));
+      const a = (i / arr.length) * Math.PI * 2; m.userData = { a, r: i === 0 ? 0 : 17 };
+      scene.add(m); return m;
+    });
+
+    const composer = new EffectComposer(renderer); composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), .75, .55, .6)); composer.addPass(new OutputPass());
+    const taille = () => { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); composer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    addEventListener("resize", taille); taille();
+
+    // Trajectoire de la caméra (position, cible) le long du récit
+    const chemin = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 2.4, 22), new THREE.Vector3(0, 7, 24), new THREE.Vector3(0, 30, 34), new THREE.Vector3(0, 30, 14), new THREE.Vector3(0, 16, 2)]);
+    const vise = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 4, -60), new THREE.Vector3(0, 3, -20), new THREE.Vector3(0, 0, -25), new THREE.Vector3(0, 8, -25), new THREE.Vector3(0, 14, -22)]);
+    const centre = new THREE.Vector3(0, 14, -22);
+    let visible = true; new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(section);
+    const prog = () => { const r = section.getBoundingClientRect(); return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight))); };
+    const souris = { x: 0, y: 0, cx: 0, cy: 0 }; addEventListener("pointermove", e => { souris.x = e.clientX / innerWidth - .5; souris.y = e.clientY / innerHeight - .5; });
+
+    const image = (t) => {
+      const p = calme ? .7 : prog();
+      souris.cx += (souris.x - souris.cx) * .05; souris.cy += (souris.y - souris.cy) * .05;
+      const q = lisse(0, 1, p);
+      camera.position.copy(chemin.getPoint(q)).add(new THREE.Vector3(souris.cx * 3, -souris.cy * 1.5, 0));
+      camera.lookAt(vise.getPoint(q));
+
+      matF.opacity = lisse(.04, .3, p) * (.85 + Math.sin(t * .002) * .05);
+      bulles.forEach((b, i) => { const u = b.userData, a = lisse(.3 + u.d, .4 + u.d, p) * (1 - lisse(.58, .66, p));
+        b.material.opacity = a; b.position.set(u.x, u.y0 + lisse(.3, .66, p) * 6 + Math.sin(t * .001 + i) * .3, u.z); });
+      gA.setDrawRange(0, Math.floor(arcs.length * lisse(.55, .78, p) / 2) * 2);
+      matN.opacity = lisse(.55, .65, p) * (.8 + Math.sin(t * .004) * .2);
+      sites.forEach((s, i) => { const u = s.userData, a = lisse(.62 + i * .015, .74 + i * .015, p);
+        const ang = u.a + t * .00008;
+        s.position.set(centre.x + Math.cos(ang) * u.r, centre.y + (u.r ? Math.sin(t * .001 + i) * .6 - 2 : 0), centre.z + Math.sin(ang) * u.r * .6);
+        s.scale.setScalar(i === 0 ? .6 + lisse(.82, 1, p) * 1.2 : 1);
+        s.material.opacity = a * (i === 0 ? 1 : 1 - lisse(.88, .98, p)); s.lookAt(camera.position); });
+
+      const f = (a, b, c, d) => lisse(a, b, p) * (1 - lisse(c, d, p));
+      const op = [1 - lisse(.12, .2, p), f(.26, .32, .5, .56), f(.62, .68, .82, .88), lisse(.9, .96, p)];
+      textes.forEach((el, i) => { el.style.opacity = calme ? (i === 2 ? 1 : 0) : op[i]; });
+      composer.render();
+    };
+    const boucle = (t) => { if (visible) image(t); if (!calme) requestAnimationFrame(boucle); };
+    requestAnimationFrame(boucle); if (calme) image(0);
   }
 </script>
+
 <script>
   const calme2 = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lancer = () => {

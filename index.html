@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'enseigne — Sites web pour prestataires de mariage, artisans et commerçants · Marseille, Aix, 13</title>
-<meta name="description" content="Création de sites internet pour prestataires de mariage, artisans et commerçants des Bouches-du-Rhône : demandes de devis, calendrier des disponibilités, réservation, référencement local. Maquette offerte, sans engagement.">
+<title>Création de site internet à Marseille et Aix | L'enseigne</title>
+<meta name="description" content="Sites internet pour artisans, commerçants et prestataires de mariage du 13 : demandes de devis, fiche Google, 89 €/mois tout compris. Maquette offerte.">
 <link rel="canonical" href="https://lenseigneweb.fr/">
 <meta property="og:image" content="https://lenseigneweb.fr/images/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -15,6 +15,7 @@
 <meta property="og:title" content="L'enseigne — Sites web pour prestataires de mariage, artisans et commerçants du 13">
 <meta property="og:description" content="Des sites qui transforment vos visiteurs en demandes de devis. Maquette offerte, sans engagement. Marseille, Aix et tout le 13.">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="L'enseigne">
 <meta property="og:type" content="website">
 <meta name="geo.region" content="FR-13">
 <meta name="geo.placename" content="Marseille">
@@ -25,6 +26,8 @@
   "name": "L'enseigne",
   "description": "Création de sites internet pour prestataires de mariage, artisans et commerçants des Bouches-du-Rhône : demandes de devis, calendrier des disponibilités, réservation et référencement local.",
   "url": "https://lenseigneweb.fr/",
+  "image": "https://lenseigneweb.fr/images/og.jpg",
+  "sameAs": ["https://www.instagram.com/lenseigne.web/"],
   "telephone": "+33695944217",
   "email": "pierre.pignon@outlook.fr",
   "address": {"@type": "PostalAddress", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"},
@@ -106,6 +109,38 @@
     transition: transform 0.15s, box-shadow 0.15s;
   }
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(var(--glow-warm), 0.3); }
+
+  /* Menu mobile : bouton à deux traits + panneau déroulant sous la barre */
+  .nav-burger {
+    display: none; position: relative; width: 40px; height: 40px; margin-left: 4px;
+    border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,0.04);
+    cursor: pointer; flex-shrink: 0;
+  }
+  .nav-burger span {
+    position: absolute; left: 11px; right: 11px; height: 1.5px; border-radius: 2px;
+    background: var(--ink); transition: transform 0.25s, top 0.25s;
+  }
+  .nav-burger span:nth-child(1) { top: 15px; }
+  .nav-burger span:nth-child(2) { top: 23px; }
+  .nav-burger[aria-expanded="true"] span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+  .nav-burger[aria-expanded="true"] span:nth-child(2) { top: 19px; transform: rotate(-45deg); }
+  .nav-burger:focus-visible, .nav-mobile a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nav-mobile {
+    max-width: 1280px; margin: 14px auto 0; padding: 8px 0 4px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column;
+  }
+  .nav-mobile[hidden] { display: none; }
+  .nav-mobile a {
+    padding: 14px 4px; font-size: 17px; font-weight: 500; color: var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-mobile a:last-child { border-bottom: 0; }
+  .nav-mobile-cta {
+    margin-top: 14px; text-align: center; border-radius: 99px;
+    background: var(--accent); color: var(--bg) !important; font-weight: 700 !important; font-size: 15px !important;
+  }
+  @media (min-width: 901px) { .nav-mobile { display: none !important; } }
 
   /* 1. Scène 3D : la rue */
   .rue{height:260vh;padding:0;position:relative}
@@ -416,6 +451,10 @@
   }
   .foot-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
   .foot-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink-dim); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .foot-links a { color: var(--ink-dim); transition: color 0.2s; }
+  .foot-links a:hover { color: var(--accent); }
+  .foot-links span { color: var(--ink-mute); }
 
   /* ============ PORTFOLIO IFRAMES (VRAIS SITES) ============ */
   .work-preview-iframe {
@@ -861,6 +900,8 @@
   /* ============ RESPONSIVE ============ */
   @media (max-width: 900px) {
     .nav-links a:not(.nav-cta) { display: none; }
+    .nav-burger { display: block; }
+    nav.top { padding: 14px 18px; }
     .scene-h { letter-spacing: -1.5px; }
     .browser-zoom { width: 94vw; }
     .bz-hero { grid-template-columns: 1fr; }
@@ -997,11 +1038,23 @@
     <a href="#" class="brand"><span class="brand-dot"></span>L'enseigne</a>
     <div class="nav-links">
       <a href="#pour-qui">Pour qui</a>
-      <a href="#portfolio">Travail</a>
+      <a href="#portfolio">Réalisations</a>
       <a href="#formules">Formules</a>
       <a href="/demo-effets">Démo</a>
       <a href="#contact" class="nav-cta">Démarrer un projet</a>
+      <button type="button" class="nav-burger" id="nav-burger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
     </div>
+  </div>
+  <div class="nav-mobile" id="nav-mobile" hidden>
+    <a href="#pour-qui">Pour qui</a>
+    <a href="#portfolio">Réalisations</a>
+    <a href="#formules">Formules</a>
+    <a href="#process">Méthode</a>
+    <a href="#zone">Zone d'intervention</a>
+    <a href="/demo-effets">Démo d'effets visuels <span aria-hidden="true">→</span></a>
+    <a href="#contact" class="nav-mobile-cta">Demander ma maquette offerte</a>
   </div>
 </nav>
 
@@ -1503,7 +1556,13 @@
         <span class="brand-dot" style="width:6px; height:6px;"></span>
         L'enseigne — Sites web pour artisans &amp; commerçants des Bouches-du-Rhône
       </div>
-      <div>© 2026 · <a href="/mentions-legales">Mentions légales</a></div>
+      <nav class="foot-links" aria-label="Liens du pied de page">
+        <a href="/site-internet-restaurant-marseille">Site pour restaurant à Marseille</a>
+        <a href="/demo-effets">Démo d'effets visuels</a>
+        <a href="https://www.instagram.com/lenseigne.web/" target="_blank" rel="noopener">Instagram</a>
+        <a href="/mentions-legales">Mentions légales</a>
+        <span>© 2026</span>
+      </nav>
     </div>
   </div>
 </footer>
@@ -1774,6 +1833,20 @@
       if (el) { e.preventDefault(); e.stopImmediatePropagation(); lenis.scrollTo(el, { offset: -10, duration: 1.2 }); }
     }, true));
   }
+  // Menu mobile : ouverture, fermeture au clic sur un lien, avec Échap ou en touchant ailleurs
+  const burger = document.getElementById('nav-burger'), panneau = document.getElementById('nav-mobile');
+  const ouvrir = (oui) => {
+    burger.setAttribute('aria-expanded', String(oui));
+    burger.setAttribute('aria-label', oui ? 'Fermer le menu' : 'Ouvrir le menu');
+    panneau.hidden = !oui;
+  };
+  burger.addEventListener('click', () => ouvrir(burger.getAttribute('aria-expanded') !== 'true'));
+  // Phase de capture : se déclenche avant le défilement fluide, qui bloque la suite du clic
+  panneau.addEventListener('click', (e) => { if (e.target.closest('a')) ouvrir(false); }, true);
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panneau.hidden) { ouvrir(false); burger.focus(); } });
+  document.addEventListener('click', (e) => { if (!panneau.hidden && !e.target.closest('nav.top')) ouvrir(false); });
+  matchMedia('(min-width: 901px)').addEventListener('change', (m) => { if (m.matches) ouvrir(false); });
+
   // Bouton « Passer l'introduction » visible seulement pendant les actes
   const btn = document.getElementById('passer-intro'), cible = document.getElementById('pour-qui');
   const maj = () => btn.classList.toggle('cache', cible.getBoundingClientRect().top < innerHeight * 0.9);

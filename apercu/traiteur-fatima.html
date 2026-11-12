@@ -168,6 +168,36 @@ const CONFIG = {
   @media(max-width:640px){.galerie{grid-template-columns:repeat(2,1fr)}.galerie div{transform:none!important}}
 
   .bande{background:var(--doux)}
+  .menuCarte{max-width:560px;margin:40px auto 0;background:#2b2523;color:#f3ece6;padding:38px 28px;border-radius:4px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45);text-align:center}
+  .mc-titre{font-family:"Cormorant Garamond",serif;font-size:28px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(243,236,230,.35);display:inline-block;padding:8px 18px;margin-bottom:22px}
+  .menuCarte ul{list-style:none}
+  .menuCarte li{padding:12px 0;border-bottom:1px solid rgba(243,236,230,.12)}
+  .menuCarte li:last-child{border:0}
+  .menuCarte b{display:block;font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;color:var(--accent)}
+  .menuCarte span{font-size:15px;opacity:.85}
+  .calc{max-width:560px;margin:28px auto 0;background:#fff;border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);padding:30px 24px;border-radius:4px}
+  .calc h3{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:500}
+  .calc-n{display:flex;align-items:center;gap:16px;margin:18px 0 22px}
+  .calc-n input{flex:1;accent-color:var(--accent)}
+  .calc-n output{font-family:"Cormorant Garamond",serif;font-size:34px;min-width:70px;color:var(--accent)}
+  .calc-res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .calc-res div{background:var(--doux);padding:14px 6px;border-radius:3px}
+  .calc-res strong{display:block;font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:600}
+  .calc-res span{font-size:12.5px;line-height:1.3;display:block;opacity:.8}
+  .calc-note{font-size:14px;opacity:.75;margin:16px 0 20px}
+  .cal{max-width:420px;margin:0 auto 34px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:18px;border-radius:4px}
+  .cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .cal-h b{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;text-transform:capitalize}
+  .cal-h button{background:none;border:1px solid rgba(255,255,255,.3);color:inherit;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer}
+  .cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;font-size:13px}
+  .cal-g .j{opacity:.55;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding-bottom:4px}
+  .cal-g button{aspect-ratio:1;border:0;border-radius:50%;background:transparent;color:inherit;opacity:.35;font:inherit}
+  .cal-g button.we{opacity:1;background:rgba(255,255,255,.1);cursor:pointer}
+  .cal-g button.on{background:var(--accent);color:#fff}
+  .cal-l{font-size:12.5px;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .pt{width:12px;height:12px;border-radius:50%;display:inline-block;background:rgba(255,255,255,.25)}
+  .wa{position:fixed;right:16px;bottom:56px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.45)}
+  .wa svg{width:30px;height:30px;fill:#fff}
   .etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;counter-reset:e}
   @media(max-width:860px){.etapes{grid-template-columns:1fr}}
   .etapes div{counter-increment:e}
@@ -218,6 +248,36 @@ const CONFIG = {
   <div class="grid3" id="formulesGrid"></div>
 </div></section>
 
+<!-- Menu mariage (repris de la carte publiée par Traiteur Fatima) + calculateur -->
+<section id="menu" class="bande"><div class="wrap center">
+  <div class="eyebrow">Le repas de mariage</div><h2>Ce que nous vous proposons</h2>
+  <div class="menuCarte">
+    <div class="mc-titre">Traiteur Fatima Mariage</div>
+    <ul>
+      <li><b>Cocktail de bienvenue</b><span>pièces sucrées et salées, 7 par personne</span></li>
+      <li><b>Entrée</b><span>salade composée variée, au choix</span></li>
+      <li><b>Plat</b><span>au choix</span></li>
+      <li><b>Dessert</b><span>plateau de fruits de saison</span></li>
+      <li><b>Boissons</b><span>4 boissons par table, au choix</span></li>
+      <li><b>Thé et café</b><span>à disposition des convives du début à la fin</span></li>
+      <li><b>Service inclus</b><span>serveurs et serveuses</span></li>
+    </ul>
+  </div>
+
+  <div class="calc" id="calc">
+    <div class="eyebrow" style="margin-bottom:6px">Simulateur</div>
+    <h3>Combien d'invités ?</h3>
+    <div class="calc-n"><input type="range" id="cInv" min="20" max="500" step="10" value="150"><output id="cInvOut">150</output></div>
+    <div class="calc-res">
+      <div><strong id="rPieces">1 050</strong><span>pièces de cocktail</span></div>
+      <div><strong id="rTables">15</strong><span>tables de 10</span></div>
+      <div><strong id="rBoissons">60</strong><span>boissons servies à table</span></div>
+    </div>
+    <p class="calc-note">Entrée, plat, dessert, thé, café et service compris pour chaque invité.</p>
+    <a class="btn" href="#devis" id="cGo">Demander ce menu</a>
+  </div>
+</div></section>
+
 <section id="galerie" class="bande"><div class="wrap center">
   <div class="eyebrow">Réalisations</div><h2 data-t="titreGalerie"></h2>
   <div class="galerie" id="galerieGrid"></div>
@@ -240,7 +300,12 @@ const CONFIG = {
 
 <section class="devis" id="devis"><div class="wrap center">
   <div class="eyebrow">Demande de devis</div><h2>Parlons de votre mariage</h2>
-  <p class="note" data-t="datesComplete"></p>
+  <div class="cal" id="cal">
+    <div class="cal-h"><button type="button" id="calPrev" aria-label="Mois précédent">‹</button><b id="calMois"></b><button type="button" id="calNext" aria-label="Mois suivant">›</button></div>
+    <div class="cal-g" id="calGrid"></div>
+    <p class="cal-l"><span class="pt libre"></span> Vendredis, samedis et dimanches : touchez une date pour la choisir</p>
+    <p class="cal-l" style="opacity:.7">Relié à votre agenda, ce calendrier afficherait automatiquement vos dates déjà réservées.</p>
+  </div>
   <form id="f">
     <div><label>Prénoms des mariés</label><input name="noms" required></div>
     <div><label>Date du mariage</label><input type="date" name="date" required></div>
@@ -281,6 +346,25 @@ const CONFIG = {
   $("#fMail").href="mailto:"+C.email; $("#fMail").textContent=C.email;
   $("#an").textContent=new Date().getFullYear();
 
+  // Simulateur : 7 pièces de cocktail par personne, tables de 10, 4 boissons par table (carte du traiteur)
+  const fmt=n=>n.toLocaleString("fr-FR");
+  const majCalc=()=>{const n=+$("#cInv").value, t=Math.ceil(n/10);
+    $("#cInvOut").textContent=n; $("#rPieces").textContent=fmt(n*7); $("#rTables").textContent=t; $("#rBoissons").textContent=fmt(t*4);};
+  $("#cInv").addEventListener("input",majCalc); majCalc();
+  $("#cGo").addEventListener("click",()=>{const n=$("#cInv").value; $("#f").invites.value=n;
+    $("#f").message.value=`Menu mariage complet pour ${n} invités : cocktail (${fmt(n*7)} pièces), entrée, plat, dessert, boissons, thé et café, service.`;});
+  // Calendrier : vendredis, samedis, dimanches sélectionnables ; un clic remplit la date du formulaire
+  let cm=new Date(); cm=new Date(cm.getFullYear(),cm.getMonth()+1,1);
+  const dessineCal=()=>{const y=cm.getFullYear(), m=cm.getMonth(), nb=new Date(y,m+1,0).getDate(), dec=(new Date(y,m,1).getDay()+6)%7;
+    $("#calMois").textContent=cm.toLocaleDateString("fr-FR",{month:"long",year:"numeric"});
+    let h=["L","M","M","J","V","S","D"].map(j=>`<span class="j">${j}</span>`).join("")+"<span></span>".repeat(dec);
+    for(let d=1;d<=nb;d++){const w=new Date(y,m,d).getDay(), iso=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+      h+=`<button type="button" data-d="${iso}" class="${[5,6,0].includes(w)?"we":""}${$("#f").date.value===iso?" on":""}" ${[5,6,0].includes(w)?"":"disabled"}>${d}</button>`;}
+    $("#calGrid").innerHTML=h;};
+  $("#calGrid").addEventListener("click",e=>{const b=e.target.closest("button.we"); if(!b) return; $("#f").date.value=b.dataset.d; dessineCal();});
+  $("#calPrev").addEventListener("click",()=>{cm=new Date(cm.getFullYear(),cm.getMonth()-1,1); dessineCal();});
+  $("#calNext").addEventListener("click",()=>{cm=new Date(cm.getFullYear(),cm.getMonth()+1,1); dessineCal();});
+  dessineCal();
   $("#f").addEventListener("submit",async e=>{
     e.preventDefault(); const d=Object.fromEntries(new FormData(e.target));
     const sujet=`Demande de devis mariage — ${d.noms} — ${d.date} — ${d.invites} invités`;
@@ -295,6 +379,7 @@ const CONFIG = {
 })();
 </script>
 <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;background:#1f1a18;color:#f3ece6;font:400 12.5px/1.4 Jost,system-ui,sans-serif;text-align:center;padding:9px 14px">Aperçu offert par <a href="https://lenseigneweb.fr" style="color:#e6c98f">L'enseigne</a> · photos d'illustration, remplacées par les vôtres</div>
+<a class="wa" href="https://wa.me/33644955792?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20mon%20mariage" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg></a>
 <div style="height:40px"></div>
 </body>
 </html>

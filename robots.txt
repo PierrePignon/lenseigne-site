@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /apercu/
 
 Sitemap: https://lenseigneweb.fr/sitemap.xml

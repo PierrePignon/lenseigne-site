@@ -105,16 +105,32 @@ const CONFIG = {
   ],
   "faq": [
     [
-      "Quels événements préparez-vous ?",
-      "Mariages, fiançailles, henné, anniversaires et réceptions : tous types d'événements."
+      "Que comprend le menu de mariage ?",
+      "Un cocktail de bienvenue (7 pièces sucrées et salées par personne), une entrée, un plat au choix, un plateau de fruits de saison en dessert, 4 boissons par table, ainsi que le thé et le café du début à la fin."
+    ],
+    [
+      "Le service est-il compris ?",
+      "Oui : les serveurs et serveuses sont inclus dans la prestation."
+    ],
+    [
+      "Peut-on choisir l'entrée et le plat ?",
+      "Oui, l'entrée et le plat sont au choix. Nous les définissons ensemble selon vos envies et vos invités."
+    ],
+    [
+      "Pour combien d'invités pouvez-vous préparer ?",
+      "Indiquez votre nombre d'invités dans le simulateur ou le formulaire : nous vous confirmons rapidement ce qui est possible pour votre date."
+    ],
+    [
+      "Préparez-vous d'autres événements que les mariages ?",
+      "Oui, tous types d'événements : fiançailles, henné, anniversaires, réceptions… avec 15 ans d'expérience dans le mariage."
     ],
     [
       "Où intervenez-vous ?",
       "En Île-de-France. Les conditions sont précisées dans le devis."
     ],
     [
-      "Comment réserver ?",
-      "Indiquez votre date et votre nombre d'invités dans le formulaire, ou appelez directement."
+      "Comment réserver votre date ?",
+      "Choisissez votre date dans le calendrier, indiquez votre nombre d'invités et envoyez la demande, ou écrivez directement sur WhatsApp."
     ]
   ]
 };
@@ -233,6 +249,22 @@ const CONFIG = {
   .galerie-aide{display:none;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-top:14px}
   @media(max-width:760px){.galerie-aide{display:block}}
 
+
+  /* Logo + halo doré « liquide » */
+  .marque{display:flex;align-items:center;gap:10px}
+  .nlogo{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 40%,transparent)}
+  .logoh{position:relative;width:120px;height:120px;margin:0 auto 22px}
+  .logoh img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;box-shadow:0 14px 34px -10px rgba(0,0,0,.6)}
+  .blob,.blob::after{position:absolute;border-radius:42% 58% 63% 37%/41% 44% 56% 59%}
+  .blob{inset:-18px;background:linear-gradient(135deg,#f6e2b0,#c9a052 40%,#7d5b28 72%,#e7c785);opacity:.92;
+    animation:liquide 9s ease-in-out infinite,tourne 16s linear infinite;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
+  .blob::after{content:"";inset:10px;background:radial-gradient(circle at 30% 30%,rgba(255,244,214,.85),rgba(201,160,82,0) 60%);animation:liquide 7s ease-in-out infinite reverse}
+  @keyframes liquide{0%,100%{border-radius:42% 58% 63% 37%/41% 44% 56% 59%}33%{border-radius:63% 37% 41% 59%/58% 62% 38% 42%}66%{border-radius:37% 63% 52% 48%/63% 39% 61% 37%}}
+  @keyframes tourne{to{transform:rotate(360deg)}}
+  @media(max-width:520px){.logoh{width:96px;height:96px;margin-bottom:16px}}
+  @media(max-width:420px){nav .logo{font-size:21px}.nlogo{width:34px;height:34px}}
+  @media(prefers-reduced-motion:reduce){.blob,.blob::after{animation:none}}
+
   /* ===== Animations ===== */
   .hero .bg{animation:kb 22s ease-in-out infinite alternate;transform-origin:60% 40%}
   @keyframes kb{from{transform:scale(1)}to{transform:scale(1.14)}}
@@ -293,11 +325,12 @@ const CONFIG = {
 </style>
 </head>
 <body>
-<nav><div class="wrap"><a class="logo" href="#" data-t="nom"></a>
+<nav><div class="wrap"><span class="marque"><img class="nlogo" src="img-fatima/logo.webp" alt="" width="40" height="40"><a class="logo" href="#" data-t="nom"></a></span>
   <ul><li><a href="#formules" data-t="surtitreFormules"></a></li><li><a href="#galerie">Réalisations</a></li><li><a href="#faq">Questions</a></li></ul>
   <a class="btn" href="#devis">Devis</a></div></nav>
 
 <header class="hero"><div class="bg" id="heroBg"></div><div class="cadre" aria-hidden="true"></div><div class="in">
+  <div class="logoh"><span class="blob" aria-hidden="true"></span><img src="img-fatima/logo.webp" alt="Logo Fatima Mariage" width="120" height="120"></div>
   <div class="eyebrow"><span data-t="metier"></span> · <span data-t="ville"></span></div>
   <h1 data-t="nom"></h1><p data-t="accroche"></p>
   <a class="btn" href="#devis">Demander un devis</a><a class="btn ghost" href="#galerie" data-t="ctaGalerie"></a>
@@ -331,8 +364,8 @@ const CONFIG = {
     <div class="calc-n"><input type="range" id="cInv" min="20" max="500" step="10" value="150"><output id="cInvOut">150</output></div>
     <div class="calc-res">
       <div><strong id="rPieces">1 050</strong><span>pièces de cocktail</span></div>
-      <div><strong id="rTables">15</strong><span>tables de 10</span></div>
-      <div><strong id="rBoissons">60</strong><span>boissons servies à table</span></div>
+      <div><strong id="rTables">15</strong><span>tables (10 invités par table)</span></div>
+      <div><strong id="rBoissons">60</strong><span>boissons à table (4 par table)</span></div>
     </div>
     <p class="calc-note">Entrée, plat, dessert, thé, café et service compris pour chaque invité.</p>
     <a class="btn" href="#devis" id="cGo">Demander ce menu</a>

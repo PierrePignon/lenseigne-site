@@ -33,6 +33,11 @@ const CONFIG = {
   "ville": "Showroom Marseille 15e",
   "accroche": "Des tenues orientales d'exception à louer pour vos mariages, fiançailles et hennés. Essayages sur rendez-vous.",
   "photoHero": "img-elkara/hero-cheval.webp",
+  "diaporama": [
+    "img-elkara/hero-cheval.webp",
+    "img-elkara/blanc-rouge.webp",
+    "img-elkara/noir-or.webp"
+  ],
   "instagram": "el_kara13",
   "telephone": "",
   "email": "",
@@ -406,6 +411,45 @@ const CONFIG = {
   .acces-photo{aspect-ratio:4/3;border-radius:6px;background:center/cover;box-shadow:0 26px 50px -30px rgba(0,0,0,.6)}
   .acces-adr{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.25}
   .wa.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+
+  /* ===== Version « magazine » ===== */
+  .hero.edito{min-height:100svh;background:#120e0c}
+  .slides,.slides .sl{position:absolute;inset:0}
+  .slides .sl{background:center 30%/cover;opacity:0;transform:scale(1.12);transition:opacity 1.6s ease,transform 7s ease-out}
+  .slides .sl.on{opacity:1;transform:scale(1)}
+  .slides::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,7,6,.35) 0%,rgba(10,7,6,.15) 40%,rgba(10,7,6,.78) 100%)}
+  #paillettes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  .hero.edito .in{align-self:end;padding-bottom:84px}
+  .hero.edito h1{font-size:clamp(76px,19vw,168px);letter-spacing:.04em;line-height:.9;font-weight:500;margin:10px 0 18px;text-transform:uppercase}
+  .hero.edito .eyebrow{letter-spacing:.35em}
+  .hero.edito p{max-width:520px;margin:0 auto 30px}
+  .pts{position:absolute;left:0;right:0;bottom:54px;display:flex;justify-content:center;gap:8px;z-index:2}
+  .pts i{width:22px;height:2px;background:rgba(255,255,255,.35);transition:background .6s,width .6s}
+  .pts i.on{background:#e2c27d;width:38px}
+  .btn.ghost.or{color:#e2c27d;border-color:rgba(226,194,125,.6)}
+
+  .defile{background:#1a1512;color:#e2c27d;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(226,194,125,.25);border-bottom:1px solid rgba(226,194,125,.25)}
+  .defile-in{display:inline-flex;animation:defile 32s linear infinite;padding:16px 0}
+  .defile span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;padding:0 26px;position:relative}
+  .defile span::after{content:"✦";font-style:normal;font-size:11px;position:absolute;right:-6px;top:50%;transform:translateY(-50%);opacity:.7}
+  @keyframes defile{to{transform:translateX(-50%)}}
+
+  .maison{background:var(--fond)}
+  .manifeste{font-family:"Cormorant Garamond",serif;font-size:clamp(44px,9vw,84px);line-height:1.02;margin:18px 0 22px;font-weight:500}
+  .manifeste em{color:var(--accent)}
+  .maison .etapes{margin-top:56px;text-align:center}
+
+  .tenue-img{position:relative;cursor:zoom-in}
+  .loupe{position:absolute;left:10px;bottom:10px;background:rgba(18,14,12,.65);color:#f3e7cf;font:500 10.5px/1 Jost,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(12,9,8,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 16px 24px;opacity:0;transition:opacity .35s}
+  .lb.ouvert{opacity:1}
+  .lb-img{width:min(520px,100%);flex:1;max-height:72vh;background:center/contain no-repeat;transform:scale(.94);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  .lb.ouvert .lb-img{transform:none}
+  .lb-bas{width:min(520px,100%);display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:18px;color:#f8f1e7}
+  .lb-bas b{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500}
+  .lb-bas .ess{width:auto;padding:12px 18px}
+  .lb-x{position:absolute;top:12px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,194,125,.5);background:transparent;color:#f3e7cf;font-size:26px;line-height:1;cursor:pointer}
+  @media(prefers-reduced-motion:reduce){.slides .sl{transition:none}.defile-in{animation:none}}
 </style>
 </head>
 <body>
@@ -413,16 +457,19 @@ const CONFIG = {
   <ul><li><a href="#catalogue">Les tenues</a></li><li><a href="#showroom">Le showroom</a></li><li><a href="#faq">Questions</a></li></ul>
   <a class="btn" href="#essayage">Essayage</a></div></nav>
 
-<header class="hero"><div class="bg" id="heroBg"></div><div class="cadre" aria-hidden="true"></div><div class="in">
-  <div class="eyebrow"><span data-t="metier"></span> · <span data-t="ville"></span></div>
+<header class="hero edito"><div class="slides" id="slides" aria-hidden="true"></div><canvas id="paillettes" aria-hidden="true"></canvas><div class="cadre" aria-hidden="true"></div><div class="in">
+  <div class="eyebrow"><span data-t="metier"></span></div>
   <h1 data-t="nom"></h1><p data-t="accroche"></p>
   <a class="btn" href="#essayage">Réserver un essayage</a><a class="btn ghost" href="#catalogue">Voir les tenues</a>
-</div></header>
+</div><div class="pts" id="pts" aria-hidden="true"></div></header>
 
-<section id="formules"><div class="wrap center">
-  <div class="eyebrow" data-t="surtitreFormules"></div><h2 data-t="titreFormules"></h2>
-  <p class="lead" data-t="introFormules"></p>
-  <div class="grid3" id="formulesGrid"></div>
+<div class="defile" aria-hidden="true"><div class="defile-in"><span>Caftans</span><span>Robes brodées</span><span>Tenues traditionnelles</span><span>Mariage</span><span>Fiançailles</span><span>Henné</span><span>Soirées</span><span>Caftans</span><span>Robes brodées</span><span>Tenues traditionnelles</span><span>Mariage</span><span>Fiançailles</span><span>Henné</span><span>Soirées</span></div></div>
+
+<section id="maison" class="maison"><div class="wrap center">
+  <div class="eyebrow">La maison El Kara</div>
+  <p class="manifeste">Brillez le jour J,<br><em>sans acheter.</em></p>
+  <p class="lead">Caftans, robes brodées et tenues traditionnelles à louer pour vos mariages, fiançailles, hennés et soirées. Essayages sur rendez-vous au showroom de Marseille 15e.</p>
+  <div class="etapes" id="etapesGrid"></div>
 </div></section>
 
 <!-- Catalogue filtrable : photos des tenues publiées par El Kara -->
@@ -433,14 +480,10 @@ const CONFIG = {
     <button type="button" class="on" data-f="tout">Toutes</button><button type="button" data-f="or">Dorées</button><button type="button" data-f="couleur">Colorées</button><button type="button" data-f="claire">Claires</button>
   </div>
   <div class="cata" id="cata"></div>
+  <p style="margin-top:40px"><a class="btn ghost or" id="instaLink" target="_blank" rel="noopener">Toutes les tenues sur Instagram</a></p>
 </div></section>
 
-<section id="galerie"><div class="wrap center">
-  <div class="eyebrow">En images</div><h2 data-t="titreGalerie"></h2>
-  <div class="galerie" id="galerieGrid"></div>
-  <p class="galerie-aide">Faites glisser →</p>
-  <p style="margin-top:56px"><a class="btn ghost" id="instaLink" target="_blank" rel="noopener">Plus de tenues sur Instagram</a></p>
-</div></section>
+<div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Fermer">×</button><div class="lb-img" id="lbImg"></div><div class="lb-bas"><b id="lbNom"></b><button type="button" class="ess" id="lbEss"></button></div></div>
 
 <section id="showroom" class="bande"><div class="wrap center">
   <div class="eyebrow">Le showroom</div><h2>Venez essayer sur rendez-vous</h2>
@@ -452,7 +495,6 @@ const CONFIG = {
       <a class="btn" href="https://www.google.com/maps/search/?api=1&query=ZAC%20Plate-forme%2015%20rue%20Augustin%20Roux%2013015%20Marseille" target="_blank" rel="noopener">Itinéraire</a>
     </div>
   </div>
-  <div class="etapes" id="etapesGrid"></div>
 </div></section>
 
 <section class="avis bande" id="avisSec"><div class="wrap center">
@@ -498,9 +540,19 @@ const CONFIG = {
   const r=document.documentElement.style; for(const[k,v]of Object.entries(C.couleurs)) r.setProperty("--"+k,v);
   document.title=C.nom+" — "+C.metier+" · "+C.ville;
   document.querySelectorAll("[data-t]").forEach(e=>e.textContent=C[e.dataset.t]||"");
-  if(C.photoHero) $("#heroBg").style.backgroundImage="url('"+C.photoHero+"')";
-  $("#formulesGrid").innerHTML=C.formules.map(f=>`<div class="card${f.miseEnAvant?" top":""}"><h3>${esc(f.nom)}</h3><div class="prix">${esc(f.prix)}</div><ul>${f.details.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`).join("");
-  $("#galerieGrid").innerHTML=C.galerie.map(p=>`<div style="background-image:url('${esc(p.img)}')" data-l="${esc(p.l)}"></div>`).join("");
+  const calme=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Diaporama d'ouverture : fondu enchaîné + zoom lent
+  $("#slides").innerHTML=C.diaporama.map((s,i)=>`<div class="sl${i?"":" on"}" style="background-image:url('${esc(s)}')"></div>`).join("");
+  $("#pts").innerHTML=C.diaporama.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("");
+  let si=0; const sls=document.querySelectorAll("#slides .sl"), pts=document.querySelectorAll("#pts i");
+  if(!calme && sls.length>1) setInterval(()=>{ sls[si].classList.remove("on"); pts[si].classList.remove("on"); si=(si+1)%sls.length; sls[si].classList.add("on"); pts[si].classList.add("on"); },5200);
+  // Paillettes dorées (légères, coupées si l'utilisateur réduit les animations)
+  (()=>{ const cv=$("#paillettes"); if(calme||!cv.getContext) return; const cx=cv.getContext("2d"); let W,H,P=[];
+    const taille=()=>{ const r=devicePixelRatio||1; W=cv.width=cv.offsetWidth*r; H=cv.height=cv.offsetHeight*r; P=Array.from({length:Math.round(W*H/26000)},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.6+.4)*r,v:(Math.random()*.25+.08)*r,p:Math.random()*6.3})); };
+    taille(); addEventListener("resize",taille);
+    const anim=t=>{ cx.clearRect(0,0,W,H); for(const q of P){ q.y-=q.v; q.x+=Math.sin(t/1800+q.p)*.15; if(q.y<-5){q.y=H+5;q.x=Math.random()*W;}
+        const a=.35+.65*Math.abs(Math.sin(t/700+q.p)); cx.fillStyle=`rgba(243,215,150,${a*.9})`; cx.beginPath(); cx.arc(q.x,q.y,q.r,0,6.3); cx.fill(); }
+      requestAnimationFrame(anim); }; requestAnimationFrame(anim); })();
   $("#etapesGrid").innerHTML=C.etapes.map(([t,d])=>`<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
   if(C.avis.length) $("#avisList").innerHTML=C.avis.map(a=>`<blockquote>« ${esc(a.texte)} »</blockquote><cite>${esc(a.auteur)}</cite>`).join(""); else $("#avisSec").style.display="none";
   $("#faqList").innerHTML=C.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
@@ -514,17 +566,27 @@ const CONFIG = {
     $("#choix").innerHTML=l.length?`<b>${l.length} tenue${l.length>1?"s":""} à essayer :</b> ${l.map(esc).join(", ")}`:"";
     $("#f").message.value=l.length?"Tenues à essayer : "+l.join(", "):""; };
   const dessineCata=f=>{ $("#cata").innerHTML=C.catalogue.filter(t=>f==="tout"||t.tags.includes(f)).map(t=>
-    `<figure class="tenue rv vu"><div class="tenue-img" style="background-image:url('${esc(t.img)}')"></div>
+    `<figure class="tenue"><div class="tenue-img" data-n="${esc(t.nom)}" role="button" tabindex="0" aria-label="Voir ${esc(t.nom)} en grand" style="background-image:url('${esc(t.img)}')"><span class="loupe">Voir en grand</span></div>
       <figcaption><b>${esc(t.nom)}</b><button type="button" class="ess${choisies.has(t.nom)?" on":""}" data-n="${esc(t.nom)}">${choisies.has(t.nom)?"Ajoutée ✓":"L'essayer"}</button></figcaption></figure>`).join(""); };
   $("#filtres").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return;
     document.querySelectorAll("#filtres button").forEach(x=>x.classList.toggle("on",x===b)); dessineCata(b.dataset.f);});
-  $("#cata").addEventListener("click",e=>{const b=e.target.closest(".ess"); if(!b) return; const n=b.dataset.n;
-    choisies.has(n)?choisies.delete(n):choisies.add(n); b.classList.toggle("on",choisies.has(n)); b.textContent=choisies.has(n)?"Ajoutée ✓":"L'essayer"; majChoix();});
+  const bascule=n=>{ choisies.has(n)?choisies.delete(n):choisies.add(n); majChoix();
+    document.querySelectorAll(`.ess[data-n="${CSS.escape(n)}"]`).forEach(b=>{b.classList.toggle("on",choisies.has(n)); b.textContent=choisies.has(n)?"Ajoutée ✓":"L'essayer";});
+    if(!$("#lb").hidden && $("#lbEss").dataset.n===n){ $("#lbEss").classList.toggle("on",choisies.has(n)); $("#lbEss").textContent=choisies.has(n)?"Ajoutée ✓":"L'essayer"; } };
+  // Vue plein écran d'une tenue
+  const ouvre=t=>{ $("#lbImg").style.backgroundImage=`url('${t.img}')`; $("#lbNom").textContent=t.nom; $("#lbEss").dataset.n=t.nom;
+    $("#lbEss").classList.toggle("on",choisies.has(t.nom)); $("#lbEss").textContent=choisies.has(t.nom)?"Ajoutée ✓":"L'essayer";
+    $("#lb").hidden=false; requestAnimationFrame(()=>$("#lb").classList.add("ouvert")); document.body.style.overflow="hidden"; };
+  const ferme=()=>{ $("#lb").classList.remove("ouvert"); document.body.style.overflow=""; setTimeout(()=>$("#lb").hidden=true,350); };
+  $("#cata").addEventListener("click",e=>{ const b=e.target.closest(".ess"); if(b){ bascule(b.dataset.n); return; }
+    const im=e.target.closest(".tenue-img"); if(im){ ouvre(C.catalogue.find(t=>t.nom===im.dataset.n)); } });
+  $("#lbEss").addEventListener("click",()=>bascule($("#lbEss").dataset.n));
+  $("#lbX").addEventListener("click",ferme); $("#lb").addEventListener("click",e=>{ if(e.target.id==="lb") ferme(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("#lb").hidden) ferme(); });
   dessineCata("tout");
 
   // Apparitions au défilement
-  document.querySelectorAll("#galerieGrid div").forEach((d,i)=>{ d.classList.add("rv"); d.style.transitionDelay=(i%4)*90+"ms"; });
-  document.querySelectorAll("section h2, section .lead, .card, .etapes>div, .faq details, .cal, .acces").forEach(e=>e.classList.add("rv"));
+  document.querySelectorAll("section h2, section .lead, .manifeste, .etapes>div, .faq details, .cal, .acces").forEach(e=>e.classList.add("rv"));
   if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("vu"); io.unobserve(e.target); } }),{threshold:.15});
     document.querySelectorAll(".rv:not(.vu)").forEach(e=>io.observe(e)); } else document.querySelectorAll(".rv").forEach(e=>e.classList.add("vu"));
 

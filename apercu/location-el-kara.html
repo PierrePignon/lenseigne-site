@@ -31,7 +31,7 @@ const CONFIG = {
   "nom": "El Kara",
   "metier": "Location de tenues orientales",
   "ville": "Showroom Marseille 15e",
-  "accroche": "Des tenues orientales d'exception à louer pour vos mariages, fiançailles et hennés. Essayages sur rendez-vous.",
+  "accroche": "Des tenues orientales d'exception à louer, pour la mariée comme pour ses invitées. Essayages sur rendez-vous.",
   "photoHero": "img-elkara/hero-cheval.webp",
   "diaporama": [
     "img-elkara/hero-cheval.webp",
@@ -192,11 +192,19 @@ const CONFIG = {
       "ZAC Plate-forme 15, rue Augustin Roux, 13015 Marseille. Le bouton « Itinéraire » vous y guide."
     ],
     [
+      "Combien coûte la location ?",
+      "Tenues mariées de 120 € à 400 €, tenues invitées de 50 € à 140 €. Toute retouche est facturée 10 €."
+    ],
+    [
+      "Comment réserver une tenue ?",
+      "Les tenues sont louées selon disponibilité. La réservation est effective uniquement après versement de l'acompte."
+    ],
+    [
       "Quelles tailles proposez-vous ?",
       "Indiquez votre taille habituelle dans la demande : nous vous proposons les modèles disponibles."
     ],
     [
-      "Comment réserver une tenue ?",
+      "Comment préparer mon essayage ?",
       "Ajoutez vos tenues préférées depuis le catalogue, choisissez un jour d'essayage et envoyez la demande, ou écrivez directement en message sur Instagram."
     ]
   ]
@@ -449,6 +457,16 @@ const CONFIG = {
   .lb-bas b{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500}
   .lb-bas .ess{width:auto;padding:12px 18px}
   .lb-x{position:absolute;top:12px;right:14px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,194,125,.5);background:transparent;color:#f3e7cf;font-size:26px;line-height:1;cursor:pointer}
+
+  .tarifs{background:radial-gradient(120% 80% at 50% 0%,#2e2723,#141110 75%);color:#f4ede4}
+  .tarifs h2{color:#f8f1e7}
+  .tarif-carte{max-width:560px;margin:36px auto 0;padding:34px 26px;border:1px solid rgba(226,194,125,.45);border-radius:6px;background:rgba(0,0,0,.2)}
+  .tl-ligne{display:flex;align-items:baseline;gap:10px;padding:14px 0;text-align:left}
+  .tl-ligne span{font-family:"Cormorant Garamond",serif;font-size:24px}
+  .tl-ligne i{flex:1;border-bottom:1px dotted rgba(226,194,125,.5);transform:translateY(-6px)}
+  .tl-ligne b{font-weight:500;color:#e2c27d;white-space:nowrap}
+  .tl-note{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:19px;opacity:.85;margin:22px 0 26px;line-height:1.5}
+  @media(max-width:420px){.tl-ligne span{font-size:20px}.tl-ligne b{font-size:15px}}
   /* Logo : l'éventail s'ouvre puis un reflet doré le parcourt */
   .nfan-img{width:44px;height:auto}
   @property --ouv{syntax:"<angle>";initial-value:0deg;inherits:false}
@@ -469,7 +487,7 @@ const CONFIG = {
 </head>
 <body>
 <nav><div class="wrap"><span class="marque"><img class="nfan-img" src="img-elkara/eventail.webp" alt="" width="44" height="18"><a class="logo" href="#" data-t="nom"></a></span>
-  <ul><li><a href="#catalogue">Les tenues</a></li><li><a href="#showroom">Le showroom</a></li><li><a href="#faq">Questions</a></li></ul>
+  <ul><li><a href="#catalogue">Les tenues</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#showroom">Le showroom</a></li><li><a href="#faq">Questions</a></li></ul>
   <a class="btn" href="#essayage">Essayage</a></div></nav>
 
 <header class="hero edito"><div class="slides" id="slides" aria-hidden="true"></div><canvas id="paillettes" aria-hidden="true"></canvas><div class="cadre" aria-hidden="true"></div><div class="in">
@@ -502,6 +520,17 @@ const CONFIG = {
 </div></section>
 
 <div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Fermer">×</button><div class="lb-img" id="lbImg"></div><div class="lb-bas"><b id="lbNom"></b><button type="button" class="ess" id="lbEss"></button></div></div>
+
+<section id="tarifs" class="tarifs"><div class="wrap center">
+  <div class="eyebrow">Informations &amp; tarifs</div><h2>Nos tarifs de location</h2>
+  <div class="tarif-carte">
+    <div class="tl-ligne"><span>Tenues mariées</span><i></i><b>de 120 € à 400 €</b></div>
+    <div class="tl-ligne"><span>Tenues invitées</span><i></i><b>de 50 € à 140 €</b></div>
+    <div class="tl-ligne"><span>Retouche</span><i></i><b>10 €</b></div>
+    <p class="tl-note">Les tenues sont louées selon disponibilité.<br>La réservation est effective uniquement après versement de l'acompte.</p>
+    <a class="btn" href="#essayage">Réserver un essayage</a>
+  </div>
+</div></section>
 
 <section id="showroom" class="bande"><div class="wrap center">
   <div class="eyebrow">Le showroom</div><h2>Venez essayer sur rendez-vous</h2>
@@ -536,7 +565,7 @@ const CONFIG = {
   <form id="f">
     <div><label>Prénom</label><input name="prenom" required></div>
     <div><label>Jour d'essayage souhaité</label><input type="date" name="date" required></div>
-    <div><label>Occasion</label><select name="occasion"><option>Mariage (invitée)</option><option>Fiançailles</option><option>Henné</option><option>Soirée</option><option>Autre</option></select></div>
+    <div><label>Occasion</label><select name="occasion"><option>Mariage (mariée)</option><option>Mariage (invitée)</option><option>Fiançailles</option><option>Henné</option><option>Soirée</option><option>Autre</option></select></div>
     <div><label>Date de l'événement</label><input type="date" name="evenement"></div>
     <div><label>Taille habituelle</label><input name="taille" placeholder="ex. 38"></div>
     <div><label>Téléphone</label><input type="tel" name="telephone" required></div>

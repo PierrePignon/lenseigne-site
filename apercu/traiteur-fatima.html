@@ -326,6 +326,63 @@ const CONFIG = {
   footer{padding:48px 0;text-align:center;font-size:14px;opacity:.8}
   footer .liens{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
   .credit{display:inline-block;margin-top:14px;font-size:12px;padding:6px 14px;border:1px solid var(--doux);border-radius:99px;text-decoration:none}
+
+  /* Parcours du repas (v3) */
+  .parcours{margin-top:40px;text-align:left}
+  .pc-etapes{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px 4px;scroll-snap-type:x mandatory}
+  .pc-etapes::-webkit-scrollbar{display:none}
+  .pc-etapes button{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid rgba(243,236,230,.25);background:transparent;color:#f3ece6;font:500 14px/1 Jost,system-ui,sans-serif;letter-spacing:.04em;cursor:pointer;transition:background-color .25s ease,border-color .25s ease,color .25s ease}
+  .pc-etapes button i{font-style:normal;font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--accent)}
+  .pc-etapes button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#231d1a}
+  .pc-etapes button[aria-selected="true"] i{color:#231d1a}
+  .pc-vue{display:grid;gap:18px;margin-top:22px}
+  .pc-scene{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#1c1816}
+  .pc-scene img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform 1.2s cubic-bezier(.23,1,.32,1)}
+  .pc-scene img.on{opacity:1;transform:none}
+  .pc-zoom{position:absolute;right:12px;top:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(6px)}
+  .pc-minis{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .pc-minis::-webkit-scrollbar{display:none}
+  .pc-minis button{flex:0 0 64px;height:64px;border-radius:6px;border:2px solid transparent;padding:0;background:#1c1816 center/cover;cursor:pointer;opacity:.6;transition:opacity .2s ease,border-color .2s ease}
+  .pc-minis button[aria-current="true"]{opacity:1;border-color:var(--accent)}
+  .pc-num{font-family:"Cormorant Garamond",serif;font-size:44px;line-height:1;color:var(--accent)}
+  .pc-texte h3{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:500;margin:6px 0 10px}
+  .pc-texte p{opacity:.85;max-width:44ch}
+  .pc-ex-t{margin-top:22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+  .pc-ex{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .pc-ex li{padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);font-size:14px}
+  .pc-suite{margin-top:26px}
+  .pc-texte>*{transition:opacity .35s ease,transform .35s ease}
+  .pc-texte.sort>*{opacity:0;transform:translateY(8px)}
+  @media(min-width:900px){.pc-etapes{justify-content:center;margin:0;padding:0}.pc-vue{grid-template-columns:1.1fr .9fr;grid-template-areas:"scene texte" "minis texte";align-items:start;column-gap:48px}
+    .pc-scene{grid-area:scene;aspect-ratio:5/4}.pc-minis{grid-area:minis}.pc-texte{grid-area:texte;padding-top:10px}}
+
+  /* Galerie filtrable (v3) */
+  .filtres{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:34px -20px 0;padding:0 20px 4px}
+  .filtres::-webkit-scrollbar{display:none}
+  .filtres button{flex:0 0 auto;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);background:transparent;color:var(--texte);font:500 14px/1 Jost,system-ui,sans-serif;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+  .filtres button[aria-pressed="true"]{background:var(--texte);color:var(--fond);border-color:var(--texte)}
+  .filtres button span{opacity:.55;margin-left:6px}
+  .mosaique{columns:2;column-gap:10px;margin-top:22px;text-align:left}
+  @media(min-width:760px){.mosaique{columns:3;column-gap:14px}}
+  @media(min-width:1100px){.mosaique{columns:4}}
+  .mosaique button{display:block;width:100%;margin:0 0 10px;padding:0;border:0;border-radius:6px;overflow:hidden;cursor:zoom-in;background:var(--doux);break-inside:avoid;position:relative}
+  @media(min-width:760px){.mosaique button{margin-bottom:14px}}
+  .mosaique img{display:block;width:100%;height:auto;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+  @media(hover:hover){.mosaique button:hover img{transform:scale(1.04)}}
+  .mosaique button span{position:absolute;left:10px;bottom:10px;padding:5px 10px;border-radius:999px;background:rgba(20,16,14,.55);color:#fff;font-size:12px;letter-spacing:.06em;backdrop-filter:blur(6px)}
+  .mosaique button.cache{display:none}
+
+  /* Plein écran */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(14,11,10,.94);display:grid;place-items:center;padding:20px}
+  .lb[hidden]{display:none}
+  .lb figure{margin:0;max-width:min(1100px,100%);text-align:center}
+  .lb img{max-width:100%;max-height:82vh;border-radius:6px;display:block;margin:0 auto;touch-action:pan-y}
+  .lb figcaption{color:#f3ece6;opacity:.8;margin-top:12px;font-size:14px;letter-spacing:.06em}
+  .lb-x{position:absolute;top:14px;right:14px;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:28px;cursor:pointer}
+  .lb-n{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:32px;cursor:pointer}
+  .lb-p{left:14px}.lb-s{right:14px}
+  @media(max-width:640px){.lb-n{top:auto;bottom:18px;transform:none}}
+  @media(prefers-reduced-motion:reduce){.pc-scene img,.mosaique img,.pc-texte>*{transition:none}}
 </style>
 </head>
 <body>
@@ -346,20 +403,21 @@ const CONFIG = {
   <div class="grid3" id="formulesGrid"></div>
 </div></section>
 
-<!-- Menu mariage (repris de la carte publiée par Traiteur Fatima) + calculateur -->
+<!-- Menu mariage interactif (repris de la carte publiée par Traiteur Fatima) + calculateur -->
 <section id="menu" class="sombre"><div class="wrap center">
-  <div class="eyebrow">Le repas de mariage</div><h2>Ce que nous vous proposons</h2>
-  <div class="menuCarte">
-    <div class="mc-titre">Traiteur Fatima Mariage</div>
-    <ul>
-      <li><b>Cocktail de bienvenue</b><span>pièces sucrées et salées, 7 par personne</span></li>
-      <li><b>Entrée</b><span>salade composée variée, au choix</span></li>
-      <li><b>Plat</b><span>au choix</span></li>
-      <li><b>Dessert</b><span>plateau de fruits de saison</span></li>
-      <li><b>Boissons</b><span>4 boissons par table, au choix</span></li>
-      <li><b>Thé et café</b><span>à disposition des convives du début à la fin</span></li>
-      <li><b>Service inclus</b><span>serveurs et serveuses</span></li>
-    </ul>
+  <div class="eyebrow">Le repas de mariage</div><h2>Votre repas, étape par étape</h2>
+  <p class="lead" style="opacity:.8">Choisissez une étape pour voir ce que nous servons à vos invités.</p>
+  <div class="parcours">
+    <div class="pc-etapes" role="tablist" id="pcEtapes"></div>
+    <div class="pc-vue">
+      <div class="pc-scene" id="pcScene"><img id="pcA" alt=""><img id="pcB" alt=""><button class="pc-zoom" id="pcZoom" aria-label="Agrandir la photo">⤢</button></div>
+      <div class="pc-minis" id="pcMinis"></div>
+      <div class="pc-texte">
+        <div class="pc-num" id="pcNum"></div><h3 id="pcTitre"></h3><p id="pcDesc"></p>
+        <div class="pc-ex-t">Déjà servi lors de nos mariages</div><ul class="pc-ex" id="pcEx"></ul>
+        <button class="btn pc-suite" id="pcSuite">Étape suivante →</button>
+      </div>
+    </div>
   </div>
 
   <div class="calc" id="calc">
@@ -378,10 +436,17 @@ const CONFIG = {
 
 <section id="galerie"><div class="wrap center">
   <div class="eyebrow">Réalisations</div><h2 data-t="titreGalerie"></h2>
-  <div class="galerie" id="galerieGrid"></div>
-  <p class="galerie-aide">Faites glisser →</p>
+  <p class="lead">Une sélection de nos buffets, plats et desserts, tels que servis à nos clients.</p>
+  <div class="filtres" id="filtres" role="toolbar" aria-label="Filtrer les photos"></div>
+  <div class="mosaique" id="mosaique"></div>
   <p style="margin-top:56px"><a class="btn ghost" id="instaLink" target="_blank" rel="noopener">Plus de photos sur Instagram</a></p>
 </div></section>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand" hidden>
+  <button class="lb-x" id="lbX" aria-label="Fermer">×</button>
+  <button class="lb-n lb-p" id="lbP" aria-label="Photo précédente">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-n lb-s" id="lbS" aria-label="Photo suivante">›</button>
+</div>
 
 <section class="bande"><div class="wrap center">
   <div class="eyebrow">Comment ça se passe</div><h2>Simple, du premier message au jour J</h2>
@@ -435,7 +500,7 @@ const CONFIG = {
   if(C.photoHero) $("#heroBg").style.backgroundImage="url('"+C.photoHero+"')";
   $("#formulesGrid").innerHTML=C.formules.map(f=>`<div class="card${f.miseEnAvant?" top":""}"><h3>${esc(f.nom)}</h3><div class="prix">${esc(f.prix)}</div><ul>${f.details.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>`).join("");
   $("#formuleSel").innerHTML=C.formules.map(f=>`<option>${esc(f.nom)}</option>`).join("");
-  $("#galerieGrid").innerHTML=C.galerie.map((p,i)=>p?`<div style="background-image:url('${esc(p)}')"></div>`:`<div>Photo ${i+1}</div>`).join("");
+  if($("#galerieGrid")) $("#galerieGrid").innerHTML=C.galerie.map((p,i)=>p?`<div style="background-image:url('${esc(p)}')"></div>`:`<div>Photo ${i+1}</div>`).join("");
   $("#etapesGrid").innerHTML=C.etapes.map(([t,d])=>`<div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
   if(C.avis.length) $("#avisList").innerHTML=C.avis.map(a=>`<blockquote>« ${esc(a.texte)} »</blockquote><cite>${esc(a.auteur)}</cite>`).join(""); else $("#avisSec").style.display="none";
   $("#faqList").innerHTML=C.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
@@ -445,10 +510,62 @@ const CONFIG = {
   $("#fMail").href="mailto:"+C.email; $("#fMail").textContent=C.email;
   $("#an").textContent=new Date().getFullYear();
 
+
+  // --- v3 : parcours du repas ---
+  const G = "img-fatima/g/";
+  const ETAPES = [{"t": "Cocktail de bienvenue", "d": "7 pièces sucrées et salées par personne, servies dès l'arrivée de vos invités.", "ex": ["Briouates et samoussas", "Feuilletés", "Pièces sucrées"], "ph": ["cocktail-52", "cocktail-7", "cocktail-11", "cocktail-50", "cocktail-53", "cocktail-45"]}, {"t": "Entrée", "d": "Une salade composée variée, au choix, dressée en grands plateaux.", "ex": ["Salades composées", "Crudités de saison", "Entrées aux crevettes"], "ph": ["entree-23", "entree-60", "entree-13", "entree-65", "entree-59", "entree-8"]}, {"t": "Plat", "d": "Le plat est au choix : nous le définissons ensemble, selon vos envies et vos invités.", "ex": ["Méchoui garni", "Tajine de poulet aux olives", "Couscous", "Pastillas", "Tajine aux fruits secs"], "ph": ["plat-26", "plat-37", "plat-21", "pastilla-16", "plat-42", "plat-22", "pastilla-33", "plat-62"]}, {"t": "Dessert", "d": "Un plateau de fruits de saison, et des douceurs orientales sur commande.", "ex": ["Plateaux de fruits", "Flans", "Douceurs orientales"], "ph": ["dessert-58", "dessert-57", "dessert-15", "dessert-1", "dessert-36", "dessert-70"]}, {"t": "Thé, café et service", "d": "Thé et café à disposition du début à la fin, 4 boissons par table, et le service par nos serveurs et serveuses.", "ex": ["Thé et café à volonté", "4 boissons par table", "Service inclus"], "ph": ["buffet-38", "buffet-55", "buffet-56", "buffet-54", "buffet-32"]}];
+  const PHOTOS = ["cocktail-7", "cocktail-11", "cocktail-45", "cocktail-50", "cocktail-52", "cocktail-53", "entree-8", "entree-13", "entree-14", "entree-23", "entree-34", "entree-35", "entree-59", "entree-60", "entree-64", "entree-65", "plat-6", "plat-10", "plat-12", "plat-21", "plat-22", "plat-24", "plat-26", "plat-30", "plat-37", "plat-39", "plat-40", "plat-41", "plat-42", "plat-61", "plat-62", "plat-63", "plat-68", "plat-69", "plat-72", "pastilla-0", "pastilla-3", "pastilla-4", "pastilla-16", "pastilla-17", "pastilla-25", "pastilla-27", "pastilla-33", "dessert-1", "dessert-2", "dessert-5", "dessert-9", "dessert-15", "dessert-28", "dessert-29", "dessert-36", "dessert-57", "dessert-58", "dessert-70", "dessert-71", "buffet-32", "buffet-38", "buffet-48", "buffet-49", "buffet-54", "buffet-55", "buffet-56"];
+  const CATS = [["cocktail", "Cocktail"], ["entree", "Entrées"], ["plat", "Plats"], ["pastilla", "Pastillas"], ["dessert", "Desserts et fruits"], ["buffet", "Buffets"]];
+  const NOMCAT = Object.fromEntries(CATS);
+  let etape = 0, photo = 0, couche = 0;
+  const pcE = $("#pcEtapes"), A = $("#pcA"), B = $("#pcB");
+  pcE.innerHTML = ETAPES.map((e,i)=>`<button role="tab" aria-selected="${i===0}" data-i="${i}"><i>0${i+1}</i>${esc(e.t)}</button>`).join("");
+  function montre(src){ const img = couche ? A : B, autre = couche ? B : A; couche = 1 - couche;
+    img.onload = () => { img.classList.add("on"); autre.classList.remove("on"); }; img.src = src; img.alt = ETAPES[etape].t; }
+  function photoEtape(j){ photo = j; montre(G + ETAPES[etape].ph[j] + ".webp");
+    document.querySelectorAll("#pcMinis button").forEach((b,k)=>b.setAttribute("aria-current", k===j)); }
+  function choisir(i){ etape = i; const e = ETAPES[i], tx = document.querySelector(".pc-texte");
+    pcE.querySelectorAll("button").forEach((b,k)=>b.setAttribute("aria-selected", k===i));
+    pcE.children[i].scrollIntoView({inline:"center", block:"nearest", behavior:"smooth"});
+    tx.classList.add("sort");
+    setTimeout(()=>{ $("#pcNum").textContent = "0" + (i+1); $("#pcTitre").textContent = e.t; $("#pcDesc").textContent = e.d;
+      $("#pcEx").innerHTML = e.ex.map(x=>`<li>${esc(x)}</li>`).join("");
+      $("#pcSuite").textContent = i < ETAPES.length - 1 ? "Étape suivante →" : "Demander ce menu";
+      tx.classList.remove("sort"); }, 180);
+    $("#pcMinis").innerHTML = e.ph.map((p,k)=>`<button aria-label="Photo ${k+1}" style="background-image:url('${G}${p}-t.webp')" data-k="${k}"></button>`).join("");
+    photoEtape(0); }
+  pcE.addEventListener("click", ev => { const b = ev.target.closest("button"); if (b) choisir(+b.dataset.i); });
+  $("#pcMinis").addEventListener("click", ev => { const b = ev.target.closest("button"); if (b) photoEtape(+b.dataset.k); });
+  $("#pcSuite").addEventListener("click", () => { if (etape < ETAPES.length - 1) choisir(etape + 1); else document.getElementById("devis").scrollIntoView({behavior:"smooth"}); });
+  choisir(0);
+
+  // --- v3 : galerie filtrable + plein écran ---
+  const compte = c => PHOTOS.filter(p=>p.startsWith(c+"-")).length;
+  $("#filtres").innerHTML = `<button aria-pressed="true" data-c="">Tout<span>${PHOTOS.length}</span></button>` +
+    CATS.map(([c,n])=>`<button aria-pressed="false" data-c="${c}">${esc(n)}<span>${compte(c)}</span></button>`).join("");
+  $("#mosaique").innerHTML = PHOTOS.map((p,i)=>`<button data-i="${i}" data-c="${p.split("-")[0]}"><img loading="lazy" src="${G}${p}-t.webp" alt="${esc(NOMCAT[p.split("-")[0]])}"><span>${esc(NOMCAT[p.split("-")[0]])}</span></button>`).join("");
+  let filtre = "";
+  $("#filtres").addEventListener("click", ev => { const b = ev.target.closest("button"); if (!b) return; filtre = b.dataset.c;
+    $("#filtres").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    $("#mosaique").querySelectorAll("button").forEach(x=>x.classList.toggle("cache", !!filtre && x.dataset.c !== filtre)); });
+  const visibles = () => PHOTOS.map((p,i)=>i).filter(i => !filtre || PHOTOS[i].startsWith(filtre+"-"));
+  let lbI = 0, liste = [], dernierFocus = null;
+  function lbVoir(k){ lbI = (k + liste.length) % liste.length; const p = PHOTOS[liste[lbI]];
+    $("#lbImg").src = G + p + ".webp"; $("#lbImg").alt = NOMCAT[p.split("-")[0]];
+    $("#lbCap").textContent = NOMCAT[p.split("-")[0]] + " · " + (lbI+1) + " / " + liste.length; }
+  function lbOuvrir(liste_, k){ liste = liste_; dernierFocus = document.activeElement; $("#lb").hidden = false; document.body.style.overflow = "hidden"; lbVoir(k); $("#lbX").focus(); }
+  function lbFermer(){ $("#lb").hidden = true; document.body.style.overflow = ""; if (dernierFocus) dernierFocus.focus(); }
+  $("#mosaique").addEventListener("click", ev => { const b = ev.target.closest("button"); if (!b) return; const v = visibles(); lbOuvrir(v, v.indexOf(+b.dataset.i)); });
+  $("#pcZoom").addEventListener("click", () => { const l = ETAPES[etape].ph.map(p=>PHOTOS.indexOf(p)).filter(i=>i>=0); lbOuvrir(l, photo); });
+  $("#lbX").onclick = lbFermer; $("#lbP").onclick = () => lbVoir(lbI-1); $("#lbS").onclick = () => lbVoir(lbI+1);
+  $("#lb").addEventListener("click", ev => { if (ev.target.id === "lb") lbFermer(); });
+  addEventListener("keydown", ev => { if ($("#lb").hidden) return; if (ev.key === "Escape") lbFermer(); if (ev.key === "ArrowLeft") lbVoir(lbI-1); if (ev.key === "ArrowRight") lbVoir(lbI+1); });
+  let x0 = null; $("#lbImg").addEventListener("pointerdown", e => x0 = e.clientX);
+  $("#lbImg").addEventListener("pointerup", e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbVoir(lbI + (dx < 0 ? 1 : -1)); });
   // Légendes de la galerie + apparitions au défilement
   const legendes=["Pastillas","Méchoui garni","Plateaux de fruits","Flans et fruits","Tajine de poulet","Couscous","Entrées composées","Poulets et flans","Buffet sucré","Salades"];
   document.querySelectorAll("#galerieGrid div").forEach((d,i)=>{ if(legendes[i]) d.dataset.l=legendes[i]; d.classList.add("rv"); d.style.transitionDelay=(i%4)*90+"ms"; });
-  document.querySelectorAll("section h2, section .lead, .card, .menuCarte, .calc, .etapes>div, .faq details, .cal").forEach(e=>e.classList.add("rv"));
+  document.querySelectorAll("section h2, section .lead, .card, .parcours, .calc, .etapes>div, .faq details, .cal").forEach(e=>e.classList.add("rv"));
   if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("vu"); io.unobserve(e.target); } }),{threshold:.15});
     document.querySelectorAll(".rv").forEach(e=>io.observe(e)); } else document.querySelectorAll(".rv").forEach(e=>e.classList.add("vu"));
   // Simulateur : 7 pièces de cocktail par personne, tables de 10, 4 boissons par table (carte du traiteur)

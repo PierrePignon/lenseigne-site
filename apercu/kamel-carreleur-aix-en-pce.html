@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kamel Carrelage — Carreleur à Aix-en-Provence</title>
+<meta name="description" content="Kamel Carrelage, carreleur à Aix-en-Provence. Devis gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1742134131017-44d377a611b1?w=1600&q=80&auto=format&fit=crop">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.css">
+<!--
+  MODÈLE ARTISAN PREMIUM — L'enseigne (rempli par generer.py, ne pas éditer les {{...}} à la main) (aperçu, photos d'illustration Unsplash)
+  Effets : pollen 3D (three.js) en haut de page, arche qui s'ouvre en plein écran (défilement 1:1, GSAP ScrollTrigger),
+  texte qui s'allume mot à mot, cartes empilées, défilement fluide (Lenis).
+  Tout est coupé si prefers-reduced-motion : la page reste complète et lisible.
+-->
+<style>
+  :root{
+    --lin:#e6e4e1; --encre:#23272b; --sapin:#22303a; --terre:#2f6f8f; --sauge:#5fa3ad; --doux:color-mix(in srgb,var(--lin) 88%,#000);
+    --ease-out:cubic-bezier(.23,1,.32,1); --r:28px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;overflow-x:clip}
+  body{background:var(--lin);color:var(--encre);font:400 17px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Inter Tight",Inter,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.02;text-wrap:balance}
+  em{font-family:Fraunces,Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.02em;background:linear-gradient(100deg,var(--terre) 10%,var(--sauge) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .06em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .surt{font:500 12px/1.4 Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;opacity:.55}
+  ::selection{background:var(--sauge);color:#fff}
+
+  /* En-tête translucide */
+  .top{position:fixed;inset:0 0 auto;z-index:40;padding-top:env(safe-area-inset-top)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .top::before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--lin) 70%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+  .top .wrap{position:relative}
+  .marque{font:600 17px/1 "Inter Tight",sans-serif;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  .marque i{width:24px;height:24px;border-radius:50% 50% 50% 4px;background:linear-gradient(135deg,var(--sauge),var(--sapin));display:block}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:999px;font:500 15px/1 Inter,sans-serif;transition:transform .2s var(--ease-out),background-color .2s ease}
+  .pill:active{transform:scale(.97)}
+  .pill.fonce{background:var(--sapin);color:#fff}
+  .pill.clair{background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.08)}
+  .top .pill{min-height:36px;padding:0 16px;font-size:14px}
+  @media(hover:hover){.pill.fonce:hover{background:color-mix(in srgb,var(--sapin) 88%,#fff)}.pill.clair:hover{background:#fff}}
+
+  /* Haut de page */
+  .hero{position:relative;min-height:64svh;display:grid;place-items:center;text-align:center;padding:110px 0 40px;overflow:hidden}
+  #pollen{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .hero .wrap{position:relative}
+  .hero::before{content:"";position:absolute;inset:8% -10% -10%;background:radial-gradient(34% 30% at 30% 62%,color-mix(in srgb,var(--terre) 20%,transparent),transparent 70%),radial-gradient(34% 32% at 72% 40%,color-mix(in srgb,var(--sauge) 26%,transparent),transparent 70%);filter:blur(20px);animation:derive 16s ease-in-out infinite alternate}
+  @keyframes derive{to{transform:translate3d(-5%,3%,0) scale(1.08)}}
+  .hero h1{font-size:clamp(46px,11.5vw,112px);margin:16px auto 18px;max-width:11ch}
+  .hero p{font-size:clamp(17px,2.2vw,21px);opacity:.68;max-width:30ch;margin:0 auto 28px}
+  .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .mot{display:inline-block;opacity:0;transform:translateY(.35em);filter:blur(6px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out),filter .9s var(--ease-out)}
+  .pret .mot{opacity:1;transform:none;filter:none}
+
+  /* Arche qui s'ouvre */
+  .ouverture{position:relative;height:250vh}
+  .scene{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  .cadre{position:absolute;inset:0;clip-path:inset(6% 14% 8% 14% round 40vw 40vw 24px 24px);will-change:clip-path}
+  .cadre img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.22);will-change:transform}
+  .cadre::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,color-mix(in srgb,var(--sapin) 70%,transparent));opacity:var(--voile,0)}
+  .legende{position:absolute;left:0;right:0;bottom:max(12vh,150px);text-align:center;color:#fff;opacity:0;transform:translateY(20px)}
+  .legende h2{font-size:clamp(38px,8vw,84px)}
+  .legende p{opacity:.8;margin-top:10px}
+
+  /* Texte qui s'allume */
+  .manifeste{padding:18vh 0 14vh}
+  .manifeste p{font:600 clamp(30px,5.6vw,60px)/1.12 "Inter Tight",sans-serif;letter-spacing:-.03em;max-width:20ch}
+  .manifeste span{opacity:.16;transition:opacity .25s linear}
+
+  /* Cartes empilées */
+  .services{padding:6vh 0 10vh}
+  .services h2,.reals h2,.devis h2,.etapes h2,.faq h2{font-size:clamp(36px,6.5vw,64px);margin:12px 0 30px}
+  .pile{display:grid;gap:18px}
+  .carte{position:sticky;top:calc(84px + var(--i) * 14px);height:min(72vh,560px);border-radius:var(--r);overflow:hidden;color:#fff;transform-origin:50% 0;box-shadow:0 30px 60px -30px rgba(23,32,26,.5)}
+  .carte img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .carte::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,color-mix(in srgb,var(--sapin) 85%,transparent))}
+  .carte div{position:absolute;z-index:2;left:26px;right:26px;bottom:26px}
+  .carte small{font:500 12px/1 Inter;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .carte h3{font-size:clamp(32px,6vw,54px);margin:10px 0 8px}
+  .carte p{opacity:.85;max-width:36ch}
+
+  /* Réalisations (bento) */
+  .reals{padding:10vh 0}
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:120px;gap:12px}
+  .bento figure{position:relative;border-radius:22px;overflow:hidden;background:var(--doux)}
+  .bento img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;will-change:transform}
+  .bento figcaption{position:absolute;left:12px;bottom:12px;z-index:1;font-size:13px;color:#fff;padding:6px 11px;border-radius:999px;background:color-mix(in srgb,var(--sapin) 40%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .b1{grid-column:span 6;grid-row:span 3}.b2{grid-column:span 3;grid-row:span 2}.b3{grid-column:span 3;grid-row:span 2}.b4{grid-column:span 6;grid-row:span 2}
+  @media(min-width:900px){.bento{grid-auto-rows:150px}.b1{grid-column:span 4;grid-row:span 4}.b2{grid-column:span 2;grid-row:span 2}.b3{grid-column:span 2;grid-row:span 2}.b4{grid-column:span 6;grid-row:span 2}}
+
+  /* Étapes */
+  .etapes{padding:8vh 0;background:var(--sapin);color:#fff;border-radius:40px 40px 0 0;position:relative;overflow:hidden}
+  .etapes::before{content:"";position:absolute;width:640px;height:640px;right:-260px;top:-240px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--terre) 45%,transparent),transparent 62%);filter:blur(10px)}
+  .etapes::after{content:"";position:absolute;width:560px;height:560px;left:-240px;bottom:-260px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--sauge) 45%,transparent),transparent 62%);filter:blur(10px)}
+  .etapes .wrap{position:relative;z-index:1}
+  .etapes .surt{opacity:.6}
+  .liste{display:grid;gap:12px}
+  @media(min-width:900px){.liste{grid-template-columns:repeat(3,1fr)}}
+  .liste div{padding:24px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+  .liste b{display:block;font:400 italic 44px/1 Fraunces,serif;background:linear-gradient(100deg,color-mix(in srgb,var(--terre) 65%,#fff),color-mix(in srgb,var(--sauge) 65%,#fff));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+  .liste h3{font-size:24px;margin-bottom:6px}
+  .liste p{opacity:.72;font-size:15px}
+
+  /* Devis */
+  .devis{padding:10vh 0;background:var(--sapin);color:#fff}
+  .formulaire{background:var(--lin);color:var(--encre);border-radius:var(--r);padding:24px;display:grid;gap:14px;max-width:760px}
+  .formulaire label{font-size:13px;font-weight:500;opacity:.7;display:block;margin-bottom:6px}
+  .formulaire input,.formulaire textarea{width:100%;font:400 16px/1.4 Inter,sans-serif;padding:14px 16px;border-radius:14px;border:1px solid rgba(0,0,0,.1);background:#fff;transition:border-color .2s ease,box-shadow .2s ease}
+  .formulaire input:focus,.formulaire textarea:focus{outline:0;border-color:var(--sauge);box-shadow:0 0 0 4px color-mix(in srgb,var(--sauge) 25%,transparent)}
+  .deux{display:grid;gap:14px}
+  @media(min-width:640px){.deux{grid-template-columns:1fr 1fr}}
+  .puces{display:flex;flex-wrap:wrap;gap:8px}
+  .puces label{position:relative;margin:0;opacity:1;font-size:inherit}
+  .puces input{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+  .puces span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(0,0,0,.12);background:#fff;font-size:15px;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+  .puces input:checked+span{background:var(--sapin);color:#fff;border-color:var(--sapin)}
+  .puces input:focus-visible+span{box-shadow:0 0 0 3px var(--sauge)}
+  .photos{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;border:1.5px dashed rgba(0,0,0,.2);border-radius:14px;cursor:pointer;font-size:15px;opacity:.85}
+  .formulaire .pill{width:100%;min-height:54px;font-size:16px}
+  .merci{display:none;max-width:760px;background:var(--lin);color:var(--encre);border-radius:var(--r);padding:28px}
+
+  /* FAQ */
+  .faq{padding:10vh 0}
+  .faq details{border-bottom:1px solid rgba(0,0,0,.1)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font:600 20px/1.3 "Inter Tight",sans-serif;letter-spacing:-.015em}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"";flex:0 0 12px;height:12px;margin-top:6px;border-right:2px solid var(--terre);border-bottom:2px solid var(--terre);transform:rotate(45deg);transition:transform .25s var(--ease-out)}
+  .faq details[open] summary::after{transform:rotate(-135deg)}
+  .faq details p{padding:0 0 22px;opacity:.7;max-width:60ch}
+  .zone{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .zone span{padding:9px 15px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.06);font-size:14px}
+
+  footer{padding:40px 0 130px;font-size:14px;opacity:.7}
+  footer a{text-decoration:underline}
+
+  /* Barre mobile flottante */
+  .barre{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;padding:6px;border-radius:24px;background:color-mix(in srgb,var(--sapin) 75%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);box-shadow:0 20px 40px -18px rgba(0,0,0,.5)}
+  .barre a{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;border-radius:18px;color:#fff;font-size:14px;font-weight:500}
+  .barre a:last-child{background:linear-gradient(120deg,var(--terre),color-mix(in srgb,var(--terre),var(--sauge)) 60%,var(--sauge))}
+  .barre svg{width:18px;height:18px}
+  .apercu{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:39;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#333}
+  .apercu a{color:var(--terre);text-decoration:underline}
+  @media(min-width:900px){.barre{display:none}.apercu{bottom:14px}footer{padding-bottom:60px}}
+
+  @media(prefers-reduced-motion:reduce){
+    .mot{opacity:1;transform:none;filter:none;transition:none}.hero::before{animation:none}
+    .ouverture{height:auto}.scene{position:relative;height:80vh}
+    .cadre{clip-path:inset(0 0 0 0 round 0)}.cadre img{transform:none}
+    .legende{opacity:1;transform:none}.cadre{--voile:1}
+    .manifeste span{opacity:1}
+    .carte{position:relative;top:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="marque" href="#"><i></i>Kamel Carrelage</a>
+  <a class="pill fonce" href="#devis">Devis gratuit</a>
+</div></header>
+
+<section class="hero" id="hero">
+  <canvas id="pollen" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="surt">Carreleur · Aix-en-Provence</div>
+    <h1 id="titre">Des sols et des salles de bain <em>impeccables.</em></h1>
+    <p>Carrelage et faïence à Aix-en-Provence, des chantiers soignés.</p>
+    <div class="ctas"><a class="pill fonce" href="#devis">Parler de votre projet</a><a class="pill clair" href="#realisations">Voir les réalisations</a></div>
+  </div>
+</section>
+
+<section class="ouverture" id="ouverture">
+  <div class="scene">
+    <div class="cadre" id="cadre"><img src="https://images.unsplash.com/photo-1742134131017-44d377a611b1?w=1600&q=80&auto=format&fit=crop" alt="Salle de bain carrelée"></div>
+    <div class="legende" id="legende"><h2>Posé au millimètre.<br>Fait pour durer.</h2><p>Du choix des carreaux aux derniers joints.</p></div>
+  </div>
+</section>
+
+<section class="manifeste"><div class="wrap">
+  <p id="manifeste">Un beau carrelage, ça se prépare. Un support sain, un calepinage pensé, des coupes nettes. Le reste se voit pendant des années.</p>
+</div></section>
+
+<section class="services"><div class="wrap">
+  <div class="surt">Ce que nous faisons</div>
+  <h2>Trois savoir-faire, <em>une seule équipe.</em></h2>
+  <div class="pile" id="pile">
+    <article class="carte" style="--i:0"><img loading="lazy" src="https://images.unsplash.com/photo-1580398562556-d33329a0f29b?w=1200&q=78&auto=format&fit=crop" alt=""><div><small>01 · Carrelage</small><h3>Carrelage intérieur</h3><p>Sols et murs, grands formats, pose soignée.</p></div></article>
+    <article class="carte" style="--i:1"><img loading="lazy" src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1200&q=78&auto=format&fit=crop" alt=""><div><small>02 · Salle</small><h3>Salle de bain</h3><p>Faïence, douche à l&#x27;italienne, rénovation complète.</p></div></article>
+    <article class="carte" style="--i:2"><img loading="lazy" src="https://images.unsplash.com/photo-1697421472608-84e71a8a24b1?w=1200&q=78&auto=format&fit=crop" alt=""><div><small>03 · Extérieur</small><h3>Extérieur</h3><p>Terrasses, plages de piscine, dalles sur plots.</p></div></article>
+  </div>
+</div></section>
+
+<section class="reals" id="realisations"><div class="wrap">
+  <div class="surt">Réalisations</div>
+  <h2>Quelques chantiers <em>récents.</em></h2>
+  <div class="bento">
+    <figure class="b1"><img loading="lazy" src="https://images.unsplash.com/photo-1742134131017-44d377a611b1?w=1200&q=78&auto=format&fit=crop" alt="Salle de bain"><figcaption>Salle de bain</figcaption></figure>
+    <figure class="b2"><img loading="lazy" src="https://images.unsplash.com/photo-1661107259637-4e1c55462428?w=800&q=78&auto=format&fit=crop" alt="Douche"><figcaption>Douche</figcaption></figure>
+    <figure class="b3"><img loading="lazy" src="https://images.unsplash.com/photo-1534503442463-e0ddba45cf4c?w=800&q=78&auto=format&fit=crop" alt="Sol grand format"><figcaption>Sol grand format</figcaption></figure>
+    <figure class="b4"><img loading="lazy" src="https://images.unsplash.com/photo-1711098256574-7b497260cdc9?w=1400&q=78&auto=format&fit=crop" alt="Terrasse"><figcaption>Terrasse</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="etapes"><div class="wrap">
+  <div class="surt">Comment ça se passe</div>
+  <h2>Simple, <em>du premier appel</em> à la fin du chantier.</h2>
+  <div class="liste">
+    <div><b>01</b><h3>On se parle</h3><p>Vous décrivez votre projet, avec quelques photos du chantier.</p></div>
+    <div><b>02</b><h3>Visite et devis</h3><p>Nous passons voir les lieux et vous remettons un devis gratuit et détaillé.</p></div>
+    <div><b>03</b><h3>Le chantier</h3><p>Chantier propre, délais tenus, finitions vérifiées avec vous.</p></div>
+  </div>
+</div></section>
+
+<section class="devis" id="devis"><div class="wrap">
+  <div class="surt" style="opacity:.6">Devis gratuit</div>
+  <h2>Parlons de <em>votre projet.</em></h2>
+  <form class="formulaire" id="f">
+    <div><label>Votre projet</label>
+      <div class="puces">
+        <label><input type="radio" name="type" value="Carrelage" checked><span>Carrelage</span></label>
+        <label><input type="radio" name="type" value="Salle de bain"><span>Salle de bain</span></label>
+        <label><input type="radio" name="type" value="Terrasse"><span>Terrasse</span></label>
+        <label><input type="radio" name="type" value="Autre"><span>Autre</span></label>
+      </div>
+    </div>
+    <div class="deux">
+      <div><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required></div>
+      <div><label for="tel">Téléphone</label><input id="tel" name="telephone" type="tel" autocomplete="tel" required></div>
+    </div>
+    <div><label for="ville">Ville du chantier</label><input id="ville" name="ville" placeholder="ex. Marseille 9e"></div>
+    <div><label for="msg">Quelques mots</label><textarea id="msg" name="message" rows="3" placeholder="Surface, pièce, carrelage déjà choisi ou non, délai…"></textarea></div>
+    <label class="photos" for="ph">Ajouter des photos du chantier</label><input id="ph" type="file" accept="image/*" multiple hidden>
+    <button class="pill fonce" type="submit">Envoyer ma demande</button>
+  </form>
+  <div class="merci" id="merci"><h3 style="font-size:26px;margin-bottom:6px">Merci, c'est bien reçu.</h3><p style="opacity:.7">Nous vous rappelons rapidement pour fixer une visite.</p></div>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <div class="surt">Questions fréquentes</div>
+  <h2>Vous vous demandez <em>peut-être…</em></h2>
+  <details><summary>Le devis est-il gratuit ?</summary><p>Oui, la visite et le devis sont gratuits et sans engagement.</p></details>
+  <details><summary>Où intervenez-vous ?</summary><p>À Aix-en-Provence et alentours :</p><div class="zone" style="padding-bottom:22px"><span>Aix-en-Provence</span><span>Venelles</span><span>Gardanne</span><span>Les Milles</span><span>Luynes</span><span>Éguilles</span></div></details>
+  <details><summary>Fournissez-vous le carrelage ?</summary><p>Nous pouvons vous conseiller et fournir les matériaux, ou poser ceux que vous avez choisis.</p></details>
+  <details><summary>Combien de temps pour une salle de bain ?</summary><p>Cela dépend de la surface et de l&#x27;état actuel : nous vous donnons un délai précis avec le devis.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  Kamel Carrelage · Carreleur · Aix-en-Provence · @kamel_carreleur_aix_en_pce<br>
+  <a href="https://lenseigneweb.fr" target="_blank" rel="noopener">Site réalisé par L'enseigne</a>
+</div></footer>
+
+<nav class="barre" aria-label="Contact rapide">
+  <a href="tel:0600000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Appeler</a>
+  <a href="https://ig.me/m/kamel_carreleur_aix_en_pce" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Message</a>
+  <a href="#devis">Devis gratuit</a>
+</nav>
+<div class="apercu">Aperçu offert par <a href="https://lenseigneweb.fr">L'enseigne</a> · photos d'illustration</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduit = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Titre : mots qui apparaissent (une seule fois, à l'arrivée)
+  const t = document.getElementById("titre");
+  const decoupe = el => { [...el.childNodes].forEach(n => {
+    if (n.nodeType === 3) { const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(w => { if (!w.trim()) { f.append(w); return; } const s = document.createElement("span"); s.className = "mot"; s.textContent = w; f.append(s); });
+      n.replaceWith(f);
+    } else { n.classList.add("mot"); }
+  }); };
+  decoupe(t);
+  [...t.querySelectorAll(".mot")].forEach((m, i) => m.style.transitionDelay = (120 + i * 70) + "ms");
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("pret")));
+
+  // Texte qui s'allume mot à mot
+  const man = document.getElementById("manifeste");
+  man.innerHTML = man.textContent.split(" ").map(w => "<span>" + w + "</span>").join(" ");
+  const mots = [...man.children];
+
+  // Formulaire (aperçu : envoi simulé)
+  document.getElementById("f").addEventListener("submit", e => { e.preventDefault(); e.target.style.display = "none"; document.getElementById("merci").style.display = "block"; });
+
+  if (reduit || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Défilement fluide
+  if (window.Lenis) {
+    const lenis = new Lenis({ lerp: 0.1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(time => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => { const id = a.getAttribute("href"); if (id.length > 1) { e.preventDefault(); lenis.scrollTo(id, { offset: -60 }); } }));
+  }
+
+  // Arche -> plein écran, calé 1:1 sur le défilement
+  const cadre = document.getElementById("cadre"), img = cadre.querySelector("img"), leg = document.getElementById("legende");
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const dessine = p => {
+    const W = innerWidth, H = innerHeight, mx = W < 700 ? 0.13 : 0.3;
+    const x = lerp(W * mx, 0, p), top = lerp(H * 0.05, 0, p), bas = lerp(H * 0.08, 0, p);
+    const r = lerp((W - 2 * W * mx) / 2, 0, p), rb = lerp(24, 0, p);
+    cadre.style.clipPath = `inset(${top}px ${x}px ${bas}px ${x}px round ${r}px ${r}px ${rb}px ${rb}px)`;
+    img.style.transform = `scale(${lerp(1.22, 1, p)})`;
+    const q = Math.min(1, Math.max(0, (p - 0.55) / 0.35));
+    cadre.style.setProperty("--voile", q);
+    leg.style.opacity = q; leg.style.transform = `translateY(${lerp(20, 0, q)}px)`;
+  };
+  dessine(0);
+  ScrollTrigger.create({ trigger: "#ouverture", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => dessine(s.progress), onRefresh: s => dessine(s.progress) });
+
+  ScrollTrigger.create({ trigger: man, start: "top 80%", end: "bottom 40%", scrub: true,
+    onUpdate: s => { const n = s.progress * mots.length; mots.forEach((m, i) => m.style.opacity = i < n ? 1 : 0.16); } });
+
+  // Cartes empilées : la carte du dessous recule quand la suivante arrive
+  const cartes = gsap.utils.toArray(".carte");
+  cartes.forEach((c, i) => { const suiv = cartes[i + 1]; if (!suiv) return;
+    gsap.to(c, { scale: 0.93, filter: "brightness(.75)", ease: "none", scrollTrigger: { trigger: suiv, start: "top bottom", end: "top " + (84 + (i + 1) * 14) + "px", scrub: true } });
+  });
+
+  // Photos des réalisations : léger décalage, calé sur le défilement
+  gsap.utils.toArray(".bento figure").forEach(f => gsap.fromTo(f.querySelector("img"), { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: f, start: "top bottom", end: "bottom top", scrub: true } }));
+})();
+</script>
+
+<!-- Pollen 3D en haut de page (three.js), mis en pause hors écran -->
+<script type="module">
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  try {
+    const THREE = await import("https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js");
+    const canvas = document.getElementById("pollen"), hero = document.getElementById("hero");
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: "low-power" });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+    camera.position.z = 9;
+    const N = innerWidth < 700 ? 140 : 260;
+    const pos = new Float32Array(N * 3), col = new Float32Array(N * 3), taille = new Float32Array(N), phase = new Float32Array(N);
+    const teintes = ["#2f6f8f", "#5fa3ad", "#E2B26B", "#5fa3ad", "#22303a"].map(c => new THREE.Color(c));
+    for (let i = 0; i < N; i++) {
+      pos.set([(Math.random() - .5) * 18, (Math.random() - .5) * 11, (Math.random() - .5) * 10], i * 3);
+      const c = teintes[Math.floor(Math.random() * teintes.length)]; col.set([c.r, c.g, c.b], i * 3);
+      taille[i] = Math.random() < .82 ? 0.15 + Math.random() * 0.35 : 0.9 + Math.random() * 1.6; phase[i] = Math.random() * 6.28;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    g.setAttribute("color", new THREE.BufferAttribute(col, 3));
+    g.setAttribute("taille", new THREE.BufferAttribute(taille, 1));
+    g.setAttribute("phase", new THREE.BufferAttribute(phase, 1));
+    const mat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: { uT: { value: 0 }, uPx: { value: renderer.getPixelRatio() } },
+      vertexShader: `attribute float taille; attribute float phase; attribute vec3 color; uniform float uT; uniform float uPx; varying vec3 vC; varying float vA;
+        void main(){ vec3 p = position; p.y += mod(uT*0.25 + phase*2.0, 11.0) - 5.5; p.x += sin(uT*0.4 + phase)*0.5; p.z += cos(uT*0.3 + phase)*0.4;
+          vec4 mv = modelViewMatrix * vec4(p,1.0); gl_Position = projectionMatrix * mv;
+          gl_PointSize = taille * 120.0 * uPx / -mv.z; vC = color; vA = smoothstep(-14.0,-4.0,mv.z) * (0.55 + 0.45*sin(uT + phase*3.0)); }`,
+      fragmentShader: `varying vec3 vC; varying float vA; void main(){ float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.0, d); gl_FragColor = vec4(vC, a * a * vA * 0.5); }`
+    });
+    const pts = new THREE.Points(g, mat); scene.add(pts);
+    let mx = 0, my = 0, visible = true;
+    addEventListener("pointermove", e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+    new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(hero);
+    const taillage = () => { const w = hero.clientWidth, h = hero.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    addEventListener("resize", taillage); taillage();
+    const horloge = new THREE.Timer();
+    renderer.setAnimationLoop(() => {
+      if (!visible) return;
+      horloge.update(); mat.uniforms.uT.value = horloge.getElapsed();
+      camera.position.x += (mx * 1.2 - camera.position.x) * 0.04; camera.position.y += (-my * 0.8 - camera.position.y) * 0.04;
+      camera.position.z = 9 - Math.min(scrollY / innerHeight, 1) * 3; camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    });
+  } catch (e) { /* pas de WebGL : le fond reste uni */ }
+}
+</script>
+</body>
+</html>

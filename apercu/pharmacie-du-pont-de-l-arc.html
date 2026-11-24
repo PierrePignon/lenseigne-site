@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pharmacie du Pont de l&#x27;Arc — pharmacie à Aix-en-Provence</title>
+<meta name="description" content="Pharmacie du Pont de l&#x27;Arc, pharmacie à Aix-en-Provence : horaires, gardes, services et rendez-vous en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1600&q=80">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.css">
+<!--
+  MODÈLE PHARMACIE PREMIUM — L'enseigne (rempli par generer.py, ne pas éditer les {{...}} à la main)
+  Même style que artisan-premium : arche qui s'ouvre, texte qui s'allume, cartes empilées, Lenis.
+  Démonstrations : prise de rendez-vous et envoi d'ordonnance (simulés). Tout est coupé si prefers-reduced-motion.
+-->
+<style>
+  :root{
+    --lin:#F3F6F2; --encre:#13201A; --sapin:#0E3A2D; --terre:#1E9E6A; --sauge:#5FB8C9; --doux:#E4ECE6;
+    --ease-out:cubic-bezier(.23,1,.32,1); --r:28px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;overflow-x:clip}
+  body{background:var(--lin);color:var(--encre);font:400 17px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Inter Tight",Inter,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.02;text-wrap:balance}
+  em{font-family:Fraunces,Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.02em;background:linear-gradient(100deg,var(--terre) 10%,var(--sauge) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .06em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .surt{font:500 12px/1.4 Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;opacity:.55}
+  ::selection{background:var(--sauge);color:#fff}
+
+  .top{position:fixed;inset:0 0 auto;z-index:40;padding-top:env(safe-area-inset-top)}
+  .top::before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--lin) 72%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.06)}
+  .top .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+  .marque{font:600 16px/1.1 "Inter Tight",sans-serif;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;min-width:0}
+  .marque span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .croix{flex:0 0 26px;height:26px;position:relative;border-radius:7px;background:linear-gradient(135deg,var(--terre),var(--sapin))}
+  .croix::before,.croix::after{content:"";position:absolute;background:#fff;border-radius:2px;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .croix::before{width:14px;height:5px}.croix::after{width:5px;height:14px}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:999px;font:500 15px/1 Inter,sans-serif;transition:transform .2s var(--ease-out),background-color .2s ease}
+  .pill:active{transform:scale(.97)}
+  .pill.fonce{background:var(--sapin);color:#fff}
+  .pill.clair{background:rgba(255,255,255,.75);border:1px solid rgba(0,0,0,.08)}
+  .top .pill{min-height:36px;padding:0 16px;font-size:14px;flex:0 0 auto}
+  @media(hover:hover){.pill.fonce:hover{background:color-mix(in srgb,var(--sapin) 88%,#fff)}.pill.clair:hover{background:#fff}}
+
+  .hero{position:relative;min-height:66svh;display:grid;place-items:center;text-align:center;padding:110px 0 40px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:8% -10% -10%;background:radial-gradient(34% 30% at 30% 62%,color-mix(in srgb,var(--terre) 22%,transparent),transparent 70%),radial-gradient(34% 32% at 72% 40%,color-mix(in srgb,var(--sauge) 26%,transparent),transparent 70%);filter:blur(20px);animation:derive 16s ease-in-out infinite alternate}
+  @keyframes derive{to{transform:translate3d(-5%,3%,0) scale(1.08)}}
+  .hero .wrap{position:relative}
+  .hero h1{font-size:clamp(44px,11vw,108px);margin:16px auto 18px;max-width:11ch}
+  .hero p{font-size:clamp(17px,2.2vw,21px);opacity:.7;max-width:31ch;margin:0 auto 26px}
+  .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .statut{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.06)}
+  .statut i{width:8px;height:8px;border-radius:50%;background:var(--terre);box-shadow:0 0 0 4px color-mix(in srgb,var(--terre) 22%,transparent)}
+  .mot{display:inline-block;opacity:0;transform:translateY(.35em);filter:blur(6px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out),filter .9s var(--ease-out)}
+  .pret .mot{opacity:1;transform:none;filter:none}
+
+  .ouverture{position:relative;height:240vh}
+  .scene{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  .cadre{position:absolute;inset:0;clip-path:inset(6% 14% 8% 14% round 40vw 40vw 24px 24px);will-change:clip-path}
+  .cadre img{width:100%;height:100%;object-fit:cover;transform:scale(1.22);will-change:transform}
+  .cadre::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,color-mix(in srgb,var(--sapin) 78%,transparent));opacity:var(--voile,0)}
+  .legende{position:absolute;left:0;right:0;bottom:max(12vh,150px);text-align:center;color:#fff;opacity:0;transform:translateY(20px);padding:0 22px}
+  .legende h2{font-size:clamp(36px,8vw,80px)}
+  .legende p{opacity:.85;margin-top:10px}
+
+  .manifeste{padding:16vh 0 12vh}
+  .manifeste p{font:600 clamp(29px,5.4vw,58px)/1.12 "Inter Tight",sans-serif;letter-spacing:-.03em;max-width:21ch}
+  .manifeste span{opacity:.16;transition:opacity .25s linear}
+
+  section h2.t{font-size:clamp(34px,6.3vw,62px);margin:12px 0 28px}
+
+  /* Infos pratiques */
+  .infos{padding:4vh 0 10vh}
+  .grille{display:grid;gap:14px}
+  @media(min-width:900px){.grille{grid-template-columns:1.1fr .9fr}}
+  .bloc{background:#fff;border-radius:var(--r);padding:24px;border:1px solid rgba(0,0,0,.05);box-shadow:0 24px 50px -36px rgba(14,58,45,.45)}
+  .bloc h3{font-size:22px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .horaires{width:100%;border-collapse:collapse;font-size:16px}
+  .horaires td{padding:9px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+  .horaires td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  .horaires tr.auj td{font-weight:600;color:var(--sapin)}
+  .horaires tr.auj td:first-child::after{content:" · aujourd'hui";font-weight:400;opacity:.6;font-size:13px}
+  .note{font-size:13px;opacity:.6;margin-top:12px}
+  .garde{background:var(--sapin);color:#fff;border:0}
+  .garde p{opacity:.8}
+  .garde .num{display:inline-flex;align-items:center;gap:10px;margin:16px 0 4px;font:600 34px/1 "Inter Tight",sans-serif;letter-spacing:-.02em}
+  .acces{margin-top:14px}
+  .acces p{margin-bottom:12px}
+  .acces .ctas{justify-content:flex-start}
+
+  /* Services en cartes empilées */
+  .services{padding:6vh 0 10vh}
+  .pile{display:grid;gap:18px}
+  .carte{position:sticky;top:calc(84px + var(--i) * 14px);height:min(70vh,540px);border-radius:var(--r);overflow:hidden;color:#fff;transform-origin:50% 0;box-shadow:0 30px 60px -30px rgba(14,58,45,.55)}
+  .carte img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .carte::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,color-mix(in srgb,var(--sapin) 88%,transparent))}
+  .carte div{position:absolute;z-index:2;left:26px;right:26px;bottom:26px}
+  .carte small{font:500 12px/1 Inter;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+  .carte h3{font-size:clamp(30px,6vw,52px);margin:10px 0 8px}
+  .carte p{opacity:.88;max-width:36ch}
+
+  /* Rendez-vous / ordonnance */
+  .rdv{padding:10vh 0;background:var(--sapin);color:#fff;border-radius:40px 40px 0 0;position:relative;overflow:hidden}
+  .rdv::before{content:"";position:absolute;width:640px;height:640px;right:-260px;top:-240px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--terre) 45%,transparent),transparent 62%);filter:blur(10px)}
+  .rdv .wrap{position:relative}
+  .rdv .surt{opacity:.6}
+  .onglets{display:inline-flex;padding:5px;border-radius:999px;background:rgba(255,255,255,.1);margin-bottom:16px;gap:4px}
+  .onglets button{min-height:42px;padding:0 18px;border-radius:999px;font-size:15px;font-weight:500;color:#fff;opacity:.75;transition:background-color .2s ease,opacity .2s ease}
+  .onglets button[aria-selected="true"]{background:#fff;color:var(--sapin);opacity:1}
+  .panneau{background:var(--lin);color:var(--encre);border-radius:var(--r);padding:24px;max-width:760px;display:grid;gap:18px}
+  .panneau[hidden]{display:none}
+  .panneau label.l{font-size:13px;font-weight:500;opacity:.7;display:block;margin-bottom:8px}
+  .puces{display:flex;flex-wrap:wrap;gap:8px}
+  .puces button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(0,0,0,.12);background:#fff;font-size:15px;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+  .puces button[aria-pressed="true"]{background:var(--sapin);color:#fff;border-color:var(--sapin)}
+  .jours{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .jours button{padding:10px 4px;border-radius:16px;border:1px solid rgba(0,0,0,.1);background:#fff;line-height:1.15;transition:background-color .2s ease,color .2s ease}
+  .jours button small{display:block;font-size:12px;opacity:.6;text-transform:capitalize}
+  .jours button b{font:600 22px/1.2 "Inter Tight",sans-serif}
+  .jours button[aria-pressed="true"]{background:var(--sapin);color:#fff;border-color:var(--sapin)}
+  .jours button[aria-pressed="true"] small{opacity:.8}
+  .heures{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .heures button{min-height:44px;border-radius:14px;border:1px solid rgba(0,0,0,.1);background:#fff;font-variant-numeric:tabular-nums;transition:background-color .2s ease,color .2s ease}
+  .heures button[aria-pressed="true"]{background:var(--terre);color:#fff;border-color:var(--terre)}
+  .heures button:disabled{opacity:.35;text-decoration:line-through;cursor:default}
+  .deux{display:grid;gap:12px}
+  @media(min-width:640px){.deux{grid-template-columns:1fr 1fr}}
+  .panneau input,.panneau textarea{width:100%;font:400 16px/1.4 Inter,sans-serif;padding:14px 16px;border-radius:14px;border:1px solid rgba(0,0,0,.1);background:#fff;transition:border-color .2s ease,box-shadow .2s ease}
+  .panneau input:focus,.panneau textarea:focus{outline:0;border-color:var(--terre);box-shadow:0 0 0 4px color-mix(in srgb,var(--terre) 22%,transparent)}
+  .depot{display:flex;align-items:center;justify-content:center;gap:10px;min-height:96px;border:1.5px dashed rgba(0,0,0,.22);border-radius:18px;cursor:pointer;font-size:15px;text-align:center;padding:12px;background:#fff}
+  .panneau .pill.fonce{width:100%;min-height:54px;font-size:16px}
+  .panneau .pill.fonce:disabled{opacity:.4;cursor:default}
+  .confirme{display:none;text-align:center;padding:10px 4px}
+  .confirme .ok{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;background:var(--terre);display:grid;place-items:center;transform:scale(.6);opacity:0;transition:transform .5s var(--ease-out),opacity .4s ease}
+  .confirme.vu .ok{transform:none;opacity:1}
+  .confirme h3{font-size:26px;margin-bottom:8px}
+  .confirme p{opacity:.75;max-width:40ch;margin:0 auto}
+  .demo{font-size:13px;opacity:.6;margin-top:14px}
+
+  .faq{padding:10vh 0}
+  .faq details{border-bottom:1px solid rgba(0,0,0,.1)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:22px 0;font:600 20px/1.3 "Inter Tight",sans-serif;letter-spacing:-.015em}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"";flex:0 0 12px;height:12px;margin-top:6px;border-right:2px solid var(--terre);border-bottom:2px solid var(--terre);transform:rotate(45deg);transition:transform .25s var(--ease-out)}
+  .faq details[open] summary::after{transform:rotate(-135deg)}
+  .faq details p{padding:0 0 22px;opacity:.7;max-width:60ch}
+
+  footer{padding:40px 0 130px;font-size:14px;opacity:.7}
+  footer a{text-decoration:underline}
+
+  .barre{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:6px;padding:6px;border-radius:24px;background:color-mix(in srgb,var(--sapin) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);box-shadow:0 20px 40px -18px rgba(0,0,0,.5)}
+  .barre a{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;border-radius:18px;color:#fff;font-size:14px;font-weight:500}
+  .barre a:last-child{background:linear-gradient(120deg,var(--terre),var(--sauge))}
+  .barre svg{width:18px;height:18px}
+  .apercu{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom));z-index:39;font-size:11px;white-space:nowrap;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#333}
+  .apercu a{color:var(--sapin);text-decoration:underline}
+  @media(min-width:900px){.barre{display:none}.apercu{bottom:14px}footer{padding-bottom:60px}}
+
+  @media(prefers-reduced-motion:reduce){
+    .mot{opacity:1;transform:none;filter:none;transition:none}.hero::before{animation:none}
+    .ouverture{height:auto}.scene{position:relative;height:80vh}
+    .cadre{clip-path:inset(0 0 0 0 round 0);--voile:1}.cadre img{transform:none}
+    .legende{opacity:1;transform:none}
+    .manifeste span{opacity:1}
+    .carte{position:relative;top:auto}
+    .confirme .ok{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="marque" href="#"><i class="croix" aria-hidden="true"></i><span>Pharmacie du Pont de l&#x27;Arc</span></a>
+  <a class="pill fonce" href="#rdv">Rendez-vous</a>
+</div></header>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="surt">Pharmacie · Aix-en-Provence</div>
+    <h1 id="titre">Votre pharmacie, <em>à deux pas.</em></h1>
+    <p>Horaires, gardes, services et rendez-vous en ligne : tout est ici, au même endroit.</p>
+    <div class="ctas"><a class="pill fonce" href="#rdv">Prendre rendez-vous</a><a class="pill clair" href="#infos">Horaires et accès</a></div>
+    <div class="statut" id="statut"><i></i><span>Aix-en-Provence</span></div>
+  </div>
+</section>
+
+<section class="ouverture" id="ouverture">
+  <div class="scene">
+    <div class="cadre" id="cadre"><img src="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1600&q=80" alt="Intérieur d'une pharmacie"></div>
+    <div class="legende" id="legende"><h2>Un conseil,<br>une équipe qui vous connaît.</h2><p>Pharmacie du Pont de l&#x27;Arc, à Aix-en-Provence.</p></div>
+  </div>
+</section>
+
+<section class="manifeste"><div class="wrap">
+  <p id="manifeste">Une bonne pharmacie, c'est d'abord une équipe qui prend le temps. Un conseil clair, une ordonnance prête quand vous passez, et quelqu'un pour vous répondre.</p>
+</div></section>
+
+<section class="infos" id="infos"><div class="wrap">
+  <div class="surt">Infos pratiques</div>
+  <h2 class="t">Ouvert quand <em>vous en avez besoin.</em></h2>
+  <div class="grille">
+    <div class="bloc">
+      <h3>Horaires</h3>
+      <table class="horaires" id="horaires">
+        <tr><td>Lundi</td><td>8 h 30 – 19 h 30</td></tr>
+        <tr><td>Mardi</td><td>8 h 30 – 19 h 30</td></tr>
+        <tr><td>Mercredi</td><td>8 h 30 – 19 h 30</td></tr>
+        <tr><td>Jeudi</td><td>8 h 30 – 19 h 30</td></tr>
+        <tr><td>Vendredi</td><td>8 h 30 – 19 h 30</td></tr>
+        <tr><td>Samedi</td><td>8 h 30 – 13 h</td></tr>
+        <tr><td>Dimanche</td><td>Fermé</td></tr>
+      </table>
+      <p class="note">Horaires d'exemple : nous reprendrons les vôtres, et vous pourrez les changer à tout moment.</p>
+    </div>
+    <div>
+      <div class="bloc garde">
+        <h3>Pharmacie de garde</h3>
+        <p>La nuit, le dimanche et les jours fériés, le service de garde vous indique la pharmacie ouverte la plus proche.</p>
+        <a class="num" href="tel:3237">3237</a>
+        <p style="font-size:14px">Numéro national des pharmacies de garde.</p>
+      </div>
+      <div class="bloc acces">
+        <h3>Accès</h3>
+        <p>13090 Aix-en-Provence</p>
+        <div class="ctas"><a class="pill fonce" href="tel:+33442263321">Appeler le 04 42 26 33 21</a><a class="pill clair" href="https://www.google.com/maps/search/?api=1&query=43.5096226,5.441397" target="_blank" rel="noopener">Itinéraire</a></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="services"><div class="wrap">
+  <div class="surt">Services</div>
+  <h2 class="t">Plus qu'une officine, <em>un lieu de santé.</em></h2>
+  <div class="pile">
+    <article class="carte" style="--i:0"><img loading="lazy" src="https://images.unsplash.com/photo-1615631648086-325025c9e51e?auto=format&fit=crop&w=1200&q=80" alt=""><div><small>01 · Prévention</small><h3>Vaccination</h3><p>Grippe, Covid et rappels : réservez votre créneau en ligne, sans attendre au comptoir.</p></div></article>
+    <article class="carte" style="--i:1"><img loading="lazy" src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?auto=format&fit=crop&w=1200&q=80" alt=""><div><small>02 · Dépistage</small><h3>Tests et suivi</h3><p>Test angine, tension, entretiens pharmaceutiques : un temps dédié, en toute confidentialité.</p></div></article>
+    <article class="carte" style="--i:2"><img loading="lazy" src="https://images.unsplash.com/photo-1563213126-a4273aed2016?auto=format&fit=crop&w=1200&q=80" alt=""><div><small>03 · Ordonnances</small><h3>Prête à votre arrivée</h3><p>Envoyez votre ordonnance en photo : nous la préparons et vous prévenons quand elle est prête.</p></div></article>
+  </div>
+  <p class="note">Services d'exemple : nous mettrons en avant ceux que vous proposez réellement.</p>
+</div></section>
+
+<section class="rdv" id="rdv"><div class="wrap">
+  <div class="surt">En ligne, 24 h sur 24</div>
+  <h2 class="t">Réservez en <em>trente secondes.</em></h2>
+  <div class="onglets" role="tablist">
+    <button role="tab" aria-selected="true" data-p="p-rdv">Rendez-vous</button>
+    <button role="tab" aria-selected="false" data-p="p-ord">Ordonnance</button>
+  </div>
+
+  <div class="panneau" id="p-rdv" role="tabpanel">
+    <div id="etapes-rdv">
+      <div><label class="l">Motif</label>
+        <div class="puces" id="motifs">
+          <button type="button" aria-pressed="false">Vaccin grippe</button>
+          <button type="button" aria-pressed="false">Vaccin Covid</button>
+          <button type="button" aria-pressed="false">Test angine</button>
+          <button type="button" aria-pressed="false">Entretien</button>
+        </div>
+      </div>
+      <div style="margin-top:18px"><label class="l">Jour</label><div class="jours" id="jours"></div></div>
+      <div style="margin-top:18px"><label class="l">Heure</label><div class="heures" id="heures"></div></div>
+      <div class="deux" style="margin-top:18px">
+        <input id="r-nom" placeholder="Nom" autocomplete="name">
+        <input id="r-tel" placeholder="Téléphone" type="tel" autocomplete="tel">
+      </div>
+      <button class="pill fonce" id="r-ok" type="button" style="margin-top:18px" disabled>Confirmer le rendez-vous</button>
+    </div>
+    <div class="confirme" id="c-rdv">
+      <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3>Rendez-vous confirmé</h3>
+      <p id="c-rdv-txt"></p>
+      <p class="demo">Démonstration : sur votre site, la pharmacie reçoit aussitôt le rendez-vous par e-mail.</p>
+    </div>
+  </div>
+
+  <div class="panneau" id="p-ord" role="tabpanel" hidden>
+    <div id="etapes-ord">
+      <label class="depot" for="o-photo" id="o-label">Prendre en photo ou ajouter votre ordonnance</label>
+      <input id="o-photo" type="file" accept="image/*,application/pdf" hidden>
+      <div class="deux" style="margin-top:18px">
+        <input id="o-nom" placeholder="Nom" autocomplete="name">
+        <input id="o-tel" placeholder="Téléphone" type="tel" autocomplete="tel">
+      </div>
+      <button class="pill fonce" id="o-ok" type="button" style="margin-top:18px">Envoyer l'ordonnance</button>
+    </div>
+    <div class="confirme" id="c-ord">
+      <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3>Ordonnance bien reçue</h3>
+      <p>Nous la préparons et vous envoyons un SMS dès qu'elle est prête. Pensez à apporter l'original et votre carte Vitale.</p>
+      <p class="demo">Démonstration : rien n'a été envoyé.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <div class="surt">Questions fréquentes</div>
+  <h2 class="t">Vous vous demandez <em>peut-être…</em></h2>
+  <details><summary>Faut-il une ordonnance pour se faire vacciner ?</summary><p>Pour la grippe et le Covid, non dans la plupart des cas : le pharmacien vérifie avec vous avant l'injection.</p></details>
+  <details><summary>Comment trouver la pharmacie de garde ?</summary><p>Appelez le 3237, ou consultez le site du service de garde : il indique la pharmacie ouverte la plus proche.</p></details>
+  <details><summary>Puis-je envoyer mon ordonnance à l'avance ?</summary><p>Oui, depuis cette page. Vous passez ensuite la récupérer avec l'original et votre carte Vitale.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  Pharmacie du Pont de l&#x27;Arc · 13090 Aix-en-Provence · 04 42 26 33 21<br>
+  <a href="https://lenseigneweb.fr" target="_blank" rel="noopener">Site réalisé par L'enseigne</a>
+</div></footer>
+
+<nav class="barre" aria-label="Contact rapide">
+  <a href="tel:+33442263321"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Appeler</a>
+  <a href="https://www.google.com/maps/search/?api=1&query=43.5096226,5.441397" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Itinéraire</a>
+  <a href="#rdv">Rendez-vous</a>
+</nav>
+<div class="apercu">Aperçu offert par <a href="https://lenseigneweb.fr">L'enseigne</a> · photos d'illustration</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduit = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const $ = id => document.getElementById(id);
+
+  // Titre : mots qui apparaissent
+  const t = $("titre");
+  [...t.childNodes].forEach(n => {
+    if (n.nodeType === 3) { const f = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(w => { if (!w.trim()) { f.append(w); return; } const s = document.createElement("span"); s.className = "mot"; s.textContent = w; f.append(s); });
+      n.replaceWith(f);
+    } else n.classList.add("mot");
+  });
+  [...t.querySelectorAll(".mot")].forEach((m, i) => m.style.transitionDelay = (120 + i * 70) + "ms");
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("pret")));
+
+  // Jour courant dans les horaires
+  const j = (new Date().getDay() + 6) % 7;
+  $("horaires").rows[j].classList.add("auj");
+
+  // Onglets
+  document.querySelectorAll(".onglets button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".onglets button").forEach(x => { x.setAttribute("aria-selected", x === b); $(x.dataset.p).hidden = x !== b; });
+  }));
+
+  // Prise de rendez-vous (démonstration)
+  const choix = { motif: "", jour: null, heure: "" };
+  const presse = (groupe, b) => { groupe.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); };
+  const verifie = () => { $("r-ok").disabled = !(choix.motif && choix.jour && choix.heure); };
+  $("motifs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; presse($("motifs"), b); choix.motif = b.textContent; verifie(); });
+  const jours = [], d = new Date();
+  while (jours.length < 5) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) jours.push(new Date(d)); }
+  const fmtJ = x => x.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "");
+  $("jours").innerHTML = jours.map((x, i) => `<button type="button" aria-pressed="false" data-i="${i}"><small>${fmtJ(x)}</small><b>${x.getDate()}</b></button>`).join("");
+  const creneaux = ["9 h", "9 h 30", "10 h", "10 h 30", "11 h", "14 h 30", "15 h", "16 h"];
+  const dessineHeures = i => {
+    const sam = jours[i] && jours[i].getDay() === 6;
+    $("heures").innerHTML = creneaux.map((h, k) => { const pris = (k * 3 + (i ?? 0) * 5) % 7 === 1 || (sam && k > 4);
+      return `<button type="button" aria-pressed="false" ${pris ? "disabled" : ""}>${h}</button>`; }).join("");
+  };
+  dessineHeures(null);
+  $("jours").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; presse($("jours"), b); choix.jour = jours[+b.dataset.i]; choix.heure = ""; dessineHeures(+b.dataset.i); verifie(); });
+  $("heures").addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; presse($("heures"), b); choix.heure = b.textContent; verifie(); });
+  const montre = (cache, c) => { $(cache).style.display = "none"; const el = $(c); el.style.display = "block"; requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("vu"))); };
+  $("r-ok").addEventListener("click", () => {
+    const jr = choix.jour.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+    $("c-rdv-txt").textContent = `${choix.motif}, ${jr} à ${choix.heure}. Un SMS de rappel vous sera envoyé la veille.`;
+    montre("etapes-rdv", "c-rdv");
+  });
+
+  // Ordonnance (démonstration)
+  $("o-photo").addEventListener("change", e => { if (e.target.files[0]) $("o-label").textContent = "✓ " + e.target.files[0].name; });
+  $("o-ok").addEventListener("click", () => montre("etapes-ord", "c-ord"));
+
+  // Texte qui s'allume
+  const man = $("manifeste");
+  man.innerHTML = man.textContent.split(" ").map(w => "<span>" + w + "</span>").join(" ");
+  const mots = [...man.children];
+
+  if (reduit || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (window.Lenis) {
+    const lenis = new Lenis({ lerp: 0.1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(time => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", e => { const id = a.getAttribute("href"); if (id.length > 1) { e.preventDefault(); lenis.scrollTo(id, { offset: -60 }); } }));
+  }
+
+  const cadre = $("cadre"), img = cadre.querySelector("img"), leg = $("legende");
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const dessine = p => {
+    const W = innerWidth, H = innerHeight, mx = W < 700 ? 0.13 : 0.3;
+    const x = lerp(W * mx, 0, p), top = lerp(H * 0.05, 0, p), bas = lerp(H * 0.08, 0, p);
+    const r = lerp((W - 2 * W * mx) / 2, 0, p), rb = lerp(24, 0, p);
+    cadre.style.clipPath = `inset(${top}px ${x}px ${bas}px ${x}px round ${r}px ${r}px ${rb}px ${rb}px)`;
+    img.style.transform = `scale(${lerp(1.22, 1, p)})`;
+    const q = Math.min(1, Math.max(0, (p - 0.55) / 0.35));
+    cadre.style.setProperty("--voile", q);
+    leg.style.opacity = q; leg.style.transform = `translateY(${lerp(20, 0, q)}px)`;
+  };
+  dessine(0);
+  ScrollTrigger.create({ trigger: "#ouverture", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => dessine(s.progress), onRefresh: s => dessine(s.progress) });
+
+  ScrollTrigger.create({ trigger: man, start: "top 80%", end: "bottom 40%", scrub: true,
+    onUpdate: s => { const n = s.progress * mots.length; mots.forEach((m, i) => m.style.opacity = i < n ? 1 : 0.16); } });
+
+  const cartes = gsap.utils.toArray(".carte");
+  cartes.forEach((c, i) => { const suiv = cartes[i + 1]; if (!suiv) return;
+    gsap.to(c, { scale: 0.93, filter: "brightness(.75)", ease: "none", scrollTrigger: { trigger: suiv, start: "top bottom", end: "top " + (84 + (i + 1) * 14) + "px", scrub: true } });
+  });
+})();
+</script>
+</body>
+</html>
